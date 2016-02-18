@@ -16,4 +16,6 @@ class User < ActiveRecord::Base
 	def following?(other_user)
 		followings.include?(other_user)
 	end
+	def feed
+	end
 end
