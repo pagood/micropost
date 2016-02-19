@@ -13,4 +13,10 @@ class UserTest < ActiveSupport::TestCase
   	x.unfollow(y)
   	assert_not x.following?(y)
   end
+
+  test "feed should have the right posts" do
+    x = users(:one)
+    y = users(:two)
+    
+  end
 end
