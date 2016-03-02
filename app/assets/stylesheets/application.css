@@ -13,3 +13,119 @@
  *= require_tree .
  *= require_self
  */
+/*font*/
+.title-bar a{
+	text-decoration: none;
+	color: #283D75;
+}
+.title-bar a:hover{
+	text-decoration: none;
+	color: #283D75;
+}
+
+/*    */
+html,body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background: #F7F7F7;
+	-webkit-text-size-adjust: auto;
+}
+.container{
+	padding: 0;
+}
+
+.input-field{
+  color: #666666;
+  width: 100%;
+  border: 1px solid #E6E6E6;
+  height: 40px;
+  text-indent: 10px;
+}
+
+.outline{
+	max-width: 620px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.user{
+	max-width: 958px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.error_messages{
+	width: 100%;
+	padding:0;
+	color: #FFFFFF;
+	list-style-position: inside;
+
+}
+.error_background{
+
+	margin-top: 10px;
+	background: rgba(0,0,0,.5);
+	border-radius: 5px;
+}
+.login_error_background{
+	text-align: center;
+	padding: 15px;
+	margin-top: 10px;
+	background: rgba(0,0,0,.5);
+	border-radius: 5px;
+}
+
+
+.hidden{
+	display: none;
+}
+
+.center{
+	margin: auto;
+}
+
+.no-padding{
+	padding: 0;
+}
+.place-right{
+	float: right;
+}
+.place-left{
+	float: left;
+}
+.b{
+	border: solid;
+}
+.content-center{
+	top:20%;
+	text-align: center;
+}
+
+
+.col-left{
+	float: left;
+}
+.edit{
+	max-width: 520px;
+	padding-top: 10px;
+	padding-bottom: 100px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.select-form{
+	display: block;
+}
+.post-edit{
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+.post-edit .btn{
+	margin-top: 5px;
+}
+.not-display{
+	display: none;
+}
+.blue{
+
+	color: #0066CC;
+}

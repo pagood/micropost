@@ -1,0 +1,32 @@
+<div class="post" data-id="<%= post.id %>">
+	<div class="name-bar">
+
+		<div class="">
+			<%= image_tag(post.user.avatar.small.url,class:"img-circle xxs-img-circle inline place-left")%><p class="xxs-name place-left"><%= post.user.user_name %></p>
+		</div>
+
+	</div>
+	<div class="photo-area">
+		<% if post.photo? %>
+		<%= image_tag post.photo.url,class:"post-photo"%>
+		<% end %>
+	</div>
+	<div class="txt-area">
+		<h5 align="left"><%= post.likes %> likes</h5>
+		<p align="justify"><%= post.content %></p>
+	</div>
+	<div class="row">
+		<div class="hidden-xs col-sm-6 col-md-6 border-right">
+			<span class="glyphicon glyphicon-heart"></span>
+		</div>
+		<div class="hidden-xs col-sm-6 col-md-6">
+			<h4>Comment</h4>
+		</div>
+		<div class="hidden-sm hidden-md col-xs-6 hidden-lg border-right">
+			<span class="glyphicon glyphicon-heart"></span>
+		</div>
+		<div class="hidden-sm hidden-md col-xs-6 hidden-lg">
+			<h5>Comment</h5>
+		</div>
+	</div>
+</div>

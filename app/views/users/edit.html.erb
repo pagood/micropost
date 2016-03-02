@@ -1,0 +1,53 @@
+<div class="title-bar">
+	<div class="container user">		
+		<div class="row-fluid">
+			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
+				<a href="/" class="place-left"><span class="glyphicon glyphicon-home"></span></a>
+			</div> 
+			<div class="hidden-xs col-sm-4 col-md-4 no-padding" align="center">
+				<a href="/" >FUCKBOOK</a>
+			</div> 
+			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
+				<%= link_to current_user.user_name,user_path(current_user),class:"place-right"%></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container edit">
+	<% flash.each do |message_type,message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+	<%= render 'shared/error_messages',object: @user%>
+	<ul class="nav nav-tabs">
+		<li role="presentation" class="active" id="edit-profile-tag"><a href="javascript:void(0)" id="edit-profile-btn">Edit Profile</a></li>
+		<li role="presentation" id="change-password-tag"><a href="javascript:void(0)" id="change-password-btn">Change Password</a></li>
+	</ul>
+	<div id="edit-profile">
+		<%= form_for(@user)do |f|%>
+		<%= f.label :name %>
+		<%= f.text_field :name,class:"form-control"%>
+		<%= f.label :user_name %>
+		<%= f.text_field :user_name,class:"form-control"%>
+		<%= f.label :sex %>
+		<%= f.select :sex,['---','male','female'],{},class:"select-form"%>
+		<%= f.label :phone %>
+		<%= f.text_field :phone,class:"form-control"%>
+		<%= f.label :website %>
+		<%= f.text_field :website,class:"form-control"%>
+		<%= f.label :bio %>
+		<%= f.text_area :bio,class:"form-control text-area",rows:"10"%>
+		<%= f.submit "Submit",class:"btn btn-success"%>
+		<% end %>
+	</div>
+	<div id="change-password">
+		<%= form_for :change_password,url: user_path(@user),method: :put do |f|%>
+		<%= f.label "Old Password" %>
+		<%= f.password_field :old_password,class:"form-control"%>
+		<%= f.label "New Password" %>
+		<%= f.password_field :new_password,class:"form-control"%>
+		<%= f.label "New Password Confirmation" %>
+		<%= f.password_field :new_password_confirmation,class:"form-control"%>
+		<%= f.submit "Submit",class:"btn btn-success"%>
+		<% end %>
+	</div>
+</div>
