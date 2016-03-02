@@ -139,7 +139,7 @@ ready = function(){
 		            // make a get request to the server
 		            type: "GET",
 		            // get the url from the href attribute of our link
-		            url: $(this).attr('href'),
+		            url: window.location.href,
 		            // send the last id to our rails app
 		            data: {
 		            	id: last
