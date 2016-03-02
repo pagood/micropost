@@ -1,0 +1,16 @@
+<li class="result-got" onclick="window.location='<%= user_path(user) %>'">
+	<div class="row">
+		<div class="col-md-2 col-sm-2" style="left:3%;top:26%">
+			<img src="<%= user.avatar.url %>" class="img-circle xxs-img-circle">
+		</div>
+		<div class="col-md-9 col-sm-8">
+			<% unless user.name? %>
+				<p style="padding-left:10px;padding-top:20px;white-space: nowrap;overflow:hidden;text-overflow:ellipsis;"><%= user.user_name %></p>
+			<% else %>
+				<p style="padding-left:10px;padding-top:10px;white-space: nowrap;overflow:hidden;text-overflow:ellipsis;"><%= user.user_name %></p>
+				<p class="light-gray" style="padding-left:10px;white-space: nowrap;overflow:hidden;text-overflow:ellipsis;"><%= user.name %></p>
+			<% end %>
+		</div>
+	</div>
+</li>
+

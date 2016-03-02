@@ -1,0 +1,95 @@
+<div class="title-bar">
+	<div class="container user">		
+		<div class="row-fluid">
+			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
+				<a href="/" class="place-left">FUCKBOOK</a>
+			</div>
+			<div class="hidden-xs col-sm-4 col-md-4 no-padding">
+				<section class="search-box">
+					<!--<form class="search" method="post" action="index.html" >
+						<input type="text" name="q" placeholder="Search..." />
+						<ul class="results" >
+							<li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+							<li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+							<li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+							<li><a href="index.html">Search Result #4</a></li>
+						</ul>
+					</form>-->
+					<%= form_for :search,remote:true,url: "/search",method: :post,html: {class: "search",id:"search-form",autocomplete:"off"} do |f|%>
+					<%= f.text_field :key_word,id: "search-field"%>
+					<ul class="results" id="results-list">
+					</ul>
+					<% end %>
+				</section>
+				<img src="/assets/712" id="user-search-preloader">
+			</div>
+			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
+				<%= link_to "Log out","/logout",method: :delete,class:"place-right"%></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container profile">
+	<%= render 'shared/user_profiles' %>
+</div>
+<div class="container post-area">
+</div>
+<div id="shadow-layer">
+
+	<!--<div id="avatar-form-container" style="display:none">
+		<ul id="avatar-edit-list">
+			<li><h3 align="center">Change profile picture</h3></li>
+			<li>
+				<%= form_for :change_avatar,:remote=>true,url: user_path(@user),html:{multipart:true,id:"avatar-form"},method: :put do |f|%>
+				<label>
+					<div>Upload Photo</div>
+					<%= f.file_field :avatar,accept: 'image/jpeg,image/gif,image/png',id:"avatar-upload-field"%>
+				</label>
+				<% end %>
+			</li>
+			<li>Cancle</li>
+		</ul>
+
+	</div> -->
+	<div class="row" style="height:70%">
+		<div class="col-md-12 col-sm-12 hidden-xs" style="top:40%" align="center">
+			<div id="avatar-edit-container">
+				<ul class="avatar-edit-list">
+					<li style="background:#F7F7F7"><h4>Change profile picture</h4></li>
+					<li style="cursor:pointer;border-top:1px solid;border-color:#D7D7D7">
+						<%= form_for :change_avatar,:remote=>true,url: user_path(@user),html:{multipart:true,id:"avatar-form"},method: :put do |f|%>
+						<label style="cursor:pointer">
+							<h4 class="blue">Upload Photo</h4>
+							<%= f.file_field :avatar,accept: 'image/jpeg,image/gif,image/png',id:"avatar-upload-field"%>
+						</label>
+						<% end %>
+					</li>
+					<li class="avatar-cancel-btn" style="cursor:pointer;border-top:1px solid;border-color:#D7D7D7"><h4 class="blue">Cancel</h4></li>
+				</ul>
+
+
+			</div>
+		</div>
+	</div>
+	<div class="row" style="height:30%">
+		<div class="hidden-md hidden-lg hidden-sm col-xs-12" align="center">
+			<div id="avatar-edit-container-sm">
+				<ul class="avatar-edit-list">
+					<li style="background:#F7F7F7"><h4>Change profile picture</h4></li>
+					<li style="cursor:pointer;border-top:1px solid;border-color:#D7D7D7">
+						<%= form_for :change_avatar,:remote=>true,url: user_path(@user),html:{multipart:true,id:"avatar-form-sm"},method: :put do |f|%>
+						<label style="cursor:pointer">
+							<h4 class="blue">Upload Photo</h4>
+							<%= f.file_field :avatar,accept: 'image/jpeg,image/gif,image/png',id:"avatar-upload-field-sm"%>
+						</label>
+						<% end %>
+					</li>
+					<li class="avatar-cancel-btn" style="cursor:pointer;border-top:1px solid;border-color:#D7D7D7">
+						<h4 class="blue">Cancel</h4>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+</div>

@@ -1,0 +1,14 @@
+<div class="screen">
+	<% flash.each do |message_type,message|%>
+	<div class="alert alert-<%= message_type %>"><%=message%></div>
+	<% end %>
+	<div class="center-form">
+		
+
+		<div class='logo'>FuckBook.</div>
+		<%= form_for :password_reset, url: password_resets_path do |f| %>
+		<%= f.text_field :email,class: 'input-field',:placeholder => 'email' %>
+		<%= f.submit 'Reset Password',class: "btn btn-primary btn-lg btn-block submit"%>
+		<% end %>
+	</div>
+</div>

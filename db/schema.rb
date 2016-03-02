@@ -11,34 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216055740) do
+ActiveRecord::Schema.define(version: 20160229044025) do
 
   create_table "comments", force: :cascade do |t|
-    t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "post_id"
+    t.text     "content"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string   "photo"
-    t.string   "content"
-    t.integer  "likes"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.text     "content"
+    t.integer  "likes",      default: 0
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.string   "photo"
-    t.string   "name"
-    t.string   "bio"
-    t.string   "website"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -54,8 +46,25 @@ ActiveRecord::Schema.define(version: 20160216055740) do
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "remember_digest"
+    t.string   "name"
+    t.string   "user_name"
+    t.string   "phone"
+    t.string   "sex"
+    t.string   "bio"
+    t.string   "website"
+    t.boolean  "admin",             default: false
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
+    t.string   "avatar"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true
 
 end
