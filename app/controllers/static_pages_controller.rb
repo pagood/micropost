@@ -3,7 +3,6 @@ class StaticPagesController < ApplicationController
 	def home
 		if logged_in?
 			@post = current_user.posts.build
-			
 			if params[:id]
 				@feed = current_user.feed(params[:id])
 			else

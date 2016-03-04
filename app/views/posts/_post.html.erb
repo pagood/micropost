@@ -1,4 +1,4 @@
-<div class="post" data-id="<%= post.id %>">
+<div class="post" data-id="<%= post.id %>" id="<%= post.id %>">
 	<div class="name-bar">
 
 		<div class="">
@@ -16,17 +16,22 @@
 		<p align="justify"><%= post.content %></p>
 	</div>
 	<div class="row">
-		<div class="hidden-xs col-sm-6 col-md-6 border-right">
+		<div class="hidden-xs col-sm-6 col-md-6 border-right like-btn">
 			<span class="glyphicon glyphicon-heart"></span>
 		</div>
-		<div class="hidden-xs col-sm-6 col-md-6">
-			<h4>Comment</h4>
+		<div class="hidden-xs col-sm-6 col-md-6 comment-btn">
+			<h4 >Comment</h4>
 		</div>
-		<div class="hidden-sm hidden-md col-xs-6 hidden-lg border-right">
+		<div class="hidden-sm hidden-md col-xs-6 hidden-lg border-right like-btn">
 			<span class="glyphicon glyphicon-heart"></span>
 		</div>
-		<div class="hidden-sm hidden-md col-xs-6 hidden-lg">
+		<div class="hidden-sm hidden-md col-xs-6 hidden-lg comment-btn">
 			<h5>Comment</h5>
 		</div>
 	</div>
+
+</div>
+<div class="comment-container">
+	
+	
 </div>

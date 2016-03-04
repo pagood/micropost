@@ -24,6 +24,9 @@
 }
 
 /*    */
+a,p{
+	font-family: "Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;
+}
 html,body{
 	margin: 0;
 	padding: 0;

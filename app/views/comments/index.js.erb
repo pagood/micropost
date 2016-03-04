@@ -1,0 +1,13 @@
+if($('#<%= @post.id %>').hasClass("unfoldered")){
+	// console.log("wtf");
+	$('#<%= @post.id %>').next().find(".comment-list").append('<%= escape_javascript(render @comments)%>');
+}
+else{
+	// console.log("wtf");
+	$('#<%= @post.id %>').addClass("unfoldered");
+	$('#<%= @post.id %>').next().append('<%= escape_javascript(render 'shared/comment_feed')%>');
+}
+if(!<%= @flag %>){
+	console.log("wtf");
+	$('#<%= @post.id %>').next().find(".load-comment").hide();
+}

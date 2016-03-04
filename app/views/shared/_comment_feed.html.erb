@@ -1,0 +1,24 @@
+<div class="comment">
+		<div class="row">
+			<div class="col-xs-2 col-sm-1 col-md-1">
+				<img src="<%= current_user.avatar.small.url %>" class="img-circle xxs-img-circle">
+			</div>
+			<div class="col-xs-10 col-sm-11 col-md-11">
+				<div class="comment-edit">
+					<%= form_for :comment,url: comments_path,method: :post,remote:true,html:{class:"form-for-comment"} do |f|%>
+					<%= f.text_field :content ,style:"width:100%",class:"comment-field"%>
+					<%= f.hidden_field :post_id, :value => @post.id %>
+					<%= f.submit "POST",class: "btn btn-primary place-right post-comment-btn"%>
+					<% end %>
+				</div>
+			</div>
+		</div>
+</div>
+<div class="comment-list">
+	<% if @comments.any? %>
+	<%= render @comments %>
+	<% end %> 
+</div>
+<div class="comment" align="center"> 
+	<a href="javascript:void(0)" class="load-comment">Load More</a>
+</div>
