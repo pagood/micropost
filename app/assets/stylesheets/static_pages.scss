@@ -209,12 +209,11 @@ input {
 .post-edit{
 	position: relative;
 }
-.post{
-	text-align: center;
-	margin-top: 50px;
-    padding-bottom: 5px;
-}
+
 .glyphicon-heart{
+    font-size: 35px;
+}
+.glyphicon-heart-empty{
     font-size: 35px;
 }
 .likes{
@@ -246,6 +245,9 @@ input {
 .preloader-container{
     padding-top: 40px;
     padding-bottom: 50px;
+}
+.post-container{
+    margin-top:50px;
 }
 #home-preloader{
     display: none;

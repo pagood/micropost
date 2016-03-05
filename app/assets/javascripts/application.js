@@ -198,16 +198,18 @@ ready = function(){
 		$('#avatar-preloader-sm').show();
 		$(this).submit();
 	});
-	$('.reply').on('click',function(){
-		if($(this).closest(".row").next().is(":visible")){
-			$(this).closest(".row").next().hide();
-		}
-		else{
-			$(this).closest(".row").next().show();
-		}
+	// $('.reply').on('click',function(){
+	// 	if($(this).closest(".row").next().is(":visible")){
+	// 		$(this).closest(".row").next().hide();
+	// 	}
+	// 	else{
+	// 		$(this).closest(".row").next().show();
+	// 		console.log($(this).closest(".row").next().find(".reply-field"));
+	// 		$(this).closest(".row").next().find(".reply-field").focus();
+	// 	}
 
 	
-	});
+	// });
 	
 };
 
@@ -239,6 +241,9 @@ comment_onClick = function(){
 		else{
 			// $(this).closest(".post").addClass("unfoldered");
 			// var last = $(this).closest(".post").next().find(".comment").last().attr('data-id');
+
+			// console.log($(this).closest(".post").next().find(".comment-field"));
+			$(this).closest(".post").next().next().show();
 			var post = $(this).closest(".post").attr('data-id');
 			$.ajax({
 				type: "GET",
@@ -248,6 +253,7 @@ comment_onClick = function(){
 					post_id: post
 				},
 				dataType: "script",
+				
 
 			});
 		}
@@ -256,8 +262,8 @@ load_comment = function(){
  
 			var last = $(this).closest(".comment").prev().find(".comment").last().attr('data-id');
 			var post = $(this).closest(".comment-container").prev().attr('data-id');
-			console.log(last);
-			console.log(post);
+			// console.log(last);
+			// console.log(post);
 			$.ajax({
 				type: "GET",
 				url: '/comments',
@@ -270,6 +276,11 @@ load_comment = function(){
 			});
 	
 };
+reply_submit = function(){
+	$(this).closest(".comment-container").prev().removeClass("unfoldered");
+	// console.log($(this).closest(".comment-container").prev());
+	$(this).closest(".comment-container").prev().next().empty();
+}
 comment_submit = function(){
 	// console.log("wtf");
 	$(this).closest(".comment-container").prev().removeClass("unfoldered");
@@ -277,8 +288,20 @@ comment_submit = function(){
 	$(this).closest(".comment-container").prev().next().empty();
 	// console.log($(this).closest(".comment-container").prev().next());
 };
+reply = function(){
+	// console.log('fuc');
+	if($(this).closest('.row').next().is(':visible')){
+		$(this).closest('.row').next().hide();
+	}
+	else{
+		$(this).closest('.row').next().show();
+		$(this).closest(".row").next().find(".reply-field").focus();
+	}
+};
 $(document).ready(ready);
 $(document).on('page:load',ready);
 $(document).on('click','.comment-btn',comment_onClick);
 $(document).on('click','.load-comment',load_comment);
 $(document).on('submit','.form-for-comment',comment_submit);
+$(document).on('submit','.form-for-reply',reply_submit);
+$(document).on('click','.reply',reply);

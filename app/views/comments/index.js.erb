@@ -3,11 +3,12 @@ if($('#<%= @post.id %>').hasClass("unfoldered")){
 	$('#<%= @post.id %>').next().find(".comment-list").append('<%= escape_javascript(render @comments)%>');
 }
 else{
-	// console.log("wtf");
+	// console.log("new");
 	$('#<%= @post.id %>').addClass("unfoldered");
+	$('#<%= @post.id %>').next().next().hide();
 	$('#<%= @post.id %>').next().append('<%= escape_javascript(render 'shared/comment_feed')%>');
+	$('#<%= @post.id %>').next().find(".comment-field").focus();
 }
 if(!<%= @flag %>){
-	console.log("wtf");
 	$('#<%= @post.id %>').next().find(".load-comment").hide();
 }

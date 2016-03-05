@@ -5,9 +5,11 @@
 		</div>
 		<div class="col-xs-10 col-sm-11 col-md-11">
 			<% if comment.reply_id.nil? %>
-				<p class="xs-font"><a  href="<%= user_path(comment.user) %>"><strong><%= comment.user.user_name%></strong></a>:<%= comment.content %></p>
+				<p class="xs-font"><a  href="<%= user_path(comment.user) %>"><b><%= comment.user.user_name%></b></a>:<%= comment.content %></p>
 			<% else %>
-				<p class="xs-font"><a  href="<%= user_path(comment.user) %>"><strong><%= comment.user.user_name%></strong></a> reply <a href="<%= user_path(Comment.find_by(id: comment.reply_id).user) %>"><strong><%= Comment.find_by(id: comment.reply_id).user.user_name %></strong></a>:<%= comment.content %></p>
+				<p class="xs-font">
+					<a href="<%= user_path(comment.user) %>"><b><%= comment.user.user_name%></b></a> reply <a href="<%= user_path(Comment.find_by(id: comment.reply_id).user) %>"><b><%= Comment.find_by(id: comment.reply_id).user.user_name %></b></a>:<%= comment.content %>
+				</p>
 			<% end %>
 		</div>
 	</div>
@@ -24,11 +26,11 @@
 	<div class="row reply-row">
 		<div class="col-xs-10 col-xs-offset-2 col-sm-11 col-sm-offset-1 col-md-offset-1 col-md-11">
 			<div class="comment-edit">
-				<%= form_for :comment,url: comments_path,method: :post do |f|%>
-				<%= f.text_field :content ,style:"width:100%",id:"comment-field",placeholder: "reply " + comment.user.user_name + ":"%>
+				<%= form_for :comment,url: comments_path,method: :post,remote:true,html:{class: "form-for-reply"} do |f|%>
+				<%= f.text_field :content ,style:"width:100%",class:"reply-field",placeholder: "reply " + comment.user.user_name + ":"%>
 				<%= f.hidden_field :post_id, :value => comment.post.id %>
 				<%= f.hidden_field :reply_id, :value => comment.id %>
-				<%= f.submit "POST",class: "btn btn-primary place-right",id:"post-comment-btn"%>
+				<%= f.submit "POST",class: "btn btn-primary place-right post-reply-btn"%>
 				<% end %>
 			</div>
 			

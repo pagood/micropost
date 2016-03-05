@@ -2,8 +2,18 @@
 	<div class="name-bar">
 
 		<div class="">
-			<%= image_tag(post.user.avatar.small.url,class:"img-circle xxs-img-circle inline place-left")%><p class="xxs-name place-left"><%= post.user.user_name %></p>
+			<%= image_tag(post.user.avatar.small.url,class:"img-circle xxs-img-circle inline place-left post-profile")%><p class="xxs-name place-left post-profile deep-blue"><b><%= post.user.user_name %></b></p>
+			<% if Time.now - post.created_at > 86400%>
+				<p class="xxs-font gray place-right xxs-name"><%= post.created_at.strftime("%B %d, %Y") %></p>
+			<% else %>
+				<p class="xxs-font gray place-right xxs-name"><%= time_ago_in_words(post.created_at) %> ago</p>
+			<% end %>
 		</div>
+		<script>
+			$('.post-profile').on('click',function(){
+				window.location.href='<%= user_path(post.user) %>';
+			});
+		</script>
 
 	</div>
 	<div class="photo-area">
@@ -17,15 +27,15 @@
 	</div>
 	<div class="row">
 		<div class="hidden-xs col-sm-6 col-md-6 border-right like-btn">
-			<span class="glyphicon glyphicon-heart"></span>
+			<span class="glyphicon glyphicon-heart-empty deep-gray"></span>
 		</div>
-		<div class="hidden-xs col-sm-6 col-md-6 comment-btn">
+		<div class="hidden-xs col-sm-6 col-md-6 comment-btn deep-gray">
 			<h4 >Comment</h4>
 		</div>
 		<div class="hidden-sm hidden-md col-xs-6 hidden-lg border-right like-btn">
-			<span class="glyphicon glyphicon-heart"></span>
+			<span class="glyphicon glyphicon-heart-empty deep-gray"></span>
 		</div>
-		<div class="hidden-sm hidden-md col-xs-6 hidden-lg comment-btn">
+		<div class="hidden-sm hidden-md col-xs-6 hidden-lg comment-btn deep-gray">
 			<h5>Comment</h5>
 		</div>
 	</div>
@@ -34,4 +44,7 @@
 <div class="comment-container">
 	
 	
+</div>
+<div class="comment-preloader-container" align="center">
+	<img src="/assets/728" class="xxs-img-circle"><p>loading</p>
 </div>
