@@ -135,35 +135,40 @@ ready = function(){
 		});
 	});
 	//use to load the post automaticaly when scroll to the bottom
-	if(window.location.pathname == "/"){
-		$(window).scroll(function() {
+	
+	$(window).scroll(function() {
+
+		// console.log(window.location.pathname);
+		if(window.location.pathname === "/"){
+			console.log(window.location.pathname);
 			if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
 				var last = $('.post').last().attr('data-id');
 				$('#home-preloader').show();
-				console.log("######################"+last);
-				$('.post-container').addClass("loading");
-				$.ajax({
-		            // make a get request to the server
-		            type: "GET",
-		            // get the url from the href attribute of our link
-		            url: window.location.href,
-		            // send the last id to our rails app
-		            data: {
-		            	id: last
-		            },
-		            // the response will be a script
-		            dataType: "script",
+					// console.log("######################"+last);
+					$('.post-container').addClass("loading");
+					$.ajax({
+			            // make a get request to the server
+			            type: "GET",
+			            // get the url from the href attribute of our link
+			            url: window.location.href,
+			            // send the last id to our rails app
+			            data: {
+			            	last: last
+			            },
+			            // the response will be a script
+			            dataType: "script",
 
-		            // upon success 
-		            success: function () {
-		            	$('#home-preloader').hide();
-		            	$('.post-container').removeClass("loading");
-		            }
-		        });
+			            // upon success 
+			            success: function () {
+			            	$('#home-preloader').hide();
+			            	$('.post-container').removeClass("loading");
+			            }
+			        });
 
-			}
+				}
+		}
 		});
-	}
+	
 
 
 	//add comment
@@ -326,7 +331,12 @@ dislike_onClick = function(){
 	// $(this)
 	$(this).prev().submit();
 };
-
+//jump to user page
+// jump_to_user_page = function(){
+// 	var id = $(this).closest(".post").attr("id");
+// 	// console.log(id);
+// 	var 
+// };
 $(document).ready(ready);
 $(document).on('page:load',ready);
 $(document).on('click','.like-btn',like_onClick);
@@ -337,3 +347,4 @@ $(document).on('submit','.form-for-comment',comment_submit);
 $(document).on('submit','.form-for-reply',reply_submit);
 $(document).on('click','.link-for-delete',delete_comment_submit);
 $(document).on('click','.reply',reply);
+// $(document).on('click','.post-profile',jump_to_user_page);

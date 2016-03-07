@@ -141,3 +141,7 @@ html,body{
 .deep-gray{
 	color: #606060;
 }
+
+.normal-text:hover{
+	text-decoration:none;
+}

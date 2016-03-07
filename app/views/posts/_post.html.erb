@@ -2,18 +2,14 @@
 	<div class="name-bar">
 
 		<div class="">
-			<%= image_tag(post.user.avatar.small.url,class:"img-circle xxs-img-circle inline place-left post-profile")%><p class="xxs-name place-left post-profile deep-blue"><b><%= post.user.user_name %></b></p>
+			<%= link_to image_tag(post.user.avatar.small.url,class:"img-circle xxs-img-circle inline place-left"),user_path(post.user) %>
+			<b><%= link_to post.user.user_name,user_path(post.user),class:"xxs-name place-left deep-blue normal-text"%></b>
 			<% if Time.now - post.created_at > 86400%>
 			<p class="xxs-font gray place-right xxs-name"><%= post.created_at.strftime("%B %d, %Y") %></p>
 			<% else %>
 			<p class="xxs-font gray place-right xxs-name"><%= time_ago_in_words(post.created_at) %> ago</p>
 			<% end %>
 		</div>
-		<script>
-		$('.post-profile').on('click',function(){
-			window.location.href='<%= user_path(post.user) %>';
-		});
-		</script>
 
 	</div>
 	<div class="photo-area">

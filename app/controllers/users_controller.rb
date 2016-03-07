@@ -9,6 +9,13 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@feed = @user.posts
+		# render :text => @feed.first.id.inspect
+		# if params[:last]
+		# 	@feed = current_user.feed(params[:last])
+		# else
+		# 	@feed = current_user.feed_without_params
+		# end
 	end
 
 	def edit

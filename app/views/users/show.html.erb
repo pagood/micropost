@@ -1,7 +1,11 @@
 <div class="container profile" style="padding-top: 80px;">
 	<%= render 'shared/user_profiles' %>
 </div>
-<div class="container post-area">
+<div class="container outline">
+	<div class="post-container">
+		<%= render 'shared/feed'%>
+	</div>
+	<div class="preloader-container" align="center"> <img src="/assets/728.gif" id="home-preloader"> </div>
 </div>
 <div id="shadow-layer">
 
