@@ -96,6 +96,10 @@ class User < ActiveRecord::Base
 			OR user_id = :user_id",user_id: id).limit(5)
 	end
 
+	def posts_with_last(last)
+		posts.where("id < :last",last: last).limit(5)
+	end
+
 	def avatar_size
       if avatar.size > 5.megabytes
         errors.add(:avatar, "should be less than 5MB")

@@ -140,7 +140,7 @@ ready = function(){
 
 		// console.log(window.location.pathname);
 		if(window.location.pathname === "/"){
-			console.log(window.location.pathname);
+			// console.log(window.location.pathname);
 			if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
 				var last = $('.post').last().attr('data-id');
 				$('#home-preloader').show();
@@ -168,7 +168,38 @@ ready = function(){
 				}
 		}
 		});
-	
+	$(window).scroll(function() {
+		if($('div').hasClass("profile")){
+		// console.log(window.location.pathname);
+			// console.log(window.location.pathname);
+		
+			if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
+				var last = $('.post').last().attr('data-id');
+				$('#home-preloader').show();
+					console.log("######################"+last);
+					$('.post-container').addClass("loading");
+					$.ajax({
+			            // make a get request to the server
+			            type: "GET",
+			            // get the url from the href attribute of our link
+			            url: window.location.href,
+			            // send the last id to our rails app
+			            data: {
+			            	last: last
+			            },
+			            // the response will be a script
+			            dataType: "script",
+
+			            // upon success 
+			            success: function () {
+			            	$('#home-preloader').hide();
+			            	$('.post-container').removeClass("loading");
+			            }
+			        });
+
+				}
+		}
+		});
 
 
 	//add comment
@@ -330,6 +361,38 @@ like_onClick=function(){
 dislike_onClick = function(){
 	// $(this)
 	$(this).prev().submit();
+};
+on_user_load = function(){
+	$(window).scroll(function() {
+
+		// console.log(window.location.pathname);
+			console.log(window.location.pathname);
+			// if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
+			// 	var last = $('.post').last().attr('data-id');
+			// 	$('#home-preloader').show();
+			// 		// console.log("######################"+last);
+			// 		$('.post-container').addClass("loading");
+			// 		$.ajax({
+			//             // make a get request to the server
+			//             type: "GET",
+			//             // get the url from the href attribute of our link
+			//             url: window.location.href,
+			//             // send the last id to our rails app
+			//             data: {
+			//             	last: last
+			//             },
+			//             // the response will be a script
+			//             dataType: "script",
+
+			//             // upon success 
+			//             success: function () {
+			//             	$('#home-preloader').hide();
+			//             	$('.post-container').removeClass("loading");
+			//             }
+			//         });
+
+			// 	}
+		});
 };
 //jump to user page
 // jump_to_user_page = function(){

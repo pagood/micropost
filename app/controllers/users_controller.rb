@@ -11,11 +11,11 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@feed = @user.posts
 		# render :text => @feed.first.id.inspect
-		# if params[:last]
-		# 	@feed = current_user.feed(params[:last])
-		# else
-		# 	@feed = current_user.feed_without_params
-		# end
+		if params[:last]
+			@feed = @user.posts_with_last(params[:last])
+		else
+			@feed = @user.posts.limit(5)
+		end
 	end
 
 	def edit
