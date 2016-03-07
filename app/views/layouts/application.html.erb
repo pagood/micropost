@@ -9,7 +9,42 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% if logged_in? %>
+<% flash.each do |message_type,message|%>
+<div class="alert alert-<%= message_type %>"><%=message%></div>
+<% end %>
+<div class="title-bar fixed-title">
+	<div class="container">		
+		<div class="row-fluid">
+			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
+				<a href="/" class="place-left">FUCKBOOK</a>
+			</div>
+			<div class="hidden-xs col-sm-4 col-md-4 no-padding">
+				<section class="search-box">
+					<!--<form class="search" method="post" action="index.html" >
+						<input type="text" name="q" placeholder="Search..." />
+						<ul class="results" >
+							<li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+							<li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+							<li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+							<li><a href="index.html">Search Result #4</a></li>
+						</ul>
+					</form>-->
+					<%= form_for :search,remote:true,url: "/search",method: :post,html: {class: "search",id:"search-form",autocomplete:"off"} do |f|%>
+					<%= f.text_field :key_word,id: "search-field"%>
+					<ul class="results" id="results-list">
+					</ul>
+					<% end %>
+				</section>
+				<img src="/assets/712" id="home-search-preloader">
+			</div>
+			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
+				<%= link_to current_user.user_name,user_path(current_user),class:"place-right"%></a>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>
 <%= yield %>
 
 </body>

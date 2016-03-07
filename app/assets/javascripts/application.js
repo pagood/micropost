@@ -292,7 +292,12 @@ comment_onClick = function(){
 			$(this).closest(".comment-container").prev().removeClass("unfoldered");
 	// console.log($(this).closest(".comment-container").prev());
 	$(this).closest(".comment-container").prev().next().empty();
-}
+};
+delete_comment_submit = function(){
+			$(this).closest(".comment-container").prev().removeClass("unfoldered");
+	// console.log($(this).closest(".comment-container").prev());
+	$(this).closest(".comment-container").prev().next().empty();
+};
 comment_submit = function(){
 	// console.log("wtf");
 	$(this).closest(".comment-container").prev().removeClass("unfoldered");
@@ -330,4 +335,5 @@ $(document).on('click','.comment-btn',comment_onClick);
 $(document).on('click','.load-comment',load_comment);
 $(document).on('submit','.form-for-comment',comment_submit);
 $(document).on('submit','.form-for-reply',reply_submit);
+$(document).on('click','.link-for-delete',delete_comment_submit);
 $(document).on('click','.reply',reply);

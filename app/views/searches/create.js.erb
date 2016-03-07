@@ -4,5 +4,5 @@ $('#user-search-preloader').hide();
 <% if @results.any? %>
 	$('#results-list').append("<%= escape_javascript(render @results)%>");
 <% else %>
-	$('#results-list').append('<li style="padding-top:10%"><p class="light-gray" align="center" >No results found.</p></li>');
+	$('#results-list').append('<li style="padding-top:5%"><p class="light-gray" align="center" >No results found.</p></li>');
 <% end %>

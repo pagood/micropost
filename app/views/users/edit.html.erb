@@ -1,19 +1,4 @@
-<div class="title-bar">
-	<div class="container user">		
-		<div class="row-fluid">
-			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
-				<a href="/" class="place-left"><span class="glyphicon glyphicon-home"></span></a>
-			</div> 
-			<div class="hidden-xs col-sm-4 col-md-4 no-padding" align="center">
-				<a href="/" >FUCKBOOK</a>
-			</div> 
-			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
-				<%= link_to current_user.user_name,user_path(current_user),class:"place-right"%></a>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="container edit">
+<div class="container edit home-body">
 	<% flash.each do |message_type,message| %>
 		<div class="alert alert-<%= message_type %>"><%= message %></div>
 	<% end %>

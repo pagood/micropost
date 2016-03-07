@@ -94,8 +94,9 @@
 /* search box*/
 .search-box{
 	display: table;
-	margin:auto;
-	max-width: 100%;
+	/*margin:auto;*/
+	/*max-width: 100%;*/
+    width: 100%;
 }
 input {
     font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -105,7 +106,7 @@ input {
 
 .search {
     position: relative;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .search input {
@@ -146,10 +147,10 @@ input {
     position: absolute;
     padding: 0;
     top: 35px;
-    left: -20px;
+    left: 0px;
     z-index: 10;
     max-height: 350px;
-    width: 120%;
+    width: 100%;
     overflow: auto;
     list-style-type: none;
     background: white;

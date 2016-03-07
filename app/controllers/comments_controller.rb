@@ -8,8 +8,9 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
+		post_id = @comment.post.id
 		@comment.destroy
-		redirect_to root_url
+		redirect_to comments_path(post_id: post_id), status: 303
 	end
 
 	def index
