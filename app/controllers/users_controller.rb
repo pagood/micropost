@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 		if @user.save
 			@user.send_activation_email
       		flash.now[:info] = "Please check your email to activate your account."
-			redirect_to '/'
+			redirect_to root_url
 		else
 			render 'new'
 		end
@@ -84,12 +84,12 @@ class UsersController < ApplicationController
 	def correct_user
 		@user = User.find(params[:id])
 		unless  @user == current_user
-			redirect_to '/'
+			redirect_to root_url
 		end
 	end
 	def is_admin
 		unless current_user.admin?
-			redirect_to '/'
+			redirect_to root_url
 		end
 	end
 	

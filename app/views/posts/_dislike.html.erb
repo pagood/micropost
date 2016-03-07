@@ -1,0 +1,4 @@
+<%= form_for current_user.like_relationships.find_by(like_id: post.id),remote:true,html:{display:false,class: "dislike-form",method: :delete } do |f| %>
+<%= hidden_field_tag :post_id,post.id %>
+<% end %>
+<span class="glyphicon glyphicon-heart dislike-btn"></span>

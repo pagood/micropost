@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :account_activations,only: [:edit]
   resources :password_resets,only: [:new,:create,:edit,:update]
   resources :relationships,only: [:create,:destroy]
+  resources :like_relationships,only: [:create,:destroy]
   resources :comments,only: [:create,:destroy,:index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

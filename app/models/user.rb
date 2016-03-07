@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
 	has_many :followings, through: :active_relationships
 	has_many :passive_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
 	has_many :followers, through: :passive_relationships
+	has_many :like_relationships,dependent: :destroy,foreign_key: "like_user_id"
+	has_many :likes,through: :like_relationships,dependent: :destroy
+
+
 	mount_uploader :avatar, AvatarUploader
 	#shared
 	def User.new_token
@@ -59,6 +63,15 @@ class User < ActiveRecord::Base
 	def password_reset_expired?
 		reset_sent_at < 2.hour.ago
 	end
+	#like dislike
+	def like(post)
+		like_relationships.create(like_id: post.id)
+	end
+
+	def dislike(post)
+		like_relationships.find_by(like_id: post.id).destroy
+	end
+
 	#following follower
 	def follow(other_user) 
 		active_relationships.create(following_id: other_user.id)

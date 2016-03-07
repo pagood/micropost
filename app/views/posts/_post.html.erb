@@ -4,15 +4,15 @@
 		<div class="">
 			<%= image_tag(post.user.avatar.small.url,class:"img-circle xxs-img-circle inline place-left post-profile")%><p class="xxs-name place-left post-profile deep-blue"><b><%= post.user.user_name %></b></p>
 			<% if Time.now - post.created_at > 86400%>
-				<p class="xxs-font gray place-right xxs-name"><%= post.created_at.strftime("%B %d, %Y") %></p>
+			<p class="xxs-font gray place-right xxs-name"><%= post.created_at.strftime("%B %d, %Y") %></p>
 			<% else %>
-				<p class="xxs-font gray place-right xxs-name"><%= time_ago_in_words(post.created_at) %> ago</p>
+			<p class="xxs-font gray place-right xxs-name"><%= time_ago_in_words(post.created_at) %> ago</p>
 			<% end %>
 		</div>
 		<script>
-			$('.post-profile').on('click',function(){
-				window.location.href='<%= user_path(post.user) %>';
-			});
+		$('.post-profile').on('click',function(){
+			window.location.href='<%= user_path(post.user) %>';
+		});
 		</script>
 
 	</div>
@@ -22,18 +22,27 @@
 		<% end %>
 	</div>
 	<div class="txt-area">
-		<h5 align="left"><%= post.likes %> likes</h5>
+		<h5 class="likes-count" align="left"><%= post.like_users.count %> likes</h5>
+		<h5 class="comments-count" align="left"><%= post.comments.count %> comments</h5>
 		<p align="justify"><%= post.content %></p>
 	</div>
 	<div class="row">
-		<div class="hidden-xs col-sm-6 col-md-6 border-right like-btn">
-			<span class="glyphicon glyphicon-heart-empty deep-gray"></span>
+		<div class="hidden-xs col-sm-6 col-md-6 border-right like-form-container">
+			<% if current_user.like_relationships.find_by(like_id: post.id) %>
+			<%= render 'posts/dislike',post: post %>
+			<% else %>
+			<%= render 'posts/like',post: post %>
+			<% end %>
 		</div>
 		<div class="hidden-xs col-sm-6 col-md-6 comment-btn deep-gray">
 			<h4 >Comment</h4>
 		</div>
-		<div class="hidden-sm hidden-md col-xs-6 hidden-lg border-right like-btn">
-			<span class="glyphicon glyphicon-heart-empty deep-gray"></span>
+		<div class="hidden-sm hidden-md col-xs-6 hidden-lg border-right like-form-container-sm">
+			<% if current_user.like_relationships.find_by(like_id: post.id) %>
+			<%= render 'posts/dislike',post: post%>
+			<% else %>
+			<%= render 'posts/like',post: post %>
+			<% end %>
 		</div>
 		<div class="hidden-sm hidden-md col-xs-6 hidden-lg comment-btn deep-gray">
 			<h5>Comment</h5>

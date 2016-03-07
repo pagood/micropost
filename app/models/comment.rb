@@ -7,4 +7,5 @@ class Comment < ActiveRecord::Base
 	validates :user_id,presence: true
 	validates :content,presence: true,length: { maximum: 140}
 	has_many :replys,class_name: "Comment",dependent: :destroy,foreign_key: "reply_id"
+	
 end

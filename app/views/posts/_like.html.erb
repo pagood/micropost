@@ -1,0 +1,5 @@
+
+	<%= form_for current_user.like_relationships.build,remote: true,html:{display: "flase",class: "like-form"} do |f|%>
+	<%= hidden_field_tag :post_id,post.id %>
+	<% end %>
+	<span class="glyphicon glyphicon-heart-empty deep-gray like-btn"></span>

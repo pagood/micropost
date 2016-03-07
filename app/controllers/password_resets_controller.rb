@@ -31,7 +31,7 @@ class PasswordResetsController < ApplicationController
 			@user.remember
 			cookies.permanent.signed[:user_id] = @user.id
 			cookies.permanent[:remember_token] = @user.remember_token
-			redirect_back_or '/'
+			redirect_back_or root_url
 
 		else
 			render 'edit'

@@ -187,16 +187,28 @@ ready = function(){
 		// console.log("hey!");
 		// $('#followers').html('10000000');
 		$('#shadow-layer').hide();
-		$('#avatar-preloader').show();
-		$('#avatar-preloader-sm').show();
-		$(this).submit();
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 5) {
+			alert('Maximum file size is 5MB. Please choose a smaller file.');
+		}
+		else{
+			$('#avatar-preloader').show();
+			$('#avatar-preloader-sm').show();
+			$(this).submit();
+		}
 
 	});
 	$('#avatar-upload-field-sm').change(function(){
 		$('#shadow-layer').hide();
-		$('#avatar-preloader').show();
-		$('#avatar-preloader-sm').show();
-		$(this).submit();
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 5) {
+			alert('Maximum file size is 5MB. Please choose a smaller file.');
+		}
+		else{
+			$('#avatar-preloader').show();
+			$('#avatar-preloader-sm').show();
+			$(this).submit();
+		}
 	});
 	// $('.reply').on('click',function(){
 	// 	if($(this).closest(".row").next().is(":visible")){
@@ -210,7 +222,7 @@ ready = function(){
 
 	
 	// });
-	
+
 };
 
 
@@ -233,12 +245,12 @@ function readURL(input) {
 	}
 }
 comment_onClick = function(){
-		if($(this).closest(".post").hasClass("unfoldered"))
-		{	
-			$(this).closest(".post").next().empty();
-			$(this).closest(".post").removeClass("unfoldered");
-		}	
-		else{
+	if($(this).closest(".post").hasClass("unfoldered"))
+	{	
+		$(this).closest(".post").next().empty();
+		$(this).closest(".post").removeClass("unfoldered");
+	}	
+	else{
 			// $(this).closest(".post").addClass("unfoldered");
 			// var last = $(this).closest(".post").next().find(".comment").last().attr('data-id');
 
@@ -258,10 +270,10 @@ comment_onClick = function(){
 			});
 		}
 	};
-load_comment = function(){
- 
-			var last = $(this).closest(".comment").prev().find(".comment").last().attr('data-id');
-			var post = $(this).closest(".comment-container").prev().attr('data-id');
+	load_comment = function(){
+
+		var last = $(this).closest(".comment").prev().find(".comment").last().attr('data-id');
+		var post = $(this).closest(".comment-container").prev().attr('data-id');
 			// console.log(last);
 			// console.log(post);
 			$.ajax({
@@ -274,10 +286,10 @@ load_comment = function(){
 				dataType: "script",
 
 			});
-	
-};
-reply_submit = function(){
-	$(this).closest(".comment-container").prev().removeClass("unfoldered");
+
+		};
+		reply_submit = function(){
+			$(this).closest(".comment-container").prev().removeClass("unfoldered");
 	// console.log($(this).closest(".comment-container").prev());
 	$(this).closest(".comment-container").prev().next().empty();
 }
@@ -298,8 +310,22 @@ reply = function(){
 		$(this).closest(".row").next().find(".reply-field").focus();
 	}
 };
+//like btn
+like_onClick=function(){
+	// $(this).find(".like-form").submit();
+	console.log("wtf");
+	$(this).prev().submit();
+};
+//dislike btn
+dislike_onClick = function(){
+	// $(this)
+	$(this).prev().submit();
+};
+
 $(document).ready(ready);
 $(document).on('page:load',ready);
+$(document).on('click','.like-btn',like_onClick);
+$(document).on('click','.dislike-btn',dislike_onClick);
 $(document).on('click','.comment-btn',comment_onClick);
 $(document).on('click','.load-comment',load_comment);
 $(document).on('submit','.form-for-comment',comment_submit);

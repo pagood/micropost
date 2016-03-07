@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
 	belongs_to :user
 	has_many :comments,dependent: :destroy
+	has_many :like_relationships,dependent: :destroy,foreign_key: "like_id"
+	has_many :like_users,through: :like_relationships,dependent: :destroy
+
 	default_scope -> { order(created_at: :desc) }
 	validates :user_id,presence: true
 	validates :content,length: {maximum: 140}

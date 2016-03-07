@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 				user.remember
 				cookies.permanent.signed[:user_id] = user.id
 				cookies.permanent[:remember_token] = user.remember_token
-				redirect_back_or '/'
+				redirect_back_or root_url
 			else
 				message  = "Account not activated. "
 		        message += "Check your email for the activation link."
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 			cookies.delete(:remember_token)
 			session.delete(:user_id)
 		end
-		redirect_to '/'
+		redirect_to root_url
 	end
 
 end

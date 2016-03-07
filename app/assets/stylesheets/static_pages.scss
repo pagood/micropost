@@ -59,6 +59,15 @@
 
 }
 /* after log in*/
+.home-body{
+    margin-top: 80px;
+}
+.fixed-title{
+    top:0;
+    position: fixed;
+    z-index: 1000;
+}
+
 .title-bar a{
 	font-size: 15px;
 	padding-top: 3px;
@@ -78,6 +87,9 @@
 .no-padding-left{
 	padding-left: 0;
 }
+
+
+
 
 /* search box*/
 .search-box{
@@ -211,6 +223,7 @@ input {
 }
 
 .glyphicon-heart{
+    color: #D74B4B;
     font-size: 35px;
 }
 .glyphicon-heart-empty{
