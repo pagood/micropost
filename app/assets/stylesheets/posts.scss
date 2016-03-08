@@ -21,3 +21,7 @@
 .post-profile{
 	cursor:pointer;
 }
+.overview{
+	position:absolute;z-index:100;width:300px;height:200px;left:20%;background:white;
+	display: none;
+}

@@ -39,7 +39,12 @@
 				<img src="/assets/712" id="home-search-preloader">
 			</div>
 			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
-				<%= link_to current_user.user_name,user_path(current_user),class:"place-right"%></a>
+				<%= link_to root_url do%>
+				<span class="glyphicon glyphicon-home place-right deep-blue"></span>
+				<% end %>
+				<%= link_to user_path(current_user) do %>
+					<span class="glyphicon glyphicon-user place-right deep-blue" style="margin-right:30px"></span>
+				<% end %>
 			</div>
 		</div>
 	</div>

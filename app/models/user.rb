@@ -105,5 +105,8 @@ class User < ActiveRecord::Base
         errors.add(:avatar, "should be less than 5MB")
       end
     end
+
+  
+
 	
 end
