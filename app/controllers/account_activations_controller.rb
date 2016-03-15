@@ -8,10 +8,10 @@ class AccountActivationsController < ApplicationController
 			user.remember
 			cookies.permanent.signed[:user_id] = user.id
 			cookies.permanent[:remember_token] = user.remember_token
-			flash.now[:success] = "Account activated!"
+			flash[:success] = "Account activated!"
 			redirect_to root_url
 		else
-			flash.now[:danger] = "Invalid activation link"
+			flash[:danger] = "Invalid activation link"
 			redirect_to root_url
 		end
 	end
