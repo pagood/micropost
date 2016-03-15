@@ -468,8 +468,6 @@ $(document).on('click','.reply',reply);
 $(document).on('click','.user-link',jump_to_user_page);
 $(document).on('click','.result-got',result_click);
 $(document).on('change','#avatar-upload-field',avatar_change);
-$(document).on('mouseover','.user-link',show_profile_overview);
-$(document).on('mouseout','.user-link',hide_profile_overview);
 
 // $(document).on('scroll','.side-page',side_page_scroll);
 
