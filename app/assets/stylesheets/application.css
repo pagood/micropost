@@ -148,6 +148,9 @@ html,body{
 .t-gray{
 	color: #9AA2AD;
 }
+.t-light-gray{
+	color: #667384;
+}
 .white{
 	color: #FFFFFF;
 }
@@ -165,4 +168,7 @@ html,body{
 }
 .pagination .current{
 	background: #A1A1A1 ;color:white;
+}
+.width-limited{
+	max-width: 900px;
 }

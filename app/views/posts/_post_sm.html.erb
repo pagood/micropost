@@ -1,0 +1,21 @@
+<div class="post post-sm">
+	<% if Time.now - post.created_at > 86400%>
+			<p class="xxs-font gray  xxs-name"><%= post.created_at.strftime("%B %d, %Y") %></p>
+		<% else %>
+			<p class="xxs-font gray  xxs-name"><%= time_ago_in_words(post.created_at) %> ago</p>
+		<% end %>
+	<%= link_to user_path(post.user),remote:true,class:"user-link" do %>
+	<div class="photo-area">
+		<% if post.photo? %>
+		<%= image_tag post.photo.url,class:"post-photo"%>
+		<% end %>
+	</div>
+	<% end %>
+	<div class="txt-area-sm">
+		<p class="xxs-font" align="justify"><%= post.content %></p>
+		<p class="likes-count xxs-font" align="left"><%= post.like_users.count %> <b>likes</b></p>
+		<p class="comments-count xxs-font " align="left"><%= post.comments.count %> <b>comments</b></p>
+	</div>
+
+</div>
+
