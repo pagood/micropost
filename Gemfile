@@ -48,9 +48,11 @@ group :development do
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'sqlite3'
 end
 group :production do
   gem 'rails_12factor', '0.0.2'
   gem 'pg'
+  gem 'puma',           '3.1.0'
 end
 
