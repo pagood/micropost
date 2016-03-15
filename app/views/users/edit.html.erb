@@ -1,6 +1,6 @@
-<div class="container edit home-body">
+<div class="container edit-page home-body">
 	<% flash.each do |message_type,message| %>
-		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<div class="alert alert-<%= message_type %>"><%= message %></div>
 	<% end %>
 	<%= render 'shared/error_messages',object: @user%>
 	<ul class="nav nav-tabs">
@@ -9,30 +9,79 @@
 	</ul>
 	<div id="edit-profile">
 		<%= form_for(@user)do |f|%>
-		<%= f.label :name %>
-		<%= f.text_field :name,class:"form-control"%>
-		<%= f.label :user_name %>
-		<%= f.text_field :user_name,class:"form-control"%>
-		<%= f.label :sex %>
-		<%= f.select :sex,['---','male','female'],{},class:"select-form"%>
-		<%= f.label :phone %>
-		<%= f.text_field :phone,class:"form-control"%>
-		<%= f.label :website %>
-		<%= f.text_field :website,class:"form-control"%>
-		<%= f.label :bio %>
-		<%= f.text_area :bio,class:"form-control text-area",rows:"10"%>
-		<%= f.submit "Submit",class:"btn btn-success"%>
-		<% end %>
-	</div>
-	<div id="change-password">
-		<%= form_for :change_password,url: user_path(@user),method: :put do |f|%>
-		<%= f.label "Old Password" %>
-		<%= f.password_field :old_password,class:"form-control"%>
-		<%= f.label "New Password" %>
-		<%= f.password_field :new_password,class:"form-control"%>
-		<%= f.label "New Password Confirmation" %>
-		<%= f.password_field :new_password_confirmation,class:"form-control"%>
-		<%= f.submit "Submit",class:"btn btn-success"%>
-		<% end %>
-	</div>
-</div>
+		<ul>
+			<li>
+				<div class="row">
+					<div class="col-md-3">
+						<%= f.label :name %>
+					</div>
+					<div class="col-md-9">
+						<%= f.text_field :name,class:"full-width"%>
+					</div>
+				</div>
+			</li>
+			<li><div class="row">
+				<div class="col-md-3"><%= f.label :user_name %></div>
+				<div class="col-md-9"><%= f.text_field :user_name,class:"full-width"%></div>
+			</div></li>
+			<li><div class="row">
+				<div class="col-md-3"><%= f.label :sex %></div>
+				<div class="col-md-9">
+					<%= f.select :sex,['---','male','female'],{}%></div>
+				</div></li>
+				<li><div class="row">
+					<div class="col-md-3"><%= f.label :phone %></div>
+					<div class="col-md-9">
+						<%= f.text_field :phone,class:"full-width"%></div>
+					</div></li>
+					<li><div class="row">
+						<div class="col-md-3"><%= f.label :website %></div>
+						<div class="col-md-9">
+							<%= f.text_field :website,class:"full-width"%></div>
+						</div></li>
+						<li><div class="row">
+							<div class="col-md-3"><%= f.label :bio %></div>
+							<div class="col-md-9">
+								<%= f.text_area :bio,class:"text-area",rows:"10",class:"full-width"%></div>
+							</div></li>
+							<li><%= f.submit "Submit",class:"btn btn-success"%></li>
+						</ul>
+						<% end %>
+
+
+
+
+
+
+					</div>
+					<div id="change-password">
+
+						<%= form_for :change_password,url: user_path(@user),method: :put do |f|%>
+						<ul>
+							<li><div class="row">
+								<div class="col-md-3">
+									<%= f.label "Old Password" %></div>
+									<div class="col-md-9">
+										<%= f.password_field :old_password,class:"full-width"%></div>
+									</div>
+								</li>
+								<li><div class="row">
+									<div class="col-md-3">
+										<%= f.label "New Password" %></div>
+										<div class="col-md-9">
+											<%= f.password_field :new_password,class:"full-width"%></div>
+										</div>
+									</li>
+									<li><div class="row">
+										<div class="col-md-3">
+											<%= f.label "New Password Confirmation" %></div>
+											<div class="col-md-9">
+												<%= f.password_field :new_password_confirmation,class:"full-width"%></div>
+											</div>
+										</li>
+										<li>
+											<%= f.submit "Submit",class:"btn btn-success"%></li>
+										</ul>
+										<% end %>
+									</div>
+								</div>

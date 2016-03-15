@@ -26,6 +26,79 @@ ready = function(){
 	});
 	$('.center-form').hide();
 	$('.screen').hide();
+	$('.side-page').on('scroll',function(){
+		if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight && !$('.side-post-container').hasClass("loading")) {
+			var last = $(this).find('.post').last().attr('data-id');
+			$('#side-page-preloader').show();
+			$('.side-post-container').addClass("loading");
+			$.ajax({
+			            // make a get request to the server
+			            type: "GET",
+			            // get the url from the href attribute of our link
+			            url: "/users/"+$(this).find('.user-profile').attr('id'),
+			            // send the last id to our rails app
+			            data: {
+			            	last: last
+			            },
+			            // the response will be a script
+			            dataType: "script",
+
+			            // upon success 
+			            success: function () {
+			            	$('.side-post-container').removeClass("loading");
+			            	$('#side-page-preloader').hide();
+			            }
+			        });
+
+		}
+	});
+	// $('body').on('scroll',function(){
+	// 	console.log("likes!");
+	// 	// if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight && !$('.side-post-container').hasClass("loading")) {
+	// 	// 	var last = $(this).find('.post').last().attr('data-id');
+	// 	// 	$('#side-page-preloader').show();
+	// 	// 	$('.side-post-container').addClass("loading");
+	// 	// 	$.ajax({
+	// 	// 	            // make a get request to the server
+	// 	// 	            type: "GET",
+	// 	// 	            // get the url from the href attribute of our link
+	// 	// 	            url: "/users/"+$(this).find('.user-profile').attr('id'),
+	// 	// 	            // send the last id to our rails app
+	// 	// 	            data: {
+	// 	// 	            	last: last
+	// 	// 	            },
+	// 	// 	            // the response will be a script
+	// 	// 	            dataType: "script",
+
+	// 	// 	            // upon success 
+	// 	// 	            success: function () {
+	// 	// 	            	$('.side-post-container').removeClass("loading");
+	// 	// 	            	$('#side-page-preloader').hide();
+	// 	// 	            }
+	// 	// 	        });
+
+	// 	// }
+	// });
+	$('#menu-switch').on('click',function(){
+		if(!$('#menu').hasClass('unfoldered')){
+			$('#menu').show();
+			$('#menu').addClass('unfoldered')
+		}
+		else{
+			$('#menu').hide();
+			$('#menu').removeClass('unfoldered')
+		}
+
+	});
+	$(document).click(function(e){
+		// $('#menu').hide();
+		if(e.target.id == 'menu-switch') return;
+		if($('#menu').hasClass('unfoldered')){
+			$('#menu').hide();
+			$('#menu').removeClass('unfoldered');
+		}
+	});
+
 	$('#image_upload').change(function(){
 		readURL(this);
 		$('#preview-box').css({display:"block"});
@@ -105,7 +178,13 @@ ready = function(){
 	});
 	//hide mask layer when click shadow
 	$('#shadow-layer').on('click',function(){
+		$('#side-user-profile').hide('slide',{direction:"right"},function(){
+			$('#profile-content').empty();
+			$('#profile-preloader').show();
+		});
+		$('#side-user-profile').removeClass('opened');
 		$('#shadow-layer').hide();
+		$('body').css("overflow","auto");
 	});
 	$('#avatar-edit-container').on('click',function(e){
 		e.stopPropagation();
@@ -116,7 +195,7 @@ ready = function(){
 	$('.avatar-cancel-btn').on('click',function(){
 		$('#shadow-layer').hide();
 	});
-
+	
 	//follow and unfollow
 	$( document ).ajaxComplete(function( event,request, settings ) {
 		$('#follow-form').show();
@@ -136,11 +215,12 @@ ready = function(){
 	});
 	//use to load the post automaticaly when scroll to the bottom
 	
-	$(window).scroll(function() {
+	$(window).scroll(function(e) {
 
 		// console.log(window.location.pathname);
-		if(window.location.pathname === "/"){
-			// console.log(window.location.pathname);
+
+		if(window.location.pathname === "/" || $('.likes-page').length){
+			console.log(window.location.pathname);
 			if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
 				var last = $('.post').last().attr('data-id');
 				$('#home-preloader').show();
@@ -166,97 +246,37 @@ ready = function(){
 			        });
 
 				}
-		}
+			}
 		});
-	$(window).scroll(function() {
-		if($('div').hasClass("profile")){
-		// console.log(window.location.pathname);
-			// console.log(window.location.pathname);
-		
-			if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
-				var last = $('.post').last().attr('data-id');
-				$('#home-preloader').show();
-					console.log("######################"+last);
-					$('.post-container').addClass("loading");
-					$.ajax({
-			            // make a get request to the server
-			            type: "GET",
-			            // get the url from the href attribute of our link
-			            url: window.location.href,
-			            // send the last id to our rails app
-			            data: {
-			            	last: last
-			            },
-			            // the response will be a script
-			            dataType: "script",
-
-			            // upon success 
-			            success: function () {
-			            	$('#home-preloader').hide();
-			            	$('.post-container').removeClass("loading");
-			            }
-			        });
-
-				}
-		}
-		});
-
-
-	//add comment
-	// $('.comment-btn').on('click',);
-	$('#avatar-upload-field').change(function(){
-		// var form = $('#avatar-upload-field')[0];
-		// var formData = new FormData(form);
-		// $.ajax({
-		// 	type:"PUT",
-
-
-		// 	url:$(this).attr('action'),
-		// 	data: formData,
-
-		// 	contentType: false,
-  //   		processData: false,
-		// 	dataType: "script",
-		// });
-		// $('#avatar-upload-field').submit();
-		// $('#avatar-fuck').attr('src','http://www.kidostore.com/images/uploads/P-SAM-rocket-blk.jpg');
-		// console.log("hey!");
-		// $('#followers').html('10000000');
-		$('#shadow-layer').hide();
-		var size_in_megabytes = this.files[0].size/1024/1024;
-		if (size_in_megabytes > 5) {
-			alert('Maximum file size is 5MB. Please choose a smaller file.');
-		}
-		else{
-			$('#avatar-preloader').show();
-			$('#avatar-preloader-sm').show();
-			$(this).submit();
-		}
-
-	});
-	$('#avatar-upload-field-sm').change(function(){
-		$('#shadow-layer').hide();
-		var size_in_megabytes = this.files[0].size/1024/1024;
-		if (size_in_megabytes > 5) {
-			alert('Maximum file size is 5MB. Please choose a smaller file.');
-		}
-		else{
-			$('#avatar-preloader').show();
-			$('#avatar-preloader-sm').show();
-			$(this).submit();
-		}
-	});
-	// $('.reply').on('click',function(){
-	// 	if($(this).closest(".row").next().is(":visible")){
-	// 		$(this).closest(".row").next().hide();
-	// 	}
-	// 	else{
-	// 		$(this).closest(".row").next().show();
-	// 		console.log($(this).closest(".row").next().find(".reply-field"));
-	// 		$(this).closest(".row").next().find(".reply-field").focus();
-	// 	}
 
 	
+	//add comment
+	// $('.comment-btn').on('click',);
+	// $('#avatar-upload-field').change(function(){
+	// 	console.log("aa!");
+	// 	var size_in_megabytes = this.files[0].size/1024/1024;
+	// 	if (size_in_megabytes > 5) {
+	// 		alert('Maximum file size is 5MB. Please choose a smaller file.');
+	// 	}
+	// 	else{
+	// 		console.log("submit!");
+	// 		$(this).submit();
+	// 	}
+
+	// });
+	// $('#following-btn').on('click',function(){
+	// 	$('#following-tag').addClass("active");
+	// 	$('#follower-tag').removeClass("active");
+	// 	$('#following-container').css({display:"block"});
+	// 	$('#follower-container').css({display:"none"});
+
+	// });
+	// $('#follower-btn').on('click',function(){
+	// 	$('#follower-tag').addClass("active");
+	// 	$('#following-tag').removeClass("active");
+	// 	$('#following-container').css({display:"none"});
+	// 	$('#follower-container').css({display:"block"});
+
 	// });
 
 };
@@ -330,7 +350,7 @@ comment_onClick = function(){
 	$(this).closest(".comment-container").prev().next().empty();
 };
 delete_comment_submit = function(){
-			$(this).closest(".comment-container").prev().removeClass("unfoldered");
+	$(this).closest(".comment-container").prev().removeClass("unfoldered");
 	// console.log($(this).closest(".comment-container").prev());
 	$(this).closest(".comment-container").prev().next().empty();
 };
@@ -362,43 +382,77 @@ dislike_onClick = function(){
 	// $(this)
 	$(this).prev().submit();
 };
-on_user_load = function(){
-	$(window).scroll(function() {
 
-		// console.log(window.location.pathname);
-			console.log(window.location.pathname);
-			// if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
-			// 	var last = $('.post').last().attr('data-id');
-			// 	$('#home-preloader').show();
-			// 		// console.log("######################"+last);
-			// 		$('.post-container').addClass("loading");
-			// 		$.ajax({
-			//             // make a get request to the server
-			//             type: "GET",
-			//             // get the url from the href attribute of our link
-			//             url: window.location.href,
-			//             // send the last id to our rails app
-			//             data: {
-			//             	last: last
-			//             },
-			//             // the response will be a script
-			//             dataType: "script",
-
-			//             // upon success 
-			//             success: function () {
-			//             	$('#home-preloader').hide();
-			//             	$('.post-container').removeClass("loading");
-			//             }
-			//         });
-
-			// 	}
-		});
-};
 //jump to user page
-// jump_to_user_page = function(){
-// 	var id = $(this).closest(".post").attr("id");
-// 	// console.log(id);
-// 	var 
+jump_to_user_page = function(){
+	$(this).closest('.post').find('.overview').fadeOut();
+	//show in order
+	$('#side-user-profile').show('slide',{direction:"right"},function(){
+		$('.side-page #profile-header').fadeIn(function(){
+			$('.side-page #profile-info').slideDown(200,function(){
+				$('.side-page .side-post-container').fadeIn(function(){
+					$('.side-page #profile-avatar').fadeIn(500);
+				});
+			});
+		});
+	});
+	$('body').css("overflow","hidden");
+	$('#shadow-layer').show();
+};
+result_click = function(){
+	console.log("click !");
+	$('#results-list').hide();
+	$.ajax({
+			            // make a get request to the server
+			            type: "GET",
+			            // get the url from the href attribute of our link
+			            url: "/users/"+$(this).attr('id'),			      
+			            // the response will be a script
+			            dataType: "script",
+
+
+			        });
+}
+avatar_change = function(){
+	var size_in_megabytes = this.files[0].size/1024/1024;
+	if (size_in_megabytes > 5) {
+		alert('Maximum file size is 5MB. Please choose a smaller file.');
+	}
+	else{
+		if (this.files && this.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#profile-avatar').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(this.files[0]);
+		}
+	}
+
+};
+// var timeoutId;
+// show_profile_overview=function(){
+// 	var overview = $(this).closest('.post').find('.overview');
+// 	if (!timeoutId) {
+		
+//             timeoutId = window.setTimeout(function() {
+//             	console.log("wt");
+//                 timeoutId = null;
+//                 overview.fadeIn();
+//            }, 1000);
+//         }
+// };
+// hide_profile_overview=function(){
+// 	// console.log("wt");
+// 	var overview = $(this).closest('.post').find('.overview');
+// 	if (timeoutId) {
+//             window.clearTimeout(timeoutId);
+//             timeoutId = null;
+//         }
+//         else {
+//            overview.fadeOut();
+//         }
 // };
 $(document).ready(ready);
 $(document).on('page:load',ready);
@@ -410,4 +464,11 @@ $(document).on('submit','.form-for-comment',comment_submit);
 $(document).on('submit','.form-for-reply',reply_submit);
 $(document).on('click','.link-for-delete',delete_comment_submit);
 $(document).on('click','.reply',reply);
-// $(document).on('click','.post-profile',jump_to_user_page);
+$(document).on('click','.user-link',jump_to_user_page);
+$(document).on('click','.result-got',result_click);
+$(document).on('change','#avatar-upload-field',avatar_change);
+$(document).on('mouseover','.user-link',show_profile_overview);
+$(document).on('mouseout','.user-link',hide_profile_overview);
+
+// $(document).on('scroll','.side-page',side_page_scroll);
+

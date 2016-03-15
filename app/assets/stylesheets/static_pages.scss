@@ -65,7 +65,7 @@
 .fixed-title{
     top:0;
     position: fixed;
-    z-index: 1000;
+    z-index: 10;
 }
 
 .title-bar a{
@@ -76,7 +76,8 @@
 	width: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background: #FFFFFF;
+	background: #36465D;
+    border-bottom: 1px solid #505E72; 
 }
 
 .title-bar .navbar-brand{
@@ -117,7 +118,7 @@ input {
     border-width: 1px;
     border-style: solid;
     border-color: #a8acbc #babdcc #c0c3d2;
-    border-radius: 13px;
+    border-radius: 5px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -128,16 +129,6 @@ input {
     -ms-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
     -o-box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
     box-shadow: inset 0 1px #e5e7ed, 0 1px 0 #fcfcfc;
-}
-
-.search input:focus {
-    outline: none;
-    border-color: #66b1ee;
-    -webkit-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
-    -moz-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
-    -ms-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
-    -o-box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
-    box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
 }
 
 /*.search input:focus + .results { display: block }*/
@@ -221,6 +212,10 @@ input {
 }
 .post-edit{
 	position: relative;
+    overflow: hidden;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
 }
 .glyphicon-user{
     font-size: 22px;
@@ -266,7 +261,7 @@ input {
     padding-bottom: 50px;
 }
 .post-container{
-    margin-top:50px;
+    margin-top:30px;
 }
 #home-preloader{
     display: none;
@@ -278,4 +273,65 @@ input {
     left: 85%;
     top:22%;
     display: none;
+}
+#menu{
+    position: absolute;
+    background: white;
+    width: 200px;
+    border-radius:5px;
+    /*left: 50%;
+    top:150%;*/
+    margin-left: -175px;
+    font-size: 13px;
+    color: black;
+    display: none;
+    padding-bottom: 0px;
+
+}
+
+
+#menu .glyphicon{
+    font-size: 13px;
+    color: black;
+}
+#menu ul{
+    height: 100%;
+    padding: 0;
+    list-style-type: none;
+    margin-bottom: 0px;
+}
+#menu li{
+    border-radius:5px;
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+#menu li:hover{
+    background: #D8ECFA;
+}
+#menu .title{
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: #003366;
+
+}
+#menu .title p{
+    color: #F7F7F7;
+}
+#search-field{
+    border: 0;
+    outline: none;
+}
+#search-field:focus{
+    border: 0;
+    outline: none;
+}
+#post-text-area{
+    border: 0;
+    background: transparent;
+}
+.glyphicon-camera:hover{
+   top:-1px;
 }

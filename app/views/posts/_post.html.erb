@@ -1,19 +1,15 @@
-<div class="post" data-id="<%= post.id %>" id="<%= post.id %>">
+<div class="post " data-id="<%= post.id %>" id="<%= post.id %>">
 	<div class="name-bar">
 
 		<div class="">
-			<%= link_to image_tag(post.user.avatar.small.url,class:"img-circle xxs-img-circle inline place-left"),user_path(post.user) %>
-			<b><%= link_to post.user.user_name,user_path(post.user),class:"xxs-name place-left deep-blue normal-text"%></b>
+			<%= link_to image_tag(post.user.avatar.small.url,class:"img-circle xxs-img-circle inline place-left user-link"),user_path(post.user),remote:true %>
+			<b><%= link_to post.user.user_name,user_path(post.user),class:"xxs-name place-left deep-blue normal-text user-link",remote:true%></a></b>
 			<% if Time.now - post.created_at > 86400%>
 			<p class="xxs-font gray place-right xxs-name"><%= post.created_at.strftime("%B %d, %Y") %></p>
 			<% else %>
 			<p class="xxs-font gray place-right xxs-name"><%= time_ago_in_words(post.created_at) %> ago</p>
 			<% end %>
 		</div>
-
-	</div>
-	<div class="overview b">
-		<%= link_to "Message"%>
 
 	</div>
 	<div class="photo-area">

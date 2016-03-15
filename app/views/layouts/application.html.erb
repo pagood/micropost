@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Micropost</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>Micropost</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="jquery-ui.min.css">
+	<script src="jquery.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-<% if logged_in? %>
-<% flash.each do |message_type,message|%>
-<div class="alert alert-<%= message_type %>"><%=message%></div>
-<% end %>
-<div class="title-bar fixed-title">
-	<div class="container">		
-		<div class="row-fluid">
-			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
-				<a href="/" class="place-left">FUCKBOOK</a>
-			</div>
-			<div class="hidden-xs col-sm-4 col-md-4 no-padding">
-				<section class="search-box">
+	<% if logged_in? %>
+	<% flash.each do |message_type,message|%>
+	<div class="alert alert-<%= message_type %>"><%=message%></div>
+	<% end %>
+	<div class="title-bar fixed-title">
+		<div class="container" style="padding-left:10px;padding-right:10px">		
+			<div class="row-fluid">
+				<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
+					<a href="/" class="place-left">FUCKBOOK</a>
+				</div>
+				<div class="hidden-xs col-sm-4 col-md-4 no-padding">
+					<section class="search-box">
 					<!--<form class="search" method="post" action="index.html" >
 						<input type="text" name="q" placeholder="Search..." />
 						<ul class="results" >
@@ -31,7 +34,7 @@
 						</ul>
 					</form>-->
 					<%= form_for :search,remote:true,url: "/search",method: :post,html: {class: "search",id:"search-form",autocomplete:"off"} do |f|%>
-					<%= f.text_field :key_word,id: "search-field"%>
+					<%= f.text_field :key_word,id: "search-field",placeholder: "Search User"%>
 					<ul class="results" id="results-list">
 					</ul>
 					<% end %>
@@ -39,13 +42,37 @@
 				<img src="/assets/712" id="home-search-preloader">
 			</div>
 			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
-				<%= link_to root_url do%>
-				<span class="glyphicon glyphicon-home place-right deep-blue"></span>
-				<% end %>
-				<%= link_to user_path(current_user) do %>
-					<span class="glyphicon glyphicon-user place-right deep-blue" style="margin-right:30px"></span>
-				<% end %>
+				<section class="place-right">
+					<span class="glyphicon glyphicon-user t-gray" style="cursor:pointer" id="menu-switch"></span>
+					<div id="menu">
+						<ul>
+							<%= link_to likes_user_path(current_user) do%>
+							<li><span class="glyphicon glyphicon-heart"></span>   Likes</li>
+							<% end %>
+							<%= link_to following_user_path(current_user) do%>
+							<li><span class="glyphicon glyphicon-refresh"></span>   Following</li>
+							<% end %>
+							<%= link_to edit_user_path(current_user) do%>
+							<li><span class="glyphicon glyphicon-cog"></span>   Setting</li>
+							<% end %>
+							<li><span class="glyphicon glyphicon-question-sign"></span>   Help</li>
+							<%= link_to '/logout',method: :delete do%>
+							<li><span class="glyphicon glyphicon-log-out"></span>   Log out</li>
+							<% end %>
+						</ul>
+					</div>
+				</section>
+				
+
+				<section class="place-right ">
+					<%= link_to root_url do%>
+					<span class="glyphicon glyphicon-home place-right t-gray " style="margin-right:30px;"></span>
+					<% end %>
+
+				</section>
+
 			</div>
+
 		</div>
 	</div>
 </div>

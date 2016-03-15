@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	include ActionView::Helpers::DateHelper
 	attr_accessor :remember_token,:activation_token,:reset_token
 	before_save {self.email = email.downcase}
 	before_create :create_activation_digest
@@ -106,7 +107,14 @@ class User < ActiveRecord::Base
       end
     end
 
-  
+   #last time post
+   def last_post_time
+   	   if posts.any?
+   	   	'Updated ' + time_ago_in_words(posts.first.created_at) + ' ago'
+   	   else
+   	   	'No posts'
+   	   end
+   end
 
 	
 end

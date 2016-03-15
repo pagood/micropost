@@ -1,0 +1,54 @@
+<div class="container home-body outline following-page">
+	
+		<ul class="nav nav-tabs">
+			<li role="presentation" class="active" id="following-tag"><a href="javascript:void(0)" id="following-btn">Following</a></li>
+		</ul>
+		<div id="following-container">
+		<% @following.each_with_index do |follow,page|%>
+		<% if page%2 == 0%>
+			<div class="info-row" >
+				<div class="row">
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<img src="<%= follow.avatar.medium.url%>" class="sm-img-circle img-circle">
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-4">
+						<p><b><%= follow.user_name %></b></p>
+						<p><%= follow.last_post_time %></p>
+					</div>
+					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3">
+						<div id="follow-form<%=follow.id%>">
+							<% if current_user.active_relationships.find_by(following_id: follow.id) %>
+							<%= render 'users/unfollow' ,user:follow%>
+							<% else %>
+							<%= render 'users/follow' ,user:follow%>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% else %>
+			<div class="info-row-odd" >
+				<div class="row">
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<img src="<%= follow.avatar.medium.url%>" class="sm-img-circle img-circle">
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-4">
+						<p><b><%= follow.user_name %></b></p>
+						<p><%= follow.last_post_time %></p>
+					</div>
+					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3">
+						<div id="follow-form<%=follow.id%>">
+							<% if current_user.active_relationships.find_by(following_id: follow.id) %>
+							<%= render 'users/unfollow' ,user:follow%>
+							<% else %>
+							<%= render 'users/follow' ,user:follow%>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% end %>
+		<% end %>
+		<%= will_paginate @following%>
+		</div>
+</div>

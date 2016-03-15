@@ -4,11 +4,12 @@
 	<div class="post-edit" >
 		<div class="character-number"></div>
 		<%= form_for @post,html: {multipart: true} do |f|%>
-		<%= f.text_area :content,class: "form-control",rows:"5",placeholder:"say something!",id:"post-text-area"%>
+		<%= f.text_area :content,class: "form-control",rows:"5",placeholder:"Say something!",id:"post-text-area"%>
 		<label class="custom-file-upload place-left">
-			<span class="glyphicon glyphicon-camera"></span> photo
+			<span class="glyphicon glyphicon-camera t-orange"></span> <span class="gray">photo</span>
 			<%= f.file_field :photo,accept: 'image/jpeg,image/gif,image/png',class:"place-left",id:"image_upload"%>
 		</label>
+		<scrpit></script>
 		<div id="preview-box">
 			<img id="uploaded_image" src="#" alt="your image" />
 		</div>
@@ -19,6 +20,13 @@
 		<%= render 'shared/feed'%>
 	</div>
 	<div class="preloader-container" align="center"> <img src="/assets/728.gif" id="home-preloader"> </div>
+</div>
+<div id="shadow-layer">
+</div>
+<div id="side-user-profile" class="side-page">
+	<img id="profile-preloader" src="/assets/720">
+	<div id="profile-content">
+	</div>
 </div>
 <% else %>
 <div class="screen">

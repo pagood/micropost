@@ -16,13 +16,20 @@
 /*font*/
 .title-bar a{
 	text-decoration: none;
-	color: #283D75;
+	color: white;
 }
 .title-bar a:hover{
 	text-decoration: none;
+	color: white;
+}
+.title-bar #menu a{
+	text-decoration: none;
 	color: #283D75;
 }
-
+.title-bar #menu a:hover{
+	text-decoration: none;
+	color: #283D75;
+}
 /*    */
 a,p{
 	font-family: "Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;
@@ -32,11 +39,11 @@ html,body{
 	padding: 0;
 	height: 100%;
 	width: 100%;
-	background: #F7F7F7;
+	background: #36465D;
 	-webkit-text-size-adjust: auto;
 }
 .container{
-	padding: 0;
+	/*padding: 0;*/
 }
 
 .input-field{
@@ -108,13 +115,6 @@ html,body{
 .col-left{
 	float: left;
 }
-.edit{
-	max-width: 520px;
-	padding-top: 10px;
-	padding-bottom: 100px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
 .select-form{
 	display: block;
 }
@@ -142,6 +142,27 @@ html,body{
 	color: #606060;
 }
 
-.normal-text:hover{
+.normal-text:link,.normal-text:hover,.normal-text:active,.normal-text:visited{
 	text-decoration:none;
+}
+.t-gray{
+	color: #9AA2AD;
+}
+.white{
+	color: #FFFFFF;
+}
+.t-orange{
+	color: #DC6E53;
+}
+.full-width{
+	width: 100%;
+}
+.pagination .next_page,.pagination .previous_page{
+  /*.previous_page { display: none;}*/
+  /*.current { background: #077BBF ;color:white;}*/
+  /*.next_page { display: none ;}*/
+  display: none;
+}
+.pagination .current{
+	background: #A1A1A1 ;color:white;
 }

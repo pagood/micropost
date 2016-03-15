@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :logged_in_user, only: [:edit, :update,:show,:index]
-	before_action :correct_user,only: [:edit, :update]
+	before_action :logged_in_user, only: [:edit, :update,:show,:index,:likes,:following_and_followers]
+	before_action :correct_user,only: [:edit, :update,:likes,:following_and_followers]
 	before_action :is_admin,only: [:index,:destroy]
 
 	def new
@@ -9,13 +9,18 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@feed = @user.posts
+		@posts = @user.posts
 		# render :text => @feed.first.id.inspect
 		if params[:last]
-			@feed = @user.posts_with_last(params[:last])
+			@posts = @user.posts_with_last(params[:last])
 		else
-			@feed = @user.posts.limit(5)
+			@posts = @user.posts.limit(5)
 		end
+		respond_to do |format|
+			format.js
+		end
+
+
 	end
 
 	def edit
@@ -75,6 +80,26 @@ class UsersController < ApplicationController
 	def delete
 	end
 	
+	def likes
+		@user = User.find(params[:id])
+		if params[:last]
+			@feed = @user.likes.where("like_id < :last",last: params[:last]).limit(5)
+		else
+			@feed = @user.likes.limit(5)
+		end
+		respond_to do |format|
+			format .js
+			format .html 
+			
+		end
+	end
+
+	def following
+		@user = User.find(params[:id])
+		@following = @user.followings.paginate(page:params[:page],per_page:20)
+		# @followers = @user.followers.paginate(page:params[:page],per_page:1)
+	end
+
 	private 
 	def user_params
 		params.require(:user).permit(:email,:password,:password_confirmation,:name,:user_name,:sex,:phone,:websit,:bio) if params[:user]

@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   post '/search' => 'searches#create'
 
   resources :posts,only: [:create,:destroy]
-  resources :users
+   resources :users do
+    member do
+      get :following,:likes
+    end
+  end
   resources :account_activations,only: [:edit]
   resources :password_resets,only: [:new,:create,:edit,:update]
   resources :relationships,only: [:create,:destroy]

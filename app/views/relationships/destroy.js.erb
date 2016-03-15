@@ -1,4 +1,1 @@
-$('#follow-form').html("<%= escape_javascript(render('users/follow')) %>");
-$('#follow-form-sm').html("<%= escape_javascript(render('users/follow_sm')) %>");
-$('#followers').html(<%= @user.followers.count %>);
-$('#followers-sm').html(<%= @user.followers.count %>);
+$('#follow-form<%=@user.id%>').html("<%= escape_javascript(render('users/follow',user:@user)) %>");

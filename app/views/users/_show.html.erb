@@ -1,0 +1,63 @@
+<div class="user-profile" id="<%=@user.id%>">
+	<div id="profile-header" style="display:none">
+		<% if current_user == @user %>
+		<ul class="nav nav-pills profile-nav">
+			<li>
+				<div class="btn btn-default" id="edit-appearance">
+					<p class="follow-btn">Edit appearance</p>
+				</div>
+				<div class="btn btn-default" id="edit-save">
+					<p class="follow-btn">Save</p>
+					
+				</div>
+
+			</li>
+		</ul>
+		<script>
+				$('#edit-appearance').on("click",function(){
+					$(this).hide();
+					$('#edit-save').show();
+					$('.edit span').show();
+				});
+				$('#edit-save').on('click',function(){
+					$("#avatar-form").submit();
+					$('#edit-save').hide();
+					$('#avatar-edit-preloader').show();
+				});
+		</script>
+		<%= form_for :change_avatar,:remote=>true,url: user_path(@user),html:{multipart:true,id:"avatar-form"},method: :put do |f|%>
+					<%= f.file_field :avatar,accept: 'image/jpeg,image/gif,image/png',id:"avatar-upload-field"%>
+		<% end %>
+		<label class="edit">
+			<span class="glyphicon glyphicon-pencil" id="edit-header"></span>
+		</label>
+		<label class="edit" form="avatar-form" for="avatar-upload-field">
+			<span class="glyphicon glyphicon-pencil" id="edit-avatar"></span>
+		</label>
+		<% else %>
+		<ul class="nav nav-pills profile-nav">
+			<li>
+				<div id="follow-form<%=@user.id%>" >
+					<% if current_user.active_relationships.find_by(following_id: @user.id) %>
+					<%= render 'users/unfollow' ,user:@user%>
+					<% else %>
+					<%= render 'users/follow' ,user:@user%>
+					<% end %>
+				</div>
+			</li>
+		</ul>
+		<% end %>
+	</div>
+	<img src="/assets/720" id="avatar-edit-preloader">
+	<div >
+		<%= image_tag @user.avatar.large.url,class:"img-circle md-img-circle",id:"profile-avatar",style:"display:none"%>
+	</div>
+	<div id="profile-info" style="display:none">
+		<h1><%= @user.user_name %></h1>
+		<p class="gray"><%= @user.bio %></p>
+	</div>
+	<div class="post-container side-post-container" style="display:none">
+		<%= render @posts %>
+	</div>
+	<div class="preloader-container" align="center"> <img src="/assets/728.gif" id="side-page-preloader"> </div>
+<div>

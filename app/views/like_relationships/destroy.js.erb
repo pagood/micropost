@@ -1,3 +1,16 @@
 $('#<%= @post.id %>').find(".like-form-container").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
 $('#<%= @post.id %>').find(".like-form-container-sm").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
 $('#<%= @post.id %>').find(".likes-count").html("<%= @post.like_users.count %> likes");
+
+if(!$('#side-user-profile').hasClass('opened')){
+	$('#<%= @post.id %>').find(".like-form-container").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
+	$('#<%= @post.id %>').find(".like-form-container-sm").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
+	$('#<%= @post.id %>').find(".likes-count").html("<%= @post.like_users.count %> likes");
+}
+else{
+	$('#side-user-profile').find('#<%= @post.id %>').find(".like-form-container").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
+	$('#side-user-profile').find('#<%= @post.id %>').find(".likes-count").html("<%= @post.like_users.count %> likes");
+	$('#<%= @post.id %>').find(".like-form-container").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
+	$('#<%= @post.id %>').find(".like-form-container-sm").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
+	$('#<%= @post.id %>').find(".likes-count").html("<%= @post.like_users.count %> likes");
+}

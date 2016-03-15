@@ -1,1 +1,8 @@
-$('.post-container').append('<%= escape_javascript(render 'shared/feed')%>');
+if(!$('#side-user-profile').hasClass('opened')){
+	$('#side-user-profile').addClass('opened');
+	$('#profile-preloader').hide();
+	$('#profile-content').html("<%= escape_javascript(render('users/show')) %>");
+}
+else{
+	$('.side-post-container').append('<%= escape_javascript(render @posts ) %>');
+}

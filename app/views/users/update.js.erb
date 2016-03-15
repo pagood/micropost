@@ -1,5 +1,6 @@
 console.log("upload fail#updatea.js.erb");
-$('#avatar-edit').attr('src','<%= @user.avatar.url %>');
-$('#avatar-edit-sm').attr('src','<%= @user.avatar.url %>');
-$('#avatar-preloader-sm').hide();
-$('#avatar-preloader').hide();
+$('#profile-avatar:first-child').attr('src','<%= @user.avatar.large.url %>');
+$('#edit-save').hide();
+$('.edit span').hide();
+$('#edit-appearance').show();
+$('#avatar-edit-preloader').hide();

@@ -1,0 +1,23 @@
+<div id="profile-header-overview">
+		<% if current_user == user %>
+		<% else %>
+		<ul class="nav nav-pills profile-nav">
+			<li>
+				<div id="follow-form">
+					<% if current_user.active_relationships.find_by(following_id: user.id) %>
+					<%= render 'users/unfollow',user:user%>
+					<% else %>
+					<%= render 'users/follow',user:user%>
+					<% end %>
+				</div>
+			</li>
+		</ul>
+		<% end %>
+	</div>
+	<div >
+		<%= image_tag user.avatar.medium.url,class:"img-circle xs-img-circle",id:"profile-avatar-overview"%>
+	</div>
+	<div id="profile-info-overview">
+		<h3><%= user.user_name %></h3>
+		<p class="gray"><%= user.bio %></p>
+	</div>
