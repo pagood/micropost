@@ -283,6 +283,7 @@ ready = function(){
 
 
 $(window).load(function(){
+	console.log("fadein!");
 	$('.screen').hide().fadeIn(1200,function(){
 		$('.center-form').fadeIn(500);
 	});
