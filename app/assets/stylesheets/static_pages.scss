@@ -4,7 +4,7 @@
 .screen{
 	height: 100%;
 	width: 100%;
-	background-image:url(/assets/NewYork_header);
+	background-image:image-url('NewYork_header');
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	position: fixed;
@@ -114,7 +114,7 @@ input {
     height: 26px;
     width: 100%;
     padding: 0 12px 0 25px;
-    background: white url("/assets/search") 8px 6px no-repeat;
+    background: white image-url("search") 8px 6px no-repeat;
     border-width: 1px;
     border-style: solid;
     border-color: #a8acbc #babdcc #c0c3d2;
