@@ -36,7 +36,9 @@
 			</div>
 			<div id="radar-container">
 				<p class="t-light-gray side-title"><b>RADAR</b></p>
+				<% unless radar.nil?%>
 				<%= render 'posts/post_sm',post:radar%>
+				<% end %>
 			</div>
 		</div>
 	</div>
