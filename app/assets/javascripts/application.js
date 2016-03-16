@@ -233,7 +233,7 @@ ready = function(){
 			if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
 				var last = $('.post').last().attr('data-id');
 				$('#home-preloader').show();
-					// console.log("######################"+last);
+					console.log("######################"+last);
 					$('.post-container').addClass("loading");
 					$.ajax({
 			            // make a get request to the server
