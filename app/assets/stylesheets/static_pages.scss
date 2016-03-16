@@ -4,7 +4,7 @@
 .screen{
 	height: 100%;
 	width: 100%;
-	background-image:image-url('NewYork_header');
+	background-image:image-url('Dinosaur');
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	position: fixed;
@@ -190,7 +190,7 @@ input {
 .lt-ie9 .search input { line-height: 26px }
 /*upload image*/
 #uploaded_image{
-	height: 100px;
+	width: 100%;
 }
 #image_upload{
 	display: none;
@@ -201,20 +201,25 @@ input {
     margin-top: 5px;
 }
 #preview-box{
-	z-index: 1;
+	z-index: 100;
 	position: absolute;
 	border: 1px solid #CCC;
-	left: 5%;
-	bottom: -140%;
-	display: none;
-	padding: 10px;
+	top:90%;
 	background: #FFFFFF;
+    padding: 0px;
+    width: 300px;
+    display: none;
+}
+#preview-box span{
+    text-align: right;
+    width: 100%;
+    cursor: pointer;
 }
 .post-edit{
 	position: relative;
-    overflow: hidden;
     background: white;
     padding: 10px;
+    height: 189px;
     border-radius: 5px;
 }
 .glyphicon-user{
@@ -259,9 +264,6 @@ input {
 .preloader-container{
     padding-top: 40px;
     padding-bottom: 50px;
-}
-.post-container{
-    margin-top:30px;
 }
 #home-preloader{
     display: none;
@@ -334,4 +336,24 @@ input {
 }
 .glyphicon-camera:hover{
    top:-1px;
+}
+#recommended-container ul{
+    list-style-type: none;
+    padding-left: 10px;
+    height: 240px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#recommended-container li{
+    border-bottom: 1px solid #4A596E;
+    padding: 10px;
+    height: 60px;
+
+}
+#recommended-container p{
+    overflow: hidden;
+}
+.character-number{
+    height: 19px;
 }

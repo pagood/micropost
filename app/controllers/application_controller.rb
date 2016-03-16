@@ -38,8 +38,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def recommended_users
-    @recommended_users = current_user.recommended_users
+  def recommended_users(num = 4)
+    @recommended_users = current_user.recommended_users(num)
+  end
+
+  def next_recommended_user(last)
+    current_user.next_recommended_user(last)
   end
 
   def radar

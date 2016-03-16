@@ -1,7 +1,7 @@
 <% if logged_in? %>
 <div class="container home-body width-limited">
 	<div class="row">
-		<div class="col-md-8 col-sm-8 col-xs-12" align="center">
+		<div class="col-md-9 col-sm-9 col-xs-12" align="center">
 			<div class="outline">
 				<%= render 'shared/error_messages',object: @post%>
 				<div class="post-edit" >
@@ -13,6 +13,7 @@
 						<%= f.file_field :photo,accept: 'image/jpeg,image/gif,image/png',class:"place-left",id:"image_upload"%>
 					</label>
 					<div id="preview-box">
+						<span class="place-left glyphicon glyphicon-remove t-light-gray xxs-font" id="remove-image"></span>
 						<img id="uploaded_image" src="#" alt="your image" />
 					</div>
 					<%= f.submit "POST",class: "btn btn-primary place-right",id:"post-btn",disabled:"disabled"%>
@@ -24,9 +25,17 @@
 				<div class="preloader-container" align="center"> <img src="/assets/728.gif" id="home-preloader"> </div>
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-4 hidden-xs">
+		<div class="col-md-3 col-sm-3 hidden-xs" style="padding-left:0px;padding-right:0px;">
+			<div id="recommended-container">
+				<p class="t-light-gray side-title"><b>RECOMMENDED USERS</b></p>
+					<ul>
+						<% recommended_users.each do |recommended_user|%>
+							<%= render 'shared/recommended_users',recommended_user: recommended_user%>
+						<% end %>
+					</ul>
+			</div>
 			<div id="radar-container">
-				<p class="t-light-gray radar"><b>RADAR</b></p>
+				<p class="t-light-gray side-title"><b>RADAR</b></p>
 				<%= render 'posts/post_sm',post:radar%>
 			</div>
 		</div>

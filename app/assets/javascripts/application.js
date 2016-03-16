@@ -105,8 +105,17 @@ ready = function(){
 		$('#post-btn').attr("disabled",false);
 	});
 
-	$('textarea').bind('input propertychange', function() {
-		$('.character-number').html((140 - $(this).val().length) + ' characters left');
+	$('#remove-image').on('click',function(){
+		$('#image_upload').val('');
+		$('#preview-box').css({display:"none"});
+		if(!$('#post-text-area').val()){
+			$('#post-btn').attr("disabled",true);
+		}
+
+	});
+
+	$('#post-text-area').bind('input propertychange', function() {
+		$('.character-number').html('<p style="font-family: Papyrus,fantasy">' + (140 - $(this).val().length) + '</p>');
 		$('#post-btn').attr("disabled",true);
 
 		if(this.value.length){
@@ -141,7 +150,7 @@ ready = function(){
 		$('#results-list').hide();
 	});
 	$('#change-password-btn').on('click',function(){
-		console.log("change pressed!");
+		// console.log("change pressed!");
 		$('#change-password-tag').addClass("active");
 		$('#edit-profile-tag').removeClass("active");
 		$('#change-password').css({display:"block"});
@@ -149,7 +158,7 @@ ready = function(){
 
 	});
 	$('#edit-profile-btn').on('click',function(){
-		console.log("edit pressed!");
+		// console.log("edit pressed!");
 		$('#edit-profile-tag').addClass("active");
 		$('#change-password-tag').removeClass("active");
 		$('#change-password').css({display:"none"});
@@ -157,7 +166,7 @@ ready = function(){
 
 	});
 	$('#form-for-follow').submit(function(){
-		console.log("get hide!");
+		// console.log("get hide!");
 		$('#follow-form').hide();
 		$('#user-preloader').css({display:"inline-block"});
 
@@ -283,7 +292,7 @@ ready = function(){
 
 
 $(window).load(function(){
-	console.log("fadein!");
+	// console.log("fadein!");
 	$('.screen').hide().fadeIn(1200,function(){
 		$('.center-form').fadeIn(500);
 	});
@@ -375,7 +384,7 @@ reply = function(){
 //like btn
 like_onClick=function(){
 	// $(this).find(".like-form").submit();
-	console.log("wtf");
+	// console.log("wtf");
 	$(this).prev().submit();
 };
 //dislike btn
@@ -401,7 +410,7 @@ jump_to_user_page = function(){
 	$('#shadow-layer').show();
 };
 result_click = function(){
-	console.log("click !");
+	// console.log("click !");
 	$('#results-list').hide();
 	$.ajax({
 			            // make a get request to the server
@@ -432,29 +441,23 @@ avatar_change = function(){
 	}
 
 };
-// var timeoutId;
-// show_profile_overview=function(){
-// 	var overview = $(this).closest('.post').find('.overview');
-// 	if (!timeoutId) {
-		
-//             timeoutId = window.setTimeout(function() {
-//             	console.log("wt");
-//                 timeoutId = null;
-//                 overview.fadeIn();
-//            }, 1000);
-//         }
-// };
-// hide_profile_overview=function(){
-// 	// console.log("wt");
-// 	var overview = $(this).closest('.post').find('.overview');
-// 	if (timeoutId) {
-//             window.clearTimeout(timeoutId);
-//             timeoutId = null;
-//         }
-//         else {
-//            overview.fadeOut();
-//         }
-// };
+
+follow = function(){
+	// $(this).closest('li').find('form').submit();
+	// console.log($(this).closest('ul').find('li').last().attr('id'));
+	$.ajax({
+				type: "POST",
+				url: '/relationships',
+				data: {
+					radar:true,
+					following_id:$(this).closest('li').attr('id'),
+					last:$(this).closest('ul').find('li').last().attr('id')
+				},
+				dataType: "script",
+				
+
+			});
+};
 $(document).ready(ready);
 $(document).on('page:load',ready);
 $(document).on('click','.like-btn',like_onClick);
@@ -468,6 +471,7 @@ $(document).on('click','.reply',reply);
 $(document).on('click','.user-link',jump_to_user_page);
 $(document).on('click','.result-got',result_click);
 $(document).on('change','#avatar-upload-field',avatar_change);
+$(document).on("click",'.follow-plus',follow);
 
 // $(document).on('scroll','.side-page',side_page_scroll);
 

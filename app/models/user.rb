@@ -116,11 +116,16 @@ class User < ActiveRecord::Base
    	   end
    end
 
-   def recommended_user(num = 4)
+   def recommended_users(num = 4)
    	following_ids = "SELECT following_id FROM relationships
 		WHERE  follower_id = :user_id"
 	User.where("id NOT IN (#{following_ids})",user_id:id).where.not(id:id).limit(num)
    end
 
+   def next_recommended_user(last)
+   	following_ids = "SELECT following_id FROM relationships
+		WHERE  follower_id = :user_id"
+	User.where("id NOT IN (#{following_ids}) AND id > :last",user_id:id,last:last).where.not(id:id).limit(1).first
+	end
 	
 end

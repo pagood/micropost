@@ -1,0 +1,24 @@
+
+<li id="<%= recommended_user.id %>">
+	<div class="row">
+		<div class="col-md-2 col-sm-2" style="padding:0px">
+			<%= link_to image_tag(recommended_user.avatar.small.url,class:"recommended-img-circle img-circle user-link"),user_path(recommended_user),remote:true %>
+		</div>
+		<div class="col-md-7 col-sm-7">
+			<p class="sm-font t-a-gray"><%= recommended_user.user_name%></p>
+			<% unless recommended_user.bio.nil? %>
+			<p class="sm-font t-light-gray"><%= recommended_user.bio%></p>
+			<% end %>
+		</div>
+		<div class="col-md-3 col-sm-3 follow-plus-btn">
+			<%= form_for(current_user.active_relationships.build,remote:true) do |f|%>
+			<div><%= hidden_field_tag :following_id,recommended_user.id %></div>
+			<div><%= hidden_field_tag :radar,true %></div>
+			<div><%= hidden_field_tag :last,true %></div>
+
+			<span class="glyphicon glyphicon-plus follow-plus"></span>
+
+			<% end %>
+		</div>
+	</div>
+</li>
