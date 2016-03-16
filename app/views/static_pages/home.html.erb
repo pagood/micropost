@@ -1,14 +1,14 @@
 <% if logged_in? %>
 <div class="container home-body width-limited">
 	<div class="row">
-		<div class="col-md-9 col-sm-9 col-xs-12" align="center">
+		<div class="col-md-9 col-sm-9 col-xs-12" align="right">
 			<div class="outline">
 				<%= render 'shared/error_messages',object: @post%>
 				<div class="post-edit" >
 					<div class="character-number" style="text-align:left"></div>
 					<%= form_for @post,html: {multipart: true} do |f|%>
 					<%= f.text_area :content,class: "form-control",rows:"5",placeholder:"Say something!",id:"post-text-area"%>
-					<label class="custom-file-upload place-left">
+					<label class="custom-file-upload">
 						<span class="glyphicon glyphicon-camera t-orange"></span> <span class="gray">photo</span>
 						<%= f.file_field :photo,accept: 'image/jpeg,image/gif,image/png',class:"place-left",id:"image_upload"%>
 					</label>
@@ -17,7 +17,7 @@
 
 						<img id="uploaded_image" src="#" alt="your image" />
 					</div>
-					<%= f.submit "POST",class: "btn btn-primary place-right",id:"post-btn",disabled:"disabled"%>
+					<%= f.submit "POST",class: "btn btn-primary",id:"post-btn",disabled:"disabled"%>
 					<% end %>
 				</div>
 				<div class="post-container">
