@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
 
 
 	mount_uploader :avatar, AvatarUploader
+	mount_uploader :header, HeaderUploader
 	#shared
 	def User.new_token
 		SecureRandom.urlsafe_base64

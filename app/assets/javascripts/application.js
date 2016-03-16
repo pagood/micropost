@@ -229,7 +229,6 @@ ready = function(){
 		// console.log(window.location.pathname);
 
 		if(window.location.pathname === "/" || $('.likes-page').length){
-			console.log(window.location.pathname);
 			if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
 				var last = $('.post').last().attr('data-id');
 				$('#home-preloader').show();
@@ -395,6 +394,7 @@ dislike_onClick = function(){
 
 //jump to user page
 jump_to_user_page = function(){
+
 	$(this).closest('.post').find('.overview').fadeOut();
 	//show in order
 	$('#side-user-profile').show('slide',{direction:"right"},function(){
@@ -441,6 +441,23 @@ avatar_change = function(){
 	}
 
 };
+header_change = function(){
+	var size_in_megabytes = this.files[0].size/1024/1024;
+	if (size_in_megabytes > 5) {
+		alert('Maximum file size is 5MB. Please choose a smaller file.');
+	}
+	else{
+		if (this.files && this.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#profile-header').css('background-image', 'url('+e.target.result+")");
+			}
+
+			reader.readAsDataURL(this.files[0]);
+		}
+	}
+
+};
 
 follow = function(){
 	// $(this).closest('li').find('form').submit();
@@ -471,6 +488,7 @@ $(document).on('click','.reply',reply);
 $(document).on('click','.user-link',jump_to_user_page);
 $(document).on('click','.result-got',result_click);
 $(document).on('change','#avatar-upload-field',avatar_change);
+$(document).on('change','#header-upload-field',header_change);
 $(document).on("click",'.follow-plus',follow);
 
 // $(document).on('scroll','.side-page',side_page_scroll);

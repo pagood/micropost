@@ -1,5 +1,5 @@
 <div class="user-profile" id="<%=@user.id%>">
-	<div id="profile-header" style="display:none">
+	<div id="profile-header" style="display:none;background-image:url('<%= @user.header.url %>')">
 		<% if current_user == @user %>
 		<ul class="nav nav-pills profile-nav">
 			<li>
@@ -21,6 +21,7 @@
 				});
 				$('#edit-save').on('click',function(){
 					$("#avatar-form").submit();
+					$("#header-form").submit();
 					$('#edit-save').hide();
 					$('#avatar-edit-preloader').show();
 				});
@@ -28,7 +29,10 @@
 		<%= form_for :change_avatar,:remote=>true,url: user_path(@user),html:{multipart:true,id:"avatar-form"},method: :put do |f|%>
 					<%= f.file_field :avatar,accept: 'image/jpeg,image/gif,image/png',id:"avatar-upload-field"%>
 		<% end %>
-		<label class="edit">
+		<%= form_for :change_header,:remote=>true,url: user_path(@user),html:{multipart:true,id:"header-form"},method: :put do |f|%>
+					<%= f.file_field :header,accept: 'image/jpeg,image/gif,image/png',id:"header-upload-field"%>
+		<% end %>
+		<label class="edit" form="header-form" for="header-upload-field">
 			<span class="glyphicon glyphicon-pencil" id="edit-header"></span>
 		</label>
 		<label class="edit" form="avatar-form" for="avatar-upload-field">

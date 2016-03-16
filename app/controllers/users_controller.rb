@@ -48,11 +48,11 @@ class UsersController < ApplicationController
 				flash.now[:danger] = "wrong password"
 				render 'edit'
 			end
-		elsif avatar_params
-			@user.update_attributes(avatar_params)
+		elsif avatar_params || header_params
+			@user.update_attributes(avatar_params) if avatar_params
+			@user.update_attributes(header_params) if header_params
 			respond_to do |format|
 				format .js
-				format .html 
 			
 			end
 		end
@@ -111,6 +111,10 @@ class UsersController < ApplicationController
 
 	def avatar_params
 		params.require(:change_avatar).permit(:avatar) if params[:change_avatar]
+	end
+
+	def header_params
+		params.require(:change_header).permit(:header) if params[:change_header]
 	end
 #before fliter
 	def correct_user
