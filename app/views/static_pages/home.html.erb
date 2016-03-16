@@ -14,6 +14,7 @@
 					</label>
 					<div id="preview-box">
 						<span class="place-left glyphicon glyphicon-remove t-light-gray xxs-font" id="remove-image"></span>
+
 						<img id="uploaded_image" src="#" alt="your image" />
 					</div>
 					<%= f.submit "POST",class: "btn btn-primary place-right",id:"post-btn",disabled:"disabled"%>
@@ -22,7 +23,7 @@
 				<div class="post-container">
 					<%= render 'shared/feed'%>
 				</div>
-				<div class="preloader-container" align="center"> <img src="/assets/728.gif" id="home-preloader"> </div>
+				<div class="preloader-container" align="center"><%= image_tag image_path('728.gif'),id:"home-preloader"%></div>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-3 hidden-xs" style="padding-left:0px;padding-right:0px;">
@@ -46,7 +47,7 @@
 <div id="shadow-layer">
 </div>
 <div id="side-user-profile" class="side-page">
-	<img id="profile-preloader" src="/assets/720">
+	<%= image_tag image_path('720.gif'),id:"profile-preloader"%>
 	<div id="profile-content">
 	</div>
 </div>
