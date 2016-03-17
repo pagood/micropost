@@ -315,6 +315,7 @@ comment_onClick = function(){
 	if($(this).closest(".post").hasClass("unfoldered"))
 	{	
 		$(this).closest(".post").next().empty();
+		$(this).closest(".post").next().hide();
 		$(this).closest(".post").removeClass("unfoldered");
 	}	
 	else{

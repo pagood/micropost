@@ -6,6 +6,7 @@ if(!$('#side-user-profile').hasClass('opened')){
 	else{
 		// console.log("new");
 		$('#<%= @post.id %>').addClass("unfoldered");
+		$('#<%= @post.id %>').next().show();
 		$('#<%= @post.id %>').next().next().hide();
 		$('#<%= @post.id %>').next().append('<%= escape_javascript(render 'shared/comment_feed')%>');
 		$('#<%= @post.id %>').next().find(".comment-field").focus();
