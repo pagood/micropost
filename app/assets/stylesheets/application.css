@@ -132,6 +132,9 @@ html,body{
 
 	color: #0066CC;
 }
+.black{
+	color: black;
+}
 .deep-blue{
 	color: #003366;
 }
@@ -156,6 +159,9 @@ html,body{
 }
 .t-b-gray{
 	color: #4A596E;
+}
+.t-c-gray{
+	color: #A5A7AA;
 }
 .white{
 	color: #FFFFFF;
