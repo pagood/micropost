@@ -8,7 +8,7 @@
 				<p class="xs-font"><b><%= link_to comment.user.user_name,user_path(comment.user) ,class:"user-link",remote:true %></b>:<%= comment.content %></p>
 			<% else %>
 				<p class="xs-font">
-					<a href="<%= user_path(comment.user) %>"><b><%= comment.user.user_name%></b></a> reply <a href="<%= user_path(Comment.find_by(id: comment.reply_id).user) %>"><b><%= Comment.find_by(id: comment.reply_id).user.user_name %></b></a>:<%= comment.content %>
+					<b><%= link_to comment.user.user_name,user_path(comment.user) ,class:"user-link",remote:true %></b> reply <b><%= link_to Comment.find_by(id: comment.reply_id).user.user_name,user_path(Comment.find_by(id: comment.reply_id).user),class:"user-link",remote:true%></b>:<%= comment.content %>
 				</p>
 			<% end %>
 		</div>
