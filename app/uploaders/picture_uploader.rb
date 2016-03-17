@@ -29,8 +29,13 @@ class PictureUploader < CarrierWave::Uploader::Base
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
-
-  # Process files as they are uploaded:
+  process :right_orientation
+  def right_orientation
+    manipulate! do |img|
+      img.auto_orient
+      img
+    end
+  end
   # process :scale => [200, 300]
   #
   # def scale(width, height)

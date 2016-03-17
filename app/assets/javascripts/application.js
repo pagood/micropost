@@ -52,33 +52,6 @@ ready = function(){
 
 		}
 	});
-	// $('body').on('scroll',function(){
-	// 	console.log("likes!");
-	// 	// if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight && !$('.side-post-container').hasClass("loading")) {
-	// 	// 	var last = $(this).find('.post').last().attr('data-id');
-	// 	// 	$('#side-page-preloader').show();
-	// 	// 	$('.side-post-container').addClass("loading");
-	// 	// 	$.ajax({
-	// 	// 	            // make a get request to the server
-	// 	// 	            type: "GET",
-	// 	// 	            // get the url from the href attribute of our link
-	// 	// 	            url: "/users/"+$(this).find('.user-profile').attr('id'),
-	// 	// 	            // send the last id to our rails app
-	// 	// 	            data: {
-	// 	// 	            	last: last
-	// 	// 	            },
-	// 	// 	            // the response will be a script
-	// 	// 	            dataType: "script",
-
-	// 	// 	            // upon success 
-	// 	// 	            success: function () {
-	// 	// 	            	$('.side-post-container').removeClass("loading");
-	// 	// 	            	$('#side-page-preloader').hide();
-	// 	// 	            }
-	// 	// 	        });
-
-	// 	// }
-	// });
 	$('#menu-switch').on('click',function(){
 		if(!$('#menu').hasClass('unfoldered')){
 			$('#menu').show();
@@ -222,17 +195,14 @@ ready = function(){
 
 		});
 	});
+
 	//use to load the post automaticaly when scroll to the bottom
-	
-	$(window).scroll(function(e) {
-
-		// console.log(window.location.pathname);
-
+	$(window).on('scroll',function(){
 		if(window.location.pathname === "/" || $('.likes-page').length){
 			if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
 				var last = $('.post').last().attr('data-id');
 				$('#home-preloader').show();
-					console.log("######################"+last);
+					// console.log("######################"+last);
 					$('.post-container').addClass("loading");
 					$.ajax({
 			            // make a get request to the server
@@ -255,7 +225,39 @@ ready = function(){
 
 				}
 			}
-		});
+	});
+	// $(window).scroll(function(e) {
+
+	// 	// console.log(window.location.pathname);
+
+	// 	if(window.location.pathname === "/" || $('.likes-page').length){
+	// 		if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
+	// 			var last = $('.post').last().attr('data-id');
+	// 			$('#home-preloader').show();
+	// 				console.log("######################"+last);
+	// 				$('.post-container').addClass("loading");
+	// 				$.ajax({
+	// 		            // make a get request to the server
+	// 		            type: "GET",
+	// 		            // get the url from the href attribute of our link
+	// 		            url: window.location.href,
+	// 		            // send the last id to our rails app
+	// 		            data: {
+	// 		            	last: last
+	// 		            },
+	// 		            // the response will be a script
+	// 		            dataType: "script",
+
+	// 		            // upon success 
+	// 		            success: function () {
+	// 		            	$('#home-preloader').hide();
+	// 		            	$('.post-container').removeClass("loading");
+	// 		            }
+	// 		        });
+
+	// 			}
+	// 		}
+	// 	});
 
 	
 	//add comment
