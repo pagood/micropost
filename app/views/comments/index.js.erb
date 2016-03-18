@@ -1,10 +1,10 @@
 if(!$('#side-user-profile').hasClass('opened')){
 	if($('#<%= @post.id %>').hasClass("unfoldered")){
-		// console.log("wtf");
+		console.log("wtf");
 		$('#<%= @post.id %>').next().find(".comment-list").append('<%= escape_javascript(render @comments)%>');
 	}
 	else{
-		// console.log("new");
+		console.log("new");
 		$('#<%= @post.id %>').addClass("unfoldered");
 		$('#<%= @post.id %>').next().show();
 		$('#<%= @post.id %>').next().next().hide();
@@ -16,13 +16,15 @@ if(!$('#side-user-profile').hasClass('opened')){
 	}
 }
 else{
+	// console.log("fsaf");
 	if($('#side-user-profile').find('#<%= @post.id %>').hasClass("unfoldered")){
 		// console.log("wtf");
 		$('#side-user-profile').find('#<%= @post.id %>').next().find(".comment-list").append('<%= escape_javascript(render @comments)%>');
 	}
 	else{
-		// console.log("new");
+		// console.log("<%= @comments.count %>");
 		$('#side-user-profile').find('#<%= @post.id %>').addClass("unfoldered");
+		$('#side-user-profile').find('#<%= @post.id %>').next().show();
 		$('#side-user-profile').find('#<%= @post.id %>').next().next().hide();
 		$('#side-user-profile').find('#<%= @post.id %>').next().append('<%= escape_javascript(render 'shared/comment_feed')%>');
 		$('#side-user-profile').find('#<%= @post.id %>').next().find(".comment-field").focus();
