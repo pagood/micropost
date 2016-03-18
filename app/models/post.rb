@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
 	end
 	private 
 	def photo_size
-		if photo.size > 5.megabytes
+		if photo.size > 6.megabytes
 			errors.add(:photo, "should be less than 5MB")
 		end
 	end
