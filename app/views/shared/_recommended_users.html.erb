@@ -1,5 +1,5 @@
 
-<li id="<%= recommended_user.id %>">
+<li id="recommended-<%= recommended_user.id %>">
 	<div class="row" style="height:100%">
 		<div class="col-md-2 col-sm-2" style="padding:0px">
 			<%= link_to image_tag(recommended_user.avatar.small.url,class:"recommended-img-circle img-circle user-link"),user_path(recommended_user),remote:true %>

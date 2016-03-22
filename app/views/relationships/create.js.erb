@@ -2,13 +2,11 @@
 	$('#follow-form<%=@user.id%>').html("<%= escape_javascript(render('users/unfollow',user:@user)) %>");
 <% else %>
 	<% unless @next.nil? %>
-		console.log("i m excuting");
-		console.log("<%= @user.id %>");
-		$('#<%=@user.id%>').empty().slideUp(500,function(){
+		$('#recommended-<%=@user.id%>').empty().slideUp(500,function(){
 			$(this).remove();
 		});
 		$('#recommended-container ul').append('<%= escape_javascript(render 'shared/recommended_users',recommended_user:@next) %>');
 	<% else %>
-		$('#<%=@user.id%>').find(".follow-plus-btn").remove();
+		$('#recommended-<%=@user.id%>').find(".follow-plus-btn").remove();
 	<% end %>
 <% end %>
