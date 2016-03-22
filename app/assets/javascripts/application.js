@@ -470,7 +470,7 @@ follow = function(){
 				data: {
 					radar:true,
 					following_id:$(this).closest('li').attr('id').substring(12),
-					last:$(this).closest('ul').find('li').last().attr('id')
+					last:$(this).closest('ul').find('li').last().attr('id').substring(12)
 				},
 				dataType: "script",
 				
