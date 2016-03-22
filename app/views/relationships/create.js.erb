@@ -2,6 +2,7 @@
 	$('#follow-form<%=@user.id%>').html("<%= escape_javascript(render('users/unfollow',user:@user)) %>");
 <% else %>
 	<% unless @next.nil? %>
+		console.log("i m excuting");
 		$('#<%=@user.id%>').empty().slideUp(500,function(){
 			$(this).remove();
 		});

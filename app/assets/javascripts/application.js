@@ -404,19 +404,12 @@ dislike_onClick = function(){
 //jump to user page
 jump_to_user_page = function(){
 
-	$(this).closest('.post').find('.overview').fadeOut();
+	// $(this).closest('.post').find('.overview').fadeOut();
 	//show in order
-	$('#side-user-profile').show('slide',{direction:"right"},function(){
-		$('.side-page #profile-header').fadeIn(function(){
-			$('.side-page #profile-info').slideDown(200,function(){
-				$('.side-page .side-post-container').fadeIn(function(){
-					$('.side-page #profile-avatar').fadeIn(500);
-				});
-			});
-		});
-	});
+	
 	$('body').css("overflow","hidden");
 	$('#shadow-layer').show();
+	$('#side-user-profile').show('slide',{direction:"right"});
 };
 result_click = function(){
 	// console.log("click !");

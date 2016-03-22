@@ -1,7 +1,15 @@
+
 if(!$('#side-user-profile').hasClass('opened')){
 	$('#side-user-profile').addClass('opened');
 	$('#profile-preloader').hide();
 	$('#profile-content').html("<%= escape_javascript(render('users/show')) %>");
+	$('.side-page #profile-header').fadeIn(function(){
+			$('.side-page #profile-info').slideDown(200,function(){
+				$('.side-page .side-post-container').fadeIn(function(){
+					$('.side-page #profile-avatar').fadeIn(500);
+				});
+			});
+	});
 }
 else{
 	$('.side-post-container').append('<%= escape_javascript(render @posts ) %>');
