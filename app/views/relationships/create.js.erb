@@ -3,6 +3,7 @@
 <% else %>
 	<% unless @next.nil? %>
 		console.log("i m excuting");
+		console.log("<%= @user.id %>");
 		$('#<%=@user.id%>').empty().slideUp(500,function(){
 			$(this).remove();
 		});
