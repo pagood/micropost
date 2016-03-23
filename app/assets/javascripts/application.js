@@ -35,7 +35,7 @@ ready = function(){
 			            // make a get request to the server
 			            type: "GET",
 			            // get the url from the href attribute of our link
-			            url: "/users/"+$(this).find('.user-profile').attr('id'),
+			            url: "/users/"+$(this).find('.user-profile').attr('user-id'),
 			            // send the last id to our rails app
 			            data: {
 			            	last: last
