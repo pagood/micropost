@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	before_save {self.email = email.downcase}
 	before_create :create_activation_digest
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	default_scope -> { order(id: :desc) }
 	validates :email,presence: true,length: {maximum:255},format: {with: VALID_EMAIL_REGEX},uniqueness: {case_sensitive:false}
 	validates :user_name,presence: true,length: {maximum:26},uniqueness: true
 	validates :name,length: {maximum:26}
@@ -126,7 +127,7 @@ class User < ActiveRecord::Base
    def next_recommended_user(last)
    	following_ids = "SELECT following_id FROM relationships
 		WHERE  follower_id = :user_id"
-	User.where("id NOT IN (#{following_ids}) AND id > :last",user_id:id,last:last).where.not(id:id).limit(1).first
+	User.where("id NOT IN (#{following_ids}) AND id < :last",user_id:id,last:last).where.not(id:id).limit(1).first
 	end
 	
 end
