@@ -12,4 +12,8 @@ class StaticPagesController < ApplicationController
 			# render :text => @feed.first.user.inspect
 		end
 	end
+
+	def test
+		@feed = Post.all.limit(5)
+	end
 end
