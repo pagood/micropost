@@ -1,5 +1,5 @@
 <div class="user-profile" user-id="<%=@user.id%>">
-	<div id="profile-header" style="display:none;background-image:url('<%= @user.header.url %>')">
+	<div id="profile-header" style="display:none;background-image:url('<%= @user.header.large.url %>')">
 		<% if current_user == @user %>
 		<ul class="nav nav-pills profile-nav">
 			<li>

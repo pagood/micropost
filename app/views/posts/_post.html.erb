@@ -14,7 +14,7 @@
 	</div>
 	<div class="photo-area">
 		<% if post.photo? %>
-		<%= image_tag post.photo.url,class:"post-photo"%>
+		<%= image_tag post.photo.large.url,class:"post-photo"%>
 		<% end %>
 	</div>
 	<div class="txt-area">
