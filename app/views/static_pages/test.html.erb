@@ -1,9 +1,0 @@
-<div class="post-container outline container">
-	<% @feed.each do |post| %>
-	<div class="photo-area">
-		<% if post.photo? %>
-		<%= image_tag post.photo.large.url,class:"post-photo"%>
-		<% end %>
-	</div>
-	<% end %>
-</div>
