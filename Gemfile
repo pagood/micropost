@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
-
+gem "private_pub"
+gem "thin"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use SCSS for stylesheets
@@ -31,6 +32,7 @@ gem 'mini_magick',             '3.8.0'
 gem 'fog',                     '1.36.0'
 
 gem 'responders', '~> 2.0'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

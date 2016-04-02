@@ -1,0 +1,7 @@
+<% publish_to @path do %>
+console.log('??');
+$('#conversations-' + <%= @conversation.id %> + ' #chat-content').append("<p><%= @message.content %></p>");
+// if($('#conversations-' + <%= @conversation.id %>).hasClass("invisible")){
+// 	$('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');
+// }
+<% end %>

@@ -75,6 +75,23 @@
 </div>
 <% end %>
 <%= yield %>
-
+<% if logged_in? %>
+	<div id="chat-box">
+		<div id="chat-left">
+			<ul id="contacts">
+				<% current_user.contacts.each do |c| %>
+					
+						<li class="start-conversation" c-id="<%= find_conversation(current_user,c).id %>" >
+								<img src="<%= c.avatar.small.url %>" class="img-circle xxs-img-circle place-left">
+								<p class="place-left"><%= c.user_name %></p>
+								<%= render 'shared/unread' %>
+						</li>
+				<% end %>
+			<ul>
+		</div>
+		<div id="chat-right">
+		</div>
+	</div>
+<% end %>
 </body>
 </html>

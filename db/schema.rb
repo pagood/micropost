@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316190615) do
+ActiveRecord::Schema.define(version: 20160331215843) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 20160316190615) do
     t.text     "content"
     t.integer  "reply_id"
   end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "sender_last",   default: 0
+    t.integer  "receiver_last", default: 0
+  end
+
+  add_index "conversations", ["receiver_id"], name: "index_conversations_on_receiver_id"
+  add_index "conversations", ["sender_id", "receiver_id"], name: "index_conversations_on_sender_id_and_receiver_id", unique: true
+  add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id"
 
   create_table "like_relationships", force: :cascade do |t|
     t.integer  "like_id"
@@ -32,6 +45,14 @@ ActiveRecord::Schema.define(version: 20160316190615) do
   add_index "like_relationships", ["like_id", "like_user_id"], name: "index_like_relationships_on_like_id_and_like_user_id", unique: true
   add_index "like_relationships", ["like_id"], name: "index_like_relationships_on_like_id"
   add_index "like_relationships", ["like_user_id"], name: "index_like_relationships_on_like_user_id"
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.text     "content"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "photo"

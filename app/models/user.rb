@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
 	has_many :likes,through: :like_relationships,dependent: :destroy
 
 
+	has_many :active_conversations, class_name: "Conversation", foreign_key: "sender_id", dependent: :destroy
+	has_many :passive_conversations, class_name: "Conversation", foreign_key: "receiver_id",dependent: :destroy
+	has_many :messages
 	mount_uploader :avatar, AvatarUploader
 	mount_uploader :header, HeaderUploader
 	#shared
@@ -128,6 +131,13 @@ class User < ActiveRecord::Base
    	following_ids = "SELECT following_id FROM relationships
 		WHERE  follower_id = :user_id"
 	User.where("id NOT IN (#{following_ids}) AND id < :last",user_id:id,last:last).where.not(id:id).limit(1).first
+	end
+
+	#chat
+	def contacts
+		sender_ids = "SELECT sender_id FROM conversations WHERE receiver_id = :user_id"
+		receiver_ids = "SELECT receiver_id FROM conversations WHERE sender_id = :user_id"
+		User.where("id IN (#{sender_ids}) OR id IN (#{receiver_ids})",user_id: id)
 	end
 	
 end

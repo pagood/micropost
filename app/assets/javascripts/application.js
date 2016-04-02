@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require private_pub
 //= require jquery.remotipart
 //= require turbolinks
 //= require_tree .
+
 var ready;
 
 ready = function(){
@@ -477,6 +479,34 @@ follow = function(){
 
 			});
 };
+start_conversation = function(){
+
+	var cid = $(this).attr('c-id');
+	if($('#conversations-' + cid).length <= 0){
+		$(".visible-chat").addClass('invisible-chat');
+		$(".visible-chat").removeClass('visible-chat');
+		$('#chat-right').append('<div id="conversations-' + cid + '"></div>');
+		$.get('/conversations/' + cid,function(data){
+			
+			$('#conversations-' + cid).html(data);
+			var element = document.getElementById('conversations-' + cid).children[1];
+			element.scrollTop = element.scrollHeight;
+		});
+		$('#conversations-' + cid).addClass('visible-chat');
+		
+	}
+	else{
+		// console.log('aa');
+		if(!$('#conversations-' + cid).hasClass('visible-chat')){
+			$(".visible-chat").addClass('invisible-chat');
+			$(".visible-chat").removeClass('visible-chat');
+			$('#conversations-' + cid).addClass('visible-chat');
+			$('#conversations-' + cid).removeClass('invisible-chat');
+		}
+		
+	}
+	
+};
 $(document).ready(ready);
 $(document).on('page:load',ready);
 $(document).on('click','.like-btn',like_onClick);
@@ -492,6 +522,6 @@ $(document).on('click','.result-got',result_click);
 $(document).on('change','#avatar-upload-field',avatar_change);
 $(document).on('change','#header-upload-field',header_change);
 $(document).on("click",'.follow-plus',follow);
-
+$(document).on("click",'.start-conversation',start_conversation);
 // $(document).on('scroll','.side-page',side_page_scroll);
 
