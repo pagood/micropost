@@ -184,3 +184,11 @@ html,body{
 .width-limited{
 	max-width: 900px;
 }
+.no-border{
+	outline:none;
+	border: 0;
+}
+.no-border:focus{
+	outline:none;
+	border: 0;
+}

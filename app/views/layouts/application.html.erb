@@ -76,22 +76,31 @@
 <% end %>
 <%= yield %>
 <% if logged_in? %>
-	<div id="chat-box">
-		<div id="chat-left">
-			<ul id="contacts">
-				<% current_user.contacts.each do |c| %>
-					
-						<li class="start-conversation" c-id="<%= find_conversation(current_user,c).id %>" >
-								<img src="<%= c.avatar.small.url %>" class="img-circle xxs-img-circle place-left">
-								<p class="place-left"><%= c.user_name %></p>
-								<%= render 'shared/unread' %>
-						</li>
-				<% end %>
-			<ul>
-		</div>
-		<div id="chat-right">
+
+<div id="shadow-layer">
+</div>
+
+<div id="side-user-profile" class="side-page">
+	<div id="chat-box-container" style="display:none">	
+		
+		<div id="chat-box">
+			<%= image_tag image_path("720.gif"),id:"chat-preloader"%>
 		</div>
 	</div>
+	<div id="contacts-container">
+		<% current_user.contacts.each do |c| %>
+
+		<%= render 'shared/contact',c:c%>
+
+		<% end %>
+	</div>
+	<div class="side-container">
+		<img id="profile-preloader" src="/assets/720">
+		<div id="profile-content">
+		</div>
+	</div>
+</div>
+
 <% end %>
 </body>
 </html>

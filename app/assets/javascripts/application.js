@@ -20,6 +20,10 @@
 var ready;
 
 ready = function(){
+	if($('#contacts-container').children().length > 0){
+				$('#chat-box').css('right','70px');
+				console.log("??");
+	}
 	$('#signup').click(function(){
 		window.location.assign('/signup');
 	});
@@ -168,7 +172,7 @@ ready = function(){
 	});
 	//hide mask layer when click shadow
 	$('#shadow-layer').on('click',function(){
-		$('#side-user-profile').hide('slide',{direction:"right"},function(){
+		$('#side-user-profile').animate({right:"-615px"},function(){
 			$('#profile-content').empty();
 			$('#profile-preloader').show();
 		});
@@ -411,7 +415,8 @@ jump_to_user_page = function(){
 	
 	$('body').css("overflow","hidden");
 	$('#shadow-layer').show();
-	$('#side-user-profile').show('slide',{direction:"right"});
+	// $('#side-user-profile').show('slide',{direction:"right"});
+	$('#side-user-profile').animate({right:"0px"});
 };
 result_click = function(){
 	// console.log("click !");
@@ -482,31 +487,44 @@ follow = function(){
 start_conversation = function(){
 
 	var cid = $(this).attr('c-id');
-	if($('#conversations-' + cid).length <= 0){
-		$(".visible-chat").addClass('invisible-chat');
-		$(".visible-chat").removeClass('visible-chat');
-		$('#chat-right').append('<div id="conversations-' + cid + '"></div>');
-		$.get('/conversations/' + cid,function(data){
+	// if($('#conversations-' + cid).length <= 0){
+	// 	$(".visible-chat").addClass('invisible-chat');
+	// 	$(".visible-chat").removeClass('visible-chat');
+	// 	$('#chat-box').append('<div id="conversations-' + cid + '"></div>');
+	// 	$.get('/conversations/' + cid,function(data){
 			
-			$('#conversations-' + cid).html(data);
-			var element = document.getElementById('conversations-' + cid).children[1];
-			element.scrollTop = element.scrollHeight;
-		});
-		$('#conversations-' + cid).addClass('visible-chat');
+	// 		$('#conversations-' + cid).html(data);
+	// 		var element = document.getElementById('conversations-' + cid).children[1];
+	// 		element.scrollTop = element.scrollHeight;
+	// 	});
+	// 	$('#conversations-' + cid).addClass('visible-chat');
 		
-	}
-	else{
-		// console.log('aa');
-		if(!$('#conversations-' + cid).hasClass('visible-chat')){
-			$(".visible-chat").addClass('invisible-chat');
-			$(".visible-chat").removeClass('visible-chat');
-			$('#conversations-' + cid).addClass('visible-chat');
-			$('#conversations-' + cid).removeClass('invisible-chat');
-		}
+	// }
+	// else{
+	// 	// console.log('aa');
+	// 	if(!$('#conversations-' + cid).hasClass('visible-chat')){
+	// 		$(".visible-chat").addClass('invisible-chat');
+	// 		$(".visible-chat").removeClass('visible-chat');
+	// 		$('#conversations-' + cid).addClass('visible-chat');
+	// 		$('#conversations-' + cid).removeClass('invisible-chat');
+	// 	}
 		
-	}
+	// }
+	$.get('/conversations/' + cid);
+	$('#chat-box-container').show();
+	$('#contact-'+cid).remove();
 	
 };
+set_up_conversation = function(){
+	// $.get('');
+	$(this).closest('li').find('#create-conversation').submit();
+	$('#chat-box-container').show();
+
+	
+};
+set_up_contact = function(){
+	$(this).closest('#chat-title').find('#create-contact').submit();
+}
 $(document).ready(ready);
 $(document).on('page:load',ready);
 $(document).on('click','.like-btn',like_onClick);
@@ -523,5 +541,7 @@ $(document).on('change','#avatar-upload-field',avatar_change);
 $(document).on('change','#header-upload-field',header_change);
 $(document).on("click",'.follow-plus',follow);
 $(document).on("click",'.start-conversation',start_conversation);
+$(document).on("click",'.create-conversation-btn',set_up_conversation);
+// $(document).on("click",'.create-contact-btn',set_up_contact);
 // $(document).on('scroll','.side-page',side_page_scroll);
 

@@ -219,14 +219,20 @@
 /* new side user profile page*/
 #side-user-profile{
 	position: fixed;
-	right: 0;
+	right: -615px;
 	top:0;
 	bottom: 0;
-	width: 600px;
 	overflow-y: scroll;
 	z-index: 100;
-	display: none;
+	
+}
+
+.side-container{
+	position: relative;
+	float:left;
+	width:600px;
 	background: #F7F7F7;
+	height: 100%;
 }
 #profile-preloader{
 	margin-top:40%;
@@ -351,4 +357,8 @@
 }
 .side-title{
 	border-bottom: 2px solid #667384;
+}
+.profile-icon{
+	margin-top:15%;
+	cursor: pointer;
 }

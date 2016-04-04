@@ -1,7 +1,14 @@
 <% publish_to @path do %>
-console.log('??');
-$('#conversations-' + <%= @conversation.id %> + ' #chat-content').append("<p><%= @message.content %></p>");
-// if($('#conversations-' + <%= @conversation.id %>).hasClass("invisible")){
-// 	$('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');
-// }
+
+ // if($('#conversations-' + <%= @conversation.id %>).hasClass("invisible")){
+ // 	console.log("??");
+ // 	$('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');
+ // }
+ if($('#conversations-' + <%= @conversation.id %>).length > 0 ){
+ 	$('#conversations-' + <%= @conversation.id %> + ' #chat-content').append("<p><%= @message.content %></p>");
+ }
+ if($('#conversations-' + <%= @conversation.id %>).length <= 0 || ($('#conversations-' + <%= @conversation.id %>).length > 0 && $('#conversations-' + <%= @conversation.id %>).hasClass('invisible-chat'))){
+ 	 $('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');
+ }
+console.log($('#conversations-' + <%= @conversation.id %>));
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331215843) do
+ActiveRecord::Schema.define(version: 20160403000426) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20160331215843) do
     t.text     "content"
     t.integer  "reply_id"
   end
+
+  create_table "contact_relationships", force: :cascade do |t|
+    t.integer  "me_id"
+    t.integer  "contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contact_relationships", ["me_id", "contact_id"], name: "index_contact_relationships_on_me_id_and_contact_id", unique: true
+  add_index "contact_relationships", ["me_id"], name: "index_contact_relationships_on_me_id"
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"

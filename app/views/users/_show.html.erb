@@ -40,6 +40,13 @@
 		</label>
 		<% else %>
 		<ul class="nav nav-pills profile-nav">
+			<li style="margin-right:10px">
+				<%= form_for current_user.active_conversations.build,remote:true,html:{id: 'create-conversation'} do |f|%>
+				<%= hidden_field_tag :sender_id,current_user.id %>
+				<%= hidden_field_tag :receiver_id,@user.id%>
+				<% end %>
+				<span class="glyphicon glyphicon-envelope white md-font profile-icon create-conversation-btn"></span>
+			</li>
 			<li>
 				<div id="follow-form<%=@user.id%>" >
 					<% if current_user.active_relationships.find_by(following_id: @user.id) %>
@@ -49,6 +56,7 @@
 					<% end %>
 				</div>
 			</li>
+
 		</ul>
 		<% end %>
 	</div>

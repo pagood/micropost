@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 	has_many :like_relationships,dependent: :destroy,foreign_key: "like_user_id"
 	has_many :likes,through: :like_relationships,dependent: :destroy
 
+	has_many :contact_relationships,dependent: :destroy,foreign_key: "me_id"
+	has_many :contacts,through: :contact_relationships,dependent: :destroy
 
 	has_many :active_conversations, class_name: "Conversation", foreign_key: "sender_id", dependent: :destroy
 	has_many :passive_conversations, class_name: "Conversation", foreign_key: "receiver_id",dependent: :destroy
@@ -134,10 +136,10 @@ class User < ActiveRecord::Base
 	end
 
 	#chat
-	def contacts
-		sender_ids = "SELECT sender_id FROM conversations WHERE receiver_id = :user_id"
-		receiver_ids = "SELECT receiver_id FROM conversations WHERE sender_id = :user_id"
-		User.where("id IN (#{sender_ids}) OR id IN (#{receiver_ids})",user_id: id)
-	end
+	# def contacts
+	# 	sender_ids = "SELECT sender_id FROM conversations WHERE receiver_id = :user_id"
+	# 	receiver_ids = "SELECT receiver_id FROM conversations WHERE sender_id = :user_id"
+	# 	User.where("id IN (#{sender_ids}) OR id IN (#{receiver_ids})",user_id: id)
+	# end
 	
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :logged_in_user, only: [:edit, :update,:show,:index,:likes,:following_and_followers]
-	before_action :correct_user,only: [:edit, :update,:likes,:following_and_followers]
+	before_action :logged_in_user, only: [:edit, :update,:show,:index,:likes,:following]
+	before_action :correct_user,only: [:edit, :update,:likes,:following]
 	before_action :is_admin,only: [:index,:destroy]
 
 	def new
