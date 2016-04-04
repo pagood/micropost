@@ -1,20 +1,13 @@
 var cid = <%= @conversation.id %>
-	if($('#conversations-' + cid).length <= 0){
-		$(".visible-chat").addClass('invisible-chat');
-		$(".visible-chat").removeClass('visible-chat');
-		$('#chat-box').append('<div id="conversations-' + cid + '"></div>');
-		$('#conversations-' + cid).html("<%= escape_javascript(render 'conversations/conversation') %>");
-			
-		$('#conversations-' + cid).addClass('visible-chat');
-		
-	}
-	else{
-		// console.log('aa');
-		if(!$('#conversations-' + cid).hasClass('visible-chat')){
-			$(".visible-chat").addClass('invisible-chat');
-			$(".visible-chat").removeClass('visible-chat');
-			$('#conversations-' + cid).addClass('visible-chat');
-			$('#conversations-' + cid).removeClass('invisible-chat');
-		}
-		
-	}
+
+$(".visible-chat").addClass('invisible-chat');
+$(".visible-chat").removeClass('visible-chat');
+$('#chat-box').append('<div id="conversations-' + cid + '"></div>');
+$('#conversations-' + cid).html("<%= escape_javascript(render 'conversations/conversation') %>");
+
+$('#conversations-' + cid).addClass('visible-chat');
+
+
+
+
+$('#chat-preloader').hide();

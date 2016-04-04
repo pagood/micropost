@@ -1,16 +1,16 @@
 
-<div id="chat-title">
+<div id="chat-title" image-url="<%= @contact_relationship.contact.avatar.medium.url %>" c-id="<%= find_conversation(current_user,@contact_relationship.contact).id %>">
 	<%= link_to contact_relationship_path(@contact_relationship,conversation_id: @conversation.id),method: :delete,remote:true do%>
 		<span class="glyphicon glyphicon-remove place-right white" style="padding:5px"></span>
 	<% end %>
-	<span class="glyphicon glyphicon-minus place-right white create-contact-btn close-chat" style="padding:5px"></span>
-	<script>$('.close-chat').on('click',function(){
+	<span class="glyphicon glyphicon-minus place-right white create-contact-btn close-chat" id="minus-<%= find_conversation(current_user,@contact_relationship.contact).id %>" style="padding:5px"></span>
+	<script>$('#minus-<%= find_conversation(current_user,@contact_relationship.contact).id %>').on('click',function(){
 		$(this).parent().parent().removeClass("visible-chat");
 		$(this).parent().parent().addClass("invisible-chat");
 		$('#chat-box-container').hide();
 		$('#contacts-container').append("<%= escape_javascript(render('shared/contact',c:@contact_relationship.contact))  %>");
+		
 	});
-	
 	</script>
 
 	
@@ -24,7 +24,14 @@
 <div id="chat-message">
 	<%= form_for :message,url: messages_path,method: :post,remote:true,html:{autocomplete:"off"} do |f|%>
 	<%= f.hidden_field :conversation_id,value:@conversation.id %>
-	<%= f.text_field :content,style:"width:55%",class: "no-border",placeholder: "Say Something"%>
+	<%= f.text_field :content,class: "no-border messages-field",placeholder: "Say Something"%>
 	<% end %>
+	<script>
+		$('#messages-field').keydown(function(e){
+			if(e.keyCode == 13){
+				this.form.submit();
+			}
+		});
+	</script>
 </div>
 

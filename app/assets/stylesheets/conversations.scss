@@ -49,6 +49,7 @@
 }
 #chat-content{
 	overflow: auto;
+	width: 100%;
 }
 #chat-message{
 	padding: 10px;
@@ -76,4 +77,12 @@
 }
 #chat-preloader{
 	display: none;
+}
+.close-chat{
+	cursor: pointer;
+}
+#chat-preloader-img{
+	margin-top: 50%;
+
+	height: 50px;
 }
