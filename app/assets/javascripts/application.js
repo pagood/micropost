@@ -172,7 +172,7 @@ ready = function(){
 	});
 	//hide mask layer when click shadow
 	$('#shadow-layer').on('click',function(){
-		$('#side-user-profile').animate({right:"-615px"},function(){
+		$('#side-user-profile').animate({right:"-600px"},function(){
 			$('#profile-content').empty();
 			$('#profile-preloader').show();
 		});

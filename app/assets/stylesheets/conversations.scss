@@ -59,12 +59,13 @@
 	bottom: 0;
 	border-top:  1px solid #D9D9D9;
 }
-#contacts-container{
+#contacts-box{
 	height: 100%;
+	width: 65px;
+	position: relative;
 	float:left;
 }
-#contacts-container div{
-}
+
 #contacts{
 	list-style-type: none;
 	padding: 0px;
