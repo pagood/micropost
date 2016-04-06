@@ -6,7 +6,7 @@ $('#chat-box').append('<div id="conversations-' + cid + '"></div>');
 $('#conversations-' + cid).html("<%= escape_javascript(render 'conversations/conversation') %>");
 
 $('#conversations-' + cid).addClass('visible-chat');
-
+$('#conversations-' + cid + ' #chat-content')[0].scrollTop = $('#conversations-' + cid + ' #chat-content')[0].scrollHeight;
 
 
 

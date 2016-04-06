@@ -4,11 +4,11 @@
  // 	console.log("??");
  // 	$('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');
  // }
- if($('#conversations-' + <%= @conversation.id %>).length > 0 ){
- 	$('#conversations-' + <%= @conversation.id %> + ' #chat-content').append("<p><%= @message.content %></p>");
- }
+
+ $('#conversations-' + <%= @conversation.id %> + ' #chat-content').append("<%= escape_javascript(render(@message))%>");
+ $('#conversations-' + <%= @conversation.id %> + ' #chat-content')[0].scrollTop = $('#conversations-' + <%= @conversation.id %> + ' #chat-content')[0].scrollHeight;
+
  // if($('#conversations-' + <%= @conversation.id %>).length <= 0 || ($('#conversations-' + <%= @conversation.id %>).length > 0 && $('#conversations-' + <%= @conversation.id %>).hasClass('invisible-chat'))){
  // 	 $('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');
  // }
-console.log($('#conversations-' + <%= @conversation.id %>));
 <% end %>

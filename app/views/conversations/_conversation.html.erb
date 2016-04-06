@@ -16,22 +16,28 @@
 	
 	
 </div>
-<div id="chat-content" style="height:300px">
+<div id="chat-content" style="height:320px">
 	<% for i in @last...@conversation.messages.length %>
-	<p><%= @conversation.messages[i].content %></p>
+	<%= render @conversation.messages[i] %>
 	<% end %>
 </div>
 <div id="chat-message">
-	<%= form_for :message,url: messages_path,method: :post,remote:true,html:{autocomplete:"off"} do |f|%>
+	<%= form_for :message,url: messages_path,remote: true,html:{autocomplete:"off"} do |f|%>
 	<%= f.hidden_field :conversation_id,value:@conversation.id %>
-	<%= f.text_field :content,class: "no-border messages-field",placeholder: "Say Something"%>
+	<%= f.text_field :content,class: "no-border  messages-field",placeholder: "Say Something"%>
 	<% end %>
 	<script>
-		$('#messages-field').keydown(function(e){
+		$('.messages-field').keydown(function(e){
+
 			if(e.keyCode == 13){
-				this.form.submit();
+				e.preventDefault();
+				if(this.value.length != 0){
+					$(this).parent().submit();
+					$(this).val('');
+				}
 			}
 		});
 	</script>
 </div>
 
+<%= subscribe_to conversation_path(@conversation) %>
