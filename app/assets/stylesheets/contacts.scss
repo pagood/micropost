@@ -7,3 +7,20 @@
 	bottom: 0;
 	
 }
+.start-conversation{
+	position: relative;
+	border-radius: 2px;
+}
+.unread{
+	position: absolute;
+	background: #529ECC;
+	width: 25px;
+	height: 25px;
+	text-align: center;
+	top: 0;
+	right: 0;
+	border: 2px solid #36465D;
+	color: #36465D;
+	border-radius: 5px;
+
+}

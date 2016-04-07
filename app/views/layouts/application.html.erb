@@ -8,7 +8,7 @@
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 </head>
-<body>
+<body u-id="<%= current_user.id %>">
 	<% if logged_in? %>
 	<% flash.each do |message_type,message|%>
 	<div class="alert alert-<%= message_type %>"><%=message%></div>

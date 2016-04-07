@@ -1,3 +1,27 @@
-<div class="start-conversation" c-id="<%= find_conversation(current_user,c).id %>" id="contact-<%= find_conversation(current_user,c).id %>" >
+<% conversation = find_conversation(current_user,c) %>
+<div class="start-conversation" c-id="<%= conversation.id %>" id="contact-<%= conversation.id %>" >
 			<img src="<%= c.avatar.medium.url %>" class="recommended-img-circle " style="margin:10px">
+			
+					<% if current_user.id == conversation.sender_id %>
+						<% if conversation.messages.length  - conversation.sender_last > 0 %>
+							<div class="unread" align="center">
+								<b><%= conversation.messages.length  - conversation.sender_last %></b>
+							</div>
+						<% else %>
+							<div class="unread" align="center" >
+								<b><%= conversation.messages.length  - conversation.sender_last %></b>
+							</div>
+						<% end %>
+					<% else %>
+						<% if conversation.messages.length  - conversation.receiver_last > 0 %>
+							<div class="unread" align="center">
+								<b><%= conversation.messages.length  - conversation.receiver_last %></b>
+							</div>
+						<% else %>
+							<div class="unread" align="center"  >
+								<b><%= conversation.messages.length  - conversation.receiver_last %></b>
+							</div>
+						<% end %>
+					<% end %>
 </div>
+<%= subscribe_to conversation_path(conversation) %>

@@ -4,9 +4,20 @@
  // 	console.log("??");
  // 	$('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');
  // }
-
- $('#conversations-' + <%= @conversation.id %> + ' #chat-content').append("<%= escape_javascript(render(@message))%>");
- $('#conversations-' + <%= @conversation.id %> + ' #chat-content')[0].scrollTop = $('#conversations-' + <%= @conversation.id %> + ' #chat-content')[0].scrollHeight;
+ console.log('once!');
+if('<%= @conversation.sender_id %>' == $('body').attr('u-id')){
+	$('#contact-' + <%= @conversation.id %>).find('.unread').html("<b>" + <%= @conversation.messages.length - @conversation.sender_last %>+"</b>");
+}
+else{
+	$('#contact-' + <%= @conversation.id %>).find('.unread').html("<b>" + <%= @conversation.messages.length - @conversation.receiver_last %>+"</b>");
+}
+if($('#conversations-' + <%= @conversation.id %>).length > 0){
+	 $('#conversations-' + <%= @conversation.id %> + ' #chat-content').append("<%= escape_javascript(render(@message))%>");
+ 	$('#conversations-' + <%= @conversation.id %> + ' #chat-content')[0].scrollTop = $('#conversations-' + <%= @conversation.id %> + ' #chat-content')[0].scrollHeight;
+}
+// if($('.unread b').val() > 0){
+// 	$(this).show();
+// }
 
  // if($('#conversations-' + <%= @conversation.id %>).length <= 0 || ($('#conversations-' + <%= @conversation.id %>).length > 0 && $('#conversations-' + <%= @conversation.id %>).hasClass('invisible-chat'))){
  // 	 $('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');

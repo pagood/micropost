@@ -22,7 +22,6 @@ var ready;
 ready = function(){
 	if($('#contacts-container').children().length > 0){
 				$('#chat-box').css('right','70px');
-				console.log("??");
 	}
 	$('#signup').click(function(){
 		window.location.assign('/signup');
