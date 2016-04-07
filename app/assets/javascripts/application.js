@@ -486,7 +486,8 @@ follow = function(){
 start_conversation = function(){
 
 	var cid = $(this).attr('c-id');
-	
+		$('.visible-chat').addClass('hidden');
+		$('.visible-chat').removeClass('visible-chat');
 	
 		$.get('/conversations/' + cid);
 		$('#chat-box-container').show();
@@ -497,11 +498,13 @@ start_conversation = function(){
 set_up_conversation = function(){
 	
 
-	
+		$('.visible-chat').addClass('hidden');
+		$('.visible-chat').removeClass('visible-chat');
 		$(this).closest('li').find('#create-conversation').submit();
 		$('#chat-box-container').show();
 		$('#chat-preloader').show();
 		
+
 };
 set_up_contact = function(){
 	$(this).closest('#chat-title').find('#create-contact').submit();

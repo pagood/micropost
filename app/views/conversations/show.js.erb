@@ -1,27 +1,31 @@
 var cid = <%= @conversation.id %>
-if($('#contact-'+cid).length > 0 ){
-	$('#contact-'+cid).remove();
+if(!$('#conversations-' + cid).hasClass('hidden')){
+	if($('#contact-'+cid).length > 0 ){
+		$('#contact-'+cid).remove();
 
-}
-if($('.visible-chat').length > 0 && ($('#conversations-' + cid).length <= 0 || !$('#conversations-' + cid).hasClass('visible-chat'))){
-
-		// var image_url = $('.visible-chat').find('#chat-title').attr('image-url');
-		var cr_id = $('.visible-chat').find('#chat-title').attr('cr-id');
-		$('.visible-chat').addClass('invisible-chat');
-		$('.visible-chat').removeClass('visible-chat');
-		$.get("contact_relationships/" + cr_id);
 	}
+	if($('.hidden').length > 0 ){
 
-if($('#conversations-' + cid ).length <= 0){
-$('#chat-box').append('<div id="conversations-' + cid + '"></div>');
-$('#conversations-' + cid).html("<%= escape_javascript(render 'conversations/conversation') %>");
+			// var image_url = $('.visible-chat').find('#chat-title').attr('image-url');
+			var cr_id = $('.hidden').find('#chat-title').attr('cr-id');
+			$('.hidden').addClass('invisible-chat');
+			$('.hidden').removeClass('hidden');
+			$.get("contact_relationships/" + cr_id);
+		}
+
+	if($('#conversations-' + cid ).length <= 0){
+	$('#chat-box').append('<div id="conversations-' + cid + '"></div>');
+	$('#conversations-' + cid).html("<%= escape_javascript(render 'conversations/conversation') %>");
+	}
+	else{
+		$('#conversations-' + cid).removeClass('invisible-chat');
+	}
+	$('#conversations-' + cid).addClass('visible-chat');
+	$('#conversations-' + cid + ' #chat-content')[0].scrollTop = $('#conversations-' + cid + ' #chat-content')[0].scrollHeight;
+
 }
 else{
-	$('#conversations-' + cid).removeClass('invisible-chat');
+	$('.hidden').addClass('visible-chat');
+	$('.hidden').removeClass('hidden');
 }
-$('#conversations-' + cid).addClass('visible-chat');
-$('#conversations-' + cid + ' #chat-content')[0].scrollTop = $('#conversations-' + cid + ' #chat-content')[0].scrollHeight;
-
-
-
 $('#chat-preloader').hide();
