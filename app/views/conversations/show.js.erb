@@ -2,9 +2,13 @@ var cid = <%= @conversation.id %>
 
 $(".visible-chat").addClass('invisible-chat');
 $(".visible-chat").removeClass('visible-chat');
+if($('#conversations-' + cid ).length <= 0){
 $('#chat-box').append('<div id="conversations-' + cid + '"></div>');
 $('#conversations-' + cid).html("<%= escape_javascript(render 'conversations/conversation') %>");
-
+}
+else{
+	$('#conversations-' + cid).removeClass('invisible-chat');
+}
 $('#conversations-' + cid).addClass('visible-chat');
 $('#conversations-' + cid + ' #chat-content')[0].scrollTop = $('#conversations-' + cid + ' #chat-content')[0].scrollHeight;
 

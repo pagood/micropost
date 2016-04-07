@@ -8,7 +8,7 @@
 		$(this).parent().parent().removeClass("visible-chat");
 		$(this).parent().parent().addClass("invisible-chat");
 		$('#chat-box-container').hide();
-		$('#contacts-container').append("<%= escape_javascript(render('shared/contact',c:@contact_relationship.contact))  %>");
+		$.get('<%= contact_relationship_path(@contact_relationship) %>');
 		
 	});
 	</script>

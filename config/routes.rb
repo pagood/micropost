@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :conversations,only: [:create,:show]
   resources :messages
-  resources :contact_relationships,only: [:create,:destroy]
+  resources :contact_relationships,only: [:create,:destroy,:show]
  
   resources :account_activations,only: [:edit]
   resources :password_resets,only: [:new,:create,:edit,:update]

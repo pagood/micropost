@@ -9,4 +9,16 @@ class ContactRelationshipsController < ApplicationController
 			format.js
 		end
 	end
+
+	def show
+		@contact_relationship = ContactRelationship.find(params[:id])
+		@contact = @contact_relationship.contact
+		@conversation = find_conversation(current_user,@contact)
+		if current_user.id == @conversation.sender_id
+			@conversation.sender_last = @conversation.messages.length
+		else
+			@conversation.receiver_last = @conversation.messages.length
+		end
+		@conversation.save
+	end
 end

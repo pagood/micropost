@@ -4,7 +4,7 @@
 			
 					<% if current_user.id == conversation.sender_id %>
 						<% if conversation.messages.length  - conversation.sender_last > 0 %>
-							<div class="unread" align="center">
+							<div class="unread" align="center" >
 								<b><%= conversation.messages.length  - conversation.sender_last %></b>
 							</div>
 						<% else %>
@@ -23,5 +23,11 @@
 							</div>
 						<% end %>
 					<% end %>
+					<script>
+
+						if(parseInt($('#contact-<%= conversation.id %>').find('b').html()) > 0){
+							$('#contact-<%= conversation.id %>').find('.unread').show();
+						}
+					</script>
 </div>
 <%= subscribe_to conversation_path(conversation) %>
