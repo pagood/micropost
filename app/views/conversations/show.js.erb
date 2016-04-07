@@ -1,7 +1,17 @@
 var cid = <%= @conversation.id %>
+if($('#contact-'+cid).length > 0 ){
+	$('#contact-'+cid).remove();
 
-$(".visible-chat").addClass('invisible-chat');
-$(".visible-chat").removeClass('visible-chat');
+}
+if($('.visible-chat').length > 0 && ($('#conversations-' + cid).length <= 0 || !$('#conversations-' + cid).hasClass('visible-chat'))){
+
+		// var image_url = $('.visible-chat').find('#chat-title').attr('image-url');
+		var cr_id = $('.visible-chat').find('#chat-title').attr('cr-id');
+		$('.visible-chat').addClass('invisible-chat');
+		$('.visible-chat').removeClass('visible-chat');
+		$.get("contact_relationships/" + cr_id);
+	}
+
 if($('#conversations-' + cid ).length <= 0){
 $('#chat-box').append('<div id="conversations-' + cid + '"></div>');
 $('#conversations-' + cid).html("<%= escape_javascript(render 'conversations/conversation') %>");

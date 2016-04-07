@@ -1,7 +1,5 @@
 <div class="container edit-page home-body">
-	<% flash.each do |message_type,message| %>
-	<div class="alert alert-<%= message_type %>"><%= message %></div>
-	<% end %>
+	
 	<%= render 'shared/error_messages',object: @user%>
 	<ul class="nav nav-tabs">
 		<li role="presentation" class="active" id="edit-profile-tag"><a href="javascript:void(0)" id="edit-profile-btn">Edit Profile</a></li>

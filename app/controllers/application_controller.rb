@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
 
   end
     
+  def is_activated?
+    current_user.activated? 
+  end
+
   def logged_in?
   	!current_user.nil?
   end

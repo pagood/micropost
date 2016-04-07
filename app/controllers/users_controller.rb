@@ -71,6 +71,10 @@ class UsersController < ApplicationController
 		if @user.save
 			@user.send_activation_email
       		flash[:info] = "Please check your email to activate your account."
+      		session[:user_id] = @user.id 
+			@user.remember
+			cookies.permanent.signed[:user_id] = @user.id
+			cookies.permanent[:remember_token] = @user.remember_token
 			redirect_to root_url
 		else
 			render 'new'

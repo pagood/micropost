@@ -487,75 +487,21 @@ start_conversation = function(){
 
 	var cid = $(this).attr('c-id');
 	
-	if($('.visible-chat').length > 0 && !$('#conversations-' + $(this).attr('c-id')).hasClass('visible-chat')){
-		
-		var image_url = $('.visible-chat').find('#chat-title').attr('image-url');
-		var c_id = $('.visible-chat').find('#chat-title').attr('c-id');
-		$('.visible-chat').addClass('invisible-chat');
-		$('.visible-chat').removeClass('visible-chat');
-		$('#contacts-container').append("<div class='start-conversation' c-id='" + c_id + "' id='" + c_id + "'><img src='" + image_url + "' class='img-circle recommended-img-circle' style='margin:10px'></div>");
-		// console.log("<div class='start-conversation' c-id='" + c_id + "' id='" + c_id + "'><img src='" + image_url + "' class='img-circle recommended-img-circle start-conversation' style='margin:10px'></div>");
-	}
-	// if($('#conversations-' + $(this).attr('c-id')).length > 0){
-
-	// 	if(!$('#conversations-' + $(this).attr('c-id')).hasClass('visible-chat')){
-	// 		console.log("a?");
-	// 		$(".visible-chat").addClass('invisible-chat');
-	// 		$(".visible-chat").removeClass('visible-chat');
-	// 		$('#conversations-' + $(this).attr('c-id')).addClass('visible-chat');
-	// 		$('#conversations-' + $(this).attr('c-id')).removeClass('invisible-chat');
-	// 		$('#chat-box-container').show();
-	// 	}
-	// }
-	// else{
+	
 		$.get('/conversations/' + cid);
 		$('#chat-box-container').show();
 		$('#chat-preloader').show();
-	// }
-	$(this).remove();
+	
+	// $(this).remove();
 };
 set_up_conversation = function(){
-	// $.get('');
 	
-	if($('.visible-chat').length > 0 && !$('#conversations-' + $(this).attr('c-id')).hasClass('visible-chat')){
 
-		var image_url = $('.visible-chat').find('#chat-title').attr('image-url');
-		var c_id = $('.visible-chat').find('#chat-title').attr('c-id');
-		$('.visible-chat').addClass('invisible-chat');
-		$('.visible-chat').removeClass('visible-chat');
-		$('#contacts-container').append("<div class='start-conversation' c-id='" + c_id + "' id='" + c_id + "'><img src='" + image_url + "' class='img-circle recommended-img-circle start-conversation' style='margin:10px'></div>");
-		// console.log("<div class='start-conversation' c-id='" + c_id + "' id='" + c_id + "'><img src='" + image_url + "' class='img-circle recommended-img-circle start-conversation' style='margin:10px'></div>");
-	}
-
-	// if($('#conversations-' + $(this).attr('c-id')).length > 0){
-
-	// 	if(!$('#conversations-' + $(this).attr('c-id')).hasClass('visible-chat')){
-	// 		console.log("a?");
-	// 		$(".visible-chat").addClass('invisible-chat');
-	// 		$(".visible-chat").removeClass('visible-chat');
-	// 		$('#conversations-' + $(this).attr('c-id')).addClass('visible-chat');
-	// 		$('#conversations-' + $(this).attr('c-id')).removeClass('invisible-chat');
-	// 		$('#chat-box-container').show();
-	// 		if($('#contact-'+ $(this).attr('c-id')).length > 0){
-	// 		//in contacts  remove
-	// 			$('#contact-'+ $(this).attr('c-id')).remove();
-	// 		}
-	// 	}
-	// }
-	// else{
+	
 		$(this).closest('li').find('#create-conversation').submit();
 		$('#chat-box-container').show();
 		$('#chat-preloader').show();
-		if($('#contact-'+ $(this).attr('c-id')).length > 0){
-			//in contacts  remove
-				$('#contact-'+ $(this).attr('c-id')).remove();
-			}
-	// }
-	
-	
-	
-	// $('.visible-chat').addClass('invisible-chat');
-	// $('.visible-chat').removeClass('visible-chat');
+		
 };
 set_up_contact = function(){
 	$(this).closest('#chat-title').find('#create-contact').submit();

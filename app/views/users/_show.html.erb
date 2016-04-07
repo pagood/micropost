@@ -45,7 +45,7 @@
 				<%= hidden_field_tag :sender_id,current_user.id %>
 				<%= hidden_field_tag :receiver_id,@user.id%>
 				<% end %>
-				<span class="glyphicon glyphicon-envelope white md-font profile-icon create-conversation-btn" c-id="<%= find_conversation(current_user,@user).id %>"></span>
+				<span class="glyphicon glyphicon-envelope white md-font profile-icon create-conversation-btn" ></span>
 			</li>
 			<li>
 				<div id="follow-form<%=@user.id%>" >
