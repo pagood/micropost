@@ -17,8 +17,14 @@
 	
 </div>
 <div id="chat-content" style="height:320px">
+	<% if current_user.activated? %>
 	<% for i in @last...@conversation.messages.length %>
 	<%= render @conversation.messages[i] %>
+	<% end %>
+	<% else %>
+	<div class="plz-activate">
+		<p class="gray" align="center">Please verify your email address.</p>
+	</div>
 	<% end %>
 </div>
 <div id="chat-message">
@@ -27,6 +33,9 @@
 	<%= f.text_field :content,class: "no-border  messages-field",placeholder: "Say Something"%>
 	<% end %>
 	<script>
+		<% unless current_user.activated? %>
+			$('#conversations-<%= find_conversation(current_user,@contact_relationship.contact).id %>').find('.messages-field').prop('disabled', true);
+		<% end %>
 		$('.messages-field').keydown(function(e){
 
 			if(e.keyCode == 13){

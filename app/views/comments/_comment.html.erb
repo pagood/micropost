@@ -32,6 +32,13 @@
 				<%= f.hidden_field :reply_id, :value => comment.id %>
 				<%= f.submit "POST",class: "btn btn-primary place-right post-reply-btn"%>
 				<% end %>
+				<% unless current_user.activated? %>
+						<script>
+							$('.reply-field').prop('disabled',true);
+							$('.post-reply-btn').prop('disabled',true);
+							$('.reply-field').attr('placeholder','Please verify your email address.');
+						</script>
+				<% end %>
 			</div>
 			
 		</div>

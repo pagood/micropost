@@ -10,6 +10,13 @@
 					<%= f.hidden_field :post_id, :value => @post.id %>
 					<%= f.submit "POST",class: "btn btn-primary place-right post-comment-btn"%>
 					<% end %>
+					<% unless current_user.activated? %>
+						<script>
+							$('.comment-field').prop('disabled',true);
+							$('.post-comment-btn').prop('disabled',true);
+							$('.comment-field').attr('placeholder','Please verify your email address.');
+						</script>
+					<% end %>
 				</div>
 			</div>
 		</div>

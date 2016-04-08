@@ -9,18 +9,16 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
-	<% flash.each do |message_type,message|%>
-	<div class="alert alert-<%= message_type %>"><%=message%></div>
-	<% end %>
+	
 	<% if logged_in? %>
 	<script>
 		$('body').attr('u-id','<%= current_user.id %>');
 	</script>
-	<% flash.each do |message_type,message|%>
-	<div class="alert alert-<%= message_type %>"><%=message%></div>
-	<% end %>
 	<div class="title-bar fixed-title">
-		<div class="container" style="padding-left:10px;padding-right:10px">		
+		<% flash.each do |message_type,message|%>
+		<div class="alert alert-<%= message_type %>"><%=message%></div>
+		<% end %>
+		<div class="container" style="padding-left:10px;padding-right:10px;margin-top:20px">		
 			<div class="row-fluid">
 				<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
 					<a href="/" class="place-left">FfffBook</a>
