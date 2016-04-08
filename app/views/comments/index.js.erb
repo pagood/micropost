@@ -11,6 +11,7 @@ if(!$('#side-user-profile').hasClass('opened')){
 		$('#<%= @post.id %>').next().append('<%= escape_javascript(render 'shared/comment_feed')%>');
 		$('#<%= @post.id %>').next().find(".comment-field").focus();
 	}
+	$('#<%= @post.id %>').find(".comments-count").html("<%= @post.comments.count %> comments");
 	if(!<%= @flag %>){
 		$('#<%= @post.id %>').next().find(".load-comment").hide();
 	}
@@ -29,6 +30,8 @@ else{
 		$('#side-user-profile').find('#<%= @post.id %>').next().append('<%= escape_javascript(render 'shared/comment_feed')%>');
 		$('#side-user-profile').find('#<%= @post.id %>').next().find(".comment-field").focus();
 	}
+	$('#<%= @post.id %>').find(".comments-count").html("<%= @post.comments.count %> comments");
+	$('#side-user-profile').find('#<%= @post.id %>').find(".comments-count").html("<%= @post.comments.count %> comments");
 	if(!<%= @flag %>){
 		$('#side-user-profile').find('#<%= @post.id %>').next().find(".load-comment").hide();
 	}
