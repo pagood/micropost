@@ -77,6 +77,10 @@
 		</div>
 	</div>
 </div>
+<% else %>
+<% flash.each do |message_type,message| %>
+	<div class="alert alert-<%= message_type %>" style="margin:0"><%= message%></div>
+	<% end %>
 <% end %>
 <%= yield %>
 <% if logged_in? %>
