@@ -8,9 +8,13 @@ class MessagesController < ApplicationController
 		@path = conversation_path(@conversation)
 
 		if @conversation.sender_id == current_user.id
+			@conversation.sender.unread_conversations.find_by({user_id:@conversation.sender_id,conversation_id:@conversation.id}).destroy if @conversation.sender.unread_conversations.find_by({user_id:@conversation.sender_id,conversation_id:@conversation.id})
+			@conversation.receiver.unread_conversations.create({user_id:@conversation.receiver_id,conversation_id:@conversation.id}) unless @conversation.receiver.unread_conversations.find_by({user_id:@conversation.receiver_id,conversation_id:@conversation.id})
 			@conversation.sender_last = @conversation.messages.length
 			@conversation.save
 		else
+			@conversation.receiver.unread_conversations.find_by({user_id:@conversation.receiver_id,conversation_id:@conversation.id}).destroy if @conversation.receiver.unread_conversations.find_by({user_id:@conversation.receiver_id,conversation_id:@conversation.id})
+			@conversation.sender.unread_conversations.create({user_id:@conversation.sender_id,conversation_id:@conversation.id}) unless @conversation.sender.unread_conversations.find_by({user_id:@conversation.sender_id,conversation_id:@conversation.id})
 			@conversation.receiver_last = @conversation.messages.length
 			@conversation.save
 		end
