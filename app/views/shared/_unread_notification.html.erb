@@ -16,9 +16,14 @@
 			<% end %>
 		<% end %>
 	<script>
-		if($('#notification-list').html != ''){
+		if($('.start-unread-conversation').length != 0){
 			$('.glyphicon-bell').removeClass('t-gray');
 			$('.glyphicon-bell').addClass('gold');
+		}
+		else{
+			$('.glyphicon-bell').removeClass('gold');
+			$('.glyphicon-bell').addClass('t-gray');
+			$('#notification-list').html("<li><p class='t-gray' style='width:100%;font-size:16' align='center'>No messages...</p><p class='t-gray' style='width:100%;font-size:16' align='center'>(／‵Д′)／~ ╧╧</p></li>");
 		}
 	</script>
 	<% else %>
