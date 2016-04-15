@@ -1,3 +1,6 @@
 $('#chat-box-container').hide();
 $('#contact-<%= @conversation_id %>').remove();
 $('#conversations-<%= @conversation_id %>').remove();
+
+//update notification menu
+// $('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:@user)) %>");

@@ -28,4 +28,11 @@ else{
 	$('.hidden').addClass('visible-chat');
 	$('.hidden').removeClass('hidden');
 }
+//hide notificatin menu
+if($('.menu').hasClass('unfoldered')){
+			$('.menu').hide();
+			$('.menu').removeClass('unfoldered');
+}
+//update notification menu
+$('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:@user)) %>");
 $('#chat-preloader').hide();

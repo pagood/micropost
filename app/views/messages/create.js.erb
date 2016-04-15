@@ -4,7 +4,6 @@
  // 	console.log("??");
  // 	$('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');
  // }
- console.log('once!');
  //if sender is current user
 if('<%= @conversation.sender_id %>' == $('body').attr('u-id')){
 	if($('#contact-' + <%= @conversation.id %>).length > 0){
@@ -34,4 +33,7 @@ if($('#conversations-' + <%= @conversation.id %>).length > 0){
  // if($('#conversations-' + <%= @conversation.id %>).length <= 0 || ($('#conversations-' + <%= @conversation.id %>).length > 0 && $('#conversations-' + <%= @conversation.id %>).hasClass('invisible-chat'))){
  // 	 $('#' + <%= @conversation.id %>).find('.unread-notification').css('display','block');
  // }
+<% end %>
+<% publish_to @user_path do%>
+$('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:@user)) %>");
 <% end %>

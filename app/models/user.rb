@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
 	has_many :contact_relationships,dependent: :destroy,foreign_key: "me_id"
 	has_many :contacts,through: :contact_relationships,dependent: :destroy
 
+	has_many :unread_conversations,dependent: :destroy
+	has_many :conversations,through: :unread_conversations,dependent: :destroy
+
+
 	has_many :active_conversations, class_name: "Conversation", foreign_key: "sender_id", dependent: :destroy
 	has_many :passive_conversations, class_name: "Conversation", foreign_key: "receiver_id",dependent: :destroy
 	has_many :messages

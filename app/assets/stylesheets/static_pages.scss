@@ -274,7 +274,11 @@ input {
     top:22%;
     display: none;
 }
-#menu{
+#notification-menu{
+    width: 250px;
+    margin-left: -225px;
+}
+.menu{
     position: absolute;
     background: white;
     width: 200px;
@@ -290,34 +294,42 @@ input {
 }
 
 
-#menu .glyphicon{
+.menu .glyphicon{
     font-size: 13px;
     color: black;
 }
-#menu ul{
+.menu ul{
     height: 100%;
     padding: 0;
     list-style-type: none;
     margin-bottom: 0px;
 }
-#menu li{
+.menu li{
     border-radius:5px;
     padding-left: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
     cursor: pointer;
 }
-#menu li:hover{
+#notification-menu li{
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.menu li:hover{
     background: #D8ECFA;
 }
-#menu .title{
+#notification-menu li:hover{
+    background: #F8F8F8;
+}
+.menu .title{
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     background: #003366;
 
 }
-#menu .title p{
+.menu .title p{
     color: #F7F7F7;
 }
 #search-field{

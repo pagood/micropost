@@ -44,8 +44,8 @@
 			</div>
 			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
 				<section class="place-right">
-					<span class="glyphicon glyphicon-user t-gray" style="cursor:pointer" id="menu-switch"></span>
-					<div id="menu">
+					<span class="glyphicon glyphicon-user t-gray menu-switch" style="cursor:pointer" ></span>
+					<div class="menu">
 						<ul>
 							<%= link_to likes_user_path(current_user) do%>
 							<li><span class="glyphicon glyphicon-heart"></span>   Likes</li>
@@ -71,6 +71,14 @@
 					<% end %>
 
 				</section>
+				<section class="place-right">
+					
+					<span class="glyphicon glyphicon-bell t-gray menu-switch"  style="cursor:pointer;margin-right:30px;"></span>
+					
+					<div class="menu" id="notification-menu">
+						<%= render 'shared/unread_notification',user:current_user%>
+					</div>
+				</section>
 
 			</div>
 
@@ -78,9 +86,15 @@
 	</div>
 </div>
 <% else %>
+<<<<<<< HEAD
 <% flash.each do |message_type,message| %>
 	<div class="alert alert-<%= message_type %>" style="margin:0"><%= message%></div>
 	<% end %>
+=======
+<% flash.each do |message_type,message|%>
+		<div class="alert alert-<%= message_type %>" style="margin:0"><%=message%></div>
+		<% end %>
+>>>>>>> test
 <% end %>
 <%= yield %>
 <% if logged_in? %>
@@ -124,3 +138,4 @@
 <% end %>
 </body>
 </html>
+<%= subscribe_to user_path(current_user) %>

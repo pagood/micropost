@@ -1,0 +1,31 @@
+<ul id="notification-list">
+
+	<% unless user.unread_conversations.empty? %>
+		<% user.conversations.each do |c| %>
+			<% if user.id == c.sender_id %>
+			<% from = c.receiver %>
+
+			<% unless user.contacts.include?(from) %>
+				<%= render 'shared/unread_conversation',c: c,from: from,user: user%>	
+			<% end %>
+			<% else %>
+			<% from = c.sender %>
+			<% unless user.contacts.include?(from) %>
+				<%= render 'shared/unread_conversation',c: c,from: from,user: user%>
+			<% end %>
+			<% end %>
+		<% end %>
+	<script>
+		if($('#notification-list').html != ''){
+			$('.glyphicon-bell').removeClass('t-gray');
+			$('.glyphicon-bell').addClass('gold');
+		}
+	</script>
+	<% else %>
+	<li><p class="t-gray" style="width:100%;font-size:16" align='center'>No messages...</p><p class="t-gray" style="width:100%;font-size:16" align='center'>(／‵Д′)／~ ╧╧</p></li>
+	<script>
+		$('.glyphicon-bell').removeClass('gold');
+		$('.glyphicon-bell').addClass('t-gray');
+	</script>
+	<% end %>
+</ul>
