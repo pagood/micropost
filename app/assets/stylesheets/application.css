@@ -22,11 +22,11 @@
 	text-decoration: none;
 	color: white;
 }
-.title-bar #menu a{
+.title-bar .menu a{
 	text-decoration: none;
 	color: #283D75;
 }
-.title-bar #menu a:hover{
+.title-bar .menu a:hover{
 	text-decoration: none;
 	color: #283D75;
 }
@@ -144,7 +144,9 @@ html,body{
 .deep-gray{
 	color: #606060;
 }
-
+.gold{
+	color:#FFD700
+}
 .normal-text:link,.normal-text:hover,.normal-text:active,.normal-text:visited{
 	text-decoration:none;
 }

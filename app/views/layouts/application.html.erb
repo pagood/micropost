@@ -44,8 +44,8 @@
 			</div>
 			<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
 				<section class="place-right">
-					<span class="glyphicon glyphicon-user t-gray" style="cursor:pointer" id="menu-switch"></span>
-					<div id="menu">
+					<span class="glyphicon glyphicon-user t-gray menu-switch" style="cursor:pointer" ></span>
+					<div class="menu">
 						<ul>
 							<%= link_to likes_user_path(current_user) do%>
 							<li><span class="glyphicon glyphicon-heart"></span>   Likes</li>
@@ -72,11 +72,12 @@
 
 				</section>
 				<section class="place-right">
-					<% unless current_user.unread_conversations.empty? %>
-					<span class="glyphicon glyphicon-bell" style="cursor:pointer;margin-right:30px;"></span>
-					<% else %>
-					<span class="glyphicon glyphicon-bell t-gray" style="cursor:pointer;margin-right:30px;"></span>
-					<% end %>
+					
+					<span class="glyphicon glyphicon-bell t-gray menu-switch"  style="cursor:pointer;margin-right:30px;"></span>
+					
+					<div class="menu" id="notification-menu">
+						<%= render 'shared/unread_notification',user:current_user%>
+					</div>
 				</section>
 
 			</div>
@@ -131,3 +132,4 @@
 <% end %>
 </body>
 </html>
+<%= subscribe_to user_path(current_user) %>

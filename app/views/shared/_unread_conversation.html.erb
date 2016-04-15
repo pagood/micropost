@@ -1,0 +1,22 @@
+<%= link_to conversations_path(sender_id: user.id,receiver_id: from.id ),method: :post,remote: true do %>
+<li class="start-unread-conversation" >
+	<div style="display:inline-block">
+		<img src="<%= from.avatar.small.url %>" class="img-circle xxs-img-circle place-left">
+	</div>
+	<div style="display:inline-block;margin-left:5px">
+	<p style="overflow: hidden;
+    text-overflow: ellipsis; "><strong><%= from.user_name %></strong></p> sent new messages
+
+	</div>
+</li>
+<script>
+$('.start-unread-conversation').on('click',function(){
+	$('.visible-chat').addClass('hidden');
+	$('.visible-chat').removeClass('visible-chat');
+
+	$('#chat-box-container').show();
+	$('#chat-preloader').show();
+});
+
+</script>
+<% end %>

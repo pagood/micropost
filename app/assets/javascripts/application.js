@@ -57,23 +57,30 @@ ready = function(){
 
 		}
 	});
-	$('#menu-switch').on('click',function(){
-		if(!$('#menu').hasClass('unfoldered')){
-			$('#menu').show();
-			$('#menu').addClass('unfoldered')
+	$('.menu-switch').on('click',function(){
+
+		if(!$(this).next('.menu').hasClass('unfoldered')){
+			console.log($(this).next('.menu').html());
+			$('.unfoldered').hide();
+			$('.unfoldered').removeClass('unfoldered');
+			$(this).next('.menu').show();
+			$(this).next('.menu').addClass('unfoldered');
 		}
 		else{
-			$('#menu').hide();
-			$('#menu').removeClass('unfoldered')
+			console.log("!!");
+			$(this).next('.menu').hide();
+			$(this).next('.menu').removeClass('unfoldered');
 		}
 
 	});
 	$(document).click(function(e){
 		// $('#menu').hide();
-		if(e.target.id == 'menu-switch') return;
-		if($('#menu').hasClass('unfoldered')){
-			$('#menu').hide();
-			$('#menu').removeClass('unfoldered');
+		// if(e.target.id == 'menu-switch') return;
+		var $this = $(e.target);
+		if($this.hasClass('menu-switch')) return;
+		if($('.menu').hasClass('unfoldered')){
+			$('.menu').hide();
+			$('.menu').removeClass('unfoldered');
 		}
 	});
 
@@ -483,6 +490,7 @@ follow = function(){
 
 			});
 };
+
 start_conversation = function(){
 
 	var cid = $(this).attr('c-id');

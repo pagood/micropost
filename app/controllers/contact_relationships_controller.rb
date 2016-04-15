@@ -14,6 +14,7 @@ class ContactRelationshipsController < ApplicationController
 			@conversation.receiver_last = @conversation.messages.length
 		end
 		@conversation.save
+		@user = current_user
 		respond_to do |format|
 			format.js
 		end
@@ -31,5 +32,6 @@ class ContactRelationshipsController < ApplicationController
 			@conversation.receiver_last = @conversation.messages.length
 		end
 		@conversation.save
+		@user = current_user
 	end
 end
