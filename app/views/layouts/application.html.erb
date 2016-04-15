@@ -11,6 +11,7 @@
 <body>
 	
 	<% if logged_in? %>
+	<%= subscribe_to user_path(current_user) %>
 	<script>
 		$('body').attr('u-id','<%= current_user.id %>');
 	</script>
@@ -86,15 +87,15 @@
 	</div>
 </div>
 <% else %>
-<<<<<<< HEAD
+
 <% flash.each do |message_type,message| %>
 	<div class="alert alert-<%= message_type %>" style="margin:0"><%= message%></div>
 	<% end %>
-=======
+
 <% flash.each do |message_type,message|%>
 		<div class="alert alert-<%= message_type %>" style="margin:0"><%=message%></div>
 		<% end %>
->>>>>>> test
+
 <% end %>
 <%= yield %>
 <% if logged_in? %>
@@ -138,4 +139,4 @@
 <% end %>
 </body>
 </html>
-<%= subscribe_to user_path(current_user) %>
+

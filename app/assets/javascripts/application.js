@@ -60,7 +60,6 @@ ready = function(){
 	$('.menu-switch').on('click',function(){
 
 		if(!$(this).next('.menu').hasClass('unfoldered')){
-			console.log($(this).next('.menu').html());
 			$('.unfoldered').hide();
 			$('.unfoldered').removeClass('unfoldered');
 			$(this).next('.menu').show();
