@@ -1,6 +1,7 @@
 <%= subscribe_to conversation_path(@conversation) %>
 <div id="chat-title" image-url="<%= @contact_relationship.contact.avatar.medium.url %>" c-id="<%= find_conversation(current_user,@contact_relationship.contact).id %>" cr-id="<%= @contact_relationship.id %>">
-	<div class="place-left white" style="padding:5px"><b><%=@contact_relationship.contact.user_name%></b></div>
+	<div class="place-left white" style="padding:5px"><b style="overflow: hidden;
+    text-overflow: ellipsis;"><%=@contact_relationship.contact.user_name%></b></div>
 	<%= link_to contact_relationship_path(@contact_relationship,conversation_id: @conversation.id),method: :delete,remote:true do%>
 		<span class="glyphicon glyphicon-remove place-right white" style="padding:5px"></span>
 	<% end %>

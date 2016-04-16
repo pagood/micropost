@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
 	has_many :unread_conversations,dependent: :destroy
 	has_many :conversations,through: :unread_conversations,dependent: :destroy
 
+	has_many :unread_comments,dependent: :destroy
+	has_many :new_comments,through: :unread_comments,dependent: :destroy,source: "comment"
 
 	has_many :active_conversations, class_name: "Conversation", foreign_key: "sender_id", dependent: :destroy
 	has_many :passive_conversations, class_name: "Conversation", foreign_key: "receiver_id",dependent: :destroy

@@ -4,7 +4,12 @@ class CommentsController < ApplicationController
 	def create
 		comment = current_user.comments.build(comment_params)
 		comment.save
-		redirect_to comments_path(post_id: params[:comment][:post_id])
+		comment.post.user.unread_comments.create({user_id:comment.post.user.id,comment_id:comment.id}) if comment.post.user.id != comment.user.id
+		if comment.post.user.id != comment.user.id
+			redirect_to comments_path(post_id: params[:comment][:post_id],user_id: comment.post.user.id )
+		else
+			redirect_to comments_path(post_id: params[:comment][:post_id])
+		end
 	end
 
 	def destroy
@@ -15,6 +20,7 @@ class CommentsController < ApplicationController
 
 	def index
 		#check if there is comments not showing
+		@user = User.find(params[:user_id]) if params[:user_id]
 		if params[:id].nil?
 			@post = Post.find_by(id: params[:post_id])
 			@comments = @post.comments.limit(5)

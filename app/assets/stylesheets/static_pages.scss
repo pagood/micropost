@@ -307,15 +307,12 @@ input {
 .menu li{
     border-radius:5px;
     padding-left: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-right: 10px;
     cursor: pointer;
 }
-#notification-menu li{
-    padding-left: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
+
 .menu li:hover{
     background: #D8ECFA;
 }

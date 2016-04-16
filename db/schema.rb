@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412205756) do
+ActiveRecord::Schema.define(version: 20160415234016) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(version: 20160412205756) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
   add_index "relationships", ["following_id", "follower_id"], name: "index_relationships_on_following_id_and_follower_id", unique: true
   add_index "relationships", ["following_id"], name: "index_relationships_on_following_id"
+
+  create_table "unread_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "unread_comments", ["comment_id"], name: "index_unread_comments_on_comment_id"
+  add_index "unread_comments", ["user_id", "comment_id"], name: "index_unread_comments_on_user_id_and_comment_id", unique: true
+  add_index "unread_comments", ["user_id"], name: "index_unread_comments_on_user_id"
 
   create_table "unread_conversations", force: :cascade do |t|
     t.integer  "user_id"

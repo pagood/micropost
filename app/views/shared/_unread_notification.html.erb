@@ -1,6 +1,6 @@
 <ul id="notification-list">
 
-	<% unless user.unread_conversations.empty? %>
+	<% unless user.unread_conversations.empty? && user.unread_comments.empty? %>
 		<% user.conversations.each do |c| %>
 			<% if user.id == c.sender_id %>
 			<% from = c.receiver %>
@@ -15,8 +15,12 @@
 			<% end %>
 			<% end %>
 		<% end %>
+		<% user.new_comments.each do |c| %>
+			<% from = c.user %>
+			<%= render 'shared/unread_comment',from: from,comment:c %>
+		<% end %>
 	<script>
-		if($('.start-unread-conversation').length != 0){
+		if($('.start-unread-conversation').length != 0 || $('.start-unread-comment').length != 0){
 			$('.glyphicon-bell').removeClass('t-gray');
 			$('.glyphicon-bell').addClass('gold');
 		}

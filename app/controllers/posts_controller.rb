@@ -13,6 +13,17 @@ class PostsController < ApplicationController
 
 	end
 
+	def show
+		@post = Post.find(params[:id])
+		@comment = Comment.find(params[:comment_id]) if params[:comment_id]
+
+		if @comment
+			UnreadComment.find_by({user_id:current_user.id,comment_id:@comment.id}).destroy if UnreadComment.find_by({user_id:current_user.id,comment_id:@comment.id})
+			last = @post.comments.index(@comment)
+			@comments = @post.comments.limit(last + 1)
+		end
+	end
+
 	def destroy
 		@post.destroy
 		flash[:success] = "deleted"

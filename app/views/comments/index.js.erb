@@ -1,19 +1,17 @@
 if(!$('#side-user-profile').hasClass('opened')){
 	if($('#<%= @post.id %>').hasClass("unfoldered")){
-		console.log("wtf");
-		$('#<%= @post.id %>').next().find(".comment-list").append('<%= escape_javascript(render @comments)%>');
+		$('#<%= @post.id %>').nextAll(".comment-container:first").find(".comment-list").append('<%= escape_javascript(render @comments)%>');
 	}
 	else{
-		console.log("new");
 		$('#<%= @post.id %>').addClass("unfoldered");
-		$('#<%= @post.id %>').next().show();
-		$('#<%= @post.id %>').next().next().hide();
-		$('#<%= @post.id %>').next().append('<%= escape_javascript(render 'shared/comment_feed')%>');
-		$('#<%= @post.id %>').next().find(".comment-field").focus();
+		$('#<%= @post.id %>').nextAll(".comment-container:first").show();
+		$('#<%= @post.id %>').nextAll(".comment-container:first").next(".comment-preloader-container").hide();
+		$('#<%= @post.id %>').nextAll(".comment-container:first").append('<%= escape_javascript(render 'shared/comment_feed')%>');
+		$('#<%= @post.id %>').nextAll(".comment-container:first").find(".comment-field").focus();
 	}
 	$('#<%= @post.id %>').find(".comments-count").html("<%= @post.comments.count %> comments");
 	if(!<%= @flag %>){
-		$('#<%= @post.id %>').next().find(".load-comment").hide();
+		$('#<%= @post.id %>').nextAll(".comment-container:first").find(".load-comment").hide();
 	}
 }
 else{
@@ -36,3 +34,8 @@ else{
 		$('#side-user-profile').find('#<%= @post.id %>').next().find(".load-comment").hide();
 	}
 }
+<% if @user %>
+<% publish_to user_path(@user) do%>
+$('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:@user)) %>");
+<% end %>
+<% end %>

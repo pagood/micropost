@@ -59,16 +59,16 @@ ready = function(){
 	});
 	$('.menu-switch').on('click',function(){
 
-		if(!$(this).next('.menu').hasClass('unfoldered')){
-			$('.unfoldered').hide();
-			$('.unfoldered').removeClass('unfoldered');
+		if(!$(this).next('.menu').hasClass('unfoldered-menu')){
+			$('.unfoldered-menu').hide();
+			$('.unfoldered-menu').removeClass('unfoldered-menu');
 			$(this).next('.menu').show();
-			$(this).next('.menu').addClass('unfoldered');
+			$(this).next('.menu').addClass('unfoldered-menu');
 		}
 		else{
 			console.log("!!");
 			$(this).next('.menu').hide();
-			$(this).next('.menu').removeClass('unfoldered');
+			$(this).next('.menu').removeClass('unfoldered-menu');
 		}
 
 	});
@@ -77,9 +77,9 @@ ready = function(){
 		// if(e.target.id == 'menu-switch') return;
 		var $this = $(e.target);
 		if($this.hasClass('menu-switch')) return;
-		if($('.menu').hasClass('unfoldered')){
+		if($('.menu').hasClass('unfoldered-menu')){
 			$('.menu').hide();
-			$('.menu').removeClass('unfoldered');
+			$('.menu').removeClass('unfoldered-menu');
 		}
 	});
 
@@ -359,8 +359,8 @@ comment_onClick = function(){
 
 		var last = $(this).closest(".comment").prev().find(".comment").last().attr('data-id');
 		var post = $(this).closest(".comment-container").prev().attr('data-id');
-			// console.log(last);
-			// console.log(post);
+			console.log(last);
+			console.log(post);
 			$.ajax({
 				type: "GET",
 				url: '/comments',

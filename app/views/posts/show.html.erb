@@ -1,11 +1,10 @@
-<div class="container home-body width-limited likes-page">
+<div class="container home-body width-limited">
 <div class="row">
 	<div class="col-md-9 col-sm-9 col-xs-12" align="center">
 		<div class="outline">
 			<div class="post-container">
-				<%= render 'shared/feed'%>
+				<%= render @post %>
 			</div>
-			<div class="preloader-container" align="center"> <%= image_tag image_path('728.gif'),id:"home-preloader"%> </div>
 		</div>
 	</div>
 	<div class="col-md-3 col-sm-3 hidden-xs" style="padding-left:0px;padding-right:0px;">
@@ -24,3 +23,18 @@
 	</div>
 </div>
 </div>
+<% if @comment %>
+<script>
+	$('.comment-container').css("margin-bottom","50px");
+	
+	$('.post').addClass("unfoldered");
+	$('.post').nextAll(".comment-container:first").show();
+	$('.post').nextAll(".comment-container:first").append('<%= escape_javascript(render 'shared/comment_feed')%>');
+
+	$('.comment-list').find('.comment').last().find('.reply-row').show();
+	$('.comment-list').find('.comment').last().find('.reply-field').focus();
+	$('.comment-field').val('');
+	$('.reply-field').val('');
+	$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+</script>
+<% end %>
