@@ -6,6 +6,7 @@ if(!$('#side-user-profile').hasClass('opened')){
 	$('#<%= @post.id %>').find(".like-form-container").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
 	$('#<%= @post.id %>').find(".like-form-container-sm").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
 	$('#<%= @post.id %>').find(".likes-count").html("<%= @post.like_users.count %> likes");
+	$('#menu-likes').html("<%= current_user.likes.count %>");
 }
 else{
 	$('#side-user-profile').find('#<%= @post.id %>').find(".like-form-container").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
@@ -13,4 +14,5 @@ else{
 	$('#<%= @post.id %>').find(".like-form-container").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
 	$('#<%= @post.id %>').find(".like-form-container-sm").html("<%= escape_javascript(render('posts/like',post: @post)) %>");
 	$('#<%= @post.id %>').find(".likes-count").html("<%= @post.like_users.count %> likes");
+	$('#menu-likes').html("<%= current_user.likes.count %>");
 }
