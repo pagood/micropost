@@ -1,5 +1,6 @@
 <% if @radar.nil? %>
 	$('#follow-form<%=@user.id%>').html("<%= escape_javascript(render('users/unfollow',user:@user)) %>");
+	
 <% else %>
 	<% unless @next.nil? %>
 		$('#recommended-<%=@user.id%>').empty().slideUp(500,function(){
@@ -10,3 +11,4 @@
 		$('#recommended-<%=@user.id%>').find(".follow-plus-btn").remove();
 	<% end %>
 <% end %>
+$('#menu-following').html("<%= current_user.followings.count %>");

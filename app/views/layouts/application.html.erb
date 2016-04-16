@@ -57,13 +57,13 @@
 							</li>
 							<% end %>
 							<%= link_to likes_user_path(current_user) do%>
-							<li><p style="display:inline-block"><span class="glyphicon glyphicon-heart"></span>   Likes</p><p class="place-right"><%= current_user.likes.count %><p></li>
+							<li><p style="display:inline-block"><span class="glyphicon glyphicon-heart"></span>   Likes</p><p class="place-right" id="menu-likes"><%= current_user.likes.count %><p></li>
 							<% end %>
 							<%= link_to following_user_path(current_user) do%>
-							<li><p style="display:inline-block"><span class="glyphicon glyphicon-refresh"></span>   Following</p><p class="place-right"><%= current_user.followings.count %><p></li>
+							<li><p style="display:inline-block"><span class="glyphicon glyphicon-refresh"></span>   Following</p><p class="place-right" id="menu-following"><%= current_user.followings.count %><p></li>
 							<% end %>
 							<%= link_to followers_user_path(current_user) do%>
-							<li><p style="display:inline-block"><span class="glyphicon glyphicon-refresh"></span>   Followers</p><p class="place-right"><%= current_user.followers.count %><p></li>
+							<li><p style="display:inline-block"><span class="glyphicon glyphicon-refresh"></span>   Followers</p><p class="place-right" id="menu-followers"><%= current_user.followers.count %><p></li>
 							<% end %>
 							<%= link_to edit_user_path(current_user) do%>
 							<li><p><span class="glyphicon glyphicon-cog"></span>   Setting</p></li>
