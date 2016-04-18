@@ -4,18 +4,45 @@ class CommentsController < ApplicationController
 	def create
 		comment = current_user.comments.build(comment_params)
 		comment.save
-		comment.post.user.unread_comments.create({user_id:comment.post.user.id,comment_id:comment.id}) if comment.post.user.id != comment.user.id
-		if comment.post.user.id != comment.user.id
-			redirect_to comments_path(post_id: params[:comment][:post_id],user_id: comment.post.user.id )
+		unless comment.reply_id
+			comment.post.user.unread_comments.create({user_id:comment.post.user.id,comment_id:comment.id}) if comment.post.user.id != comment.user.id
+			if comment.post.user.id != comment.user.id
+				redirect_to comments_path(post_id: params[:comment][:post_id],user_id: comment.post.user.id )
+			else
+				redirect_to comments_path(post_id: params[:comment][:post_id])
+			end
 		else
-			redirect_to comments_path(post_id: params[:comment][:post_id])
+			Comment.find(comment.reply_id).user.unread_replies.create({user_id:Comment.find(comment.reply_id).user.id,comment_id:comment.id}) if comment.user.id != Comment.find(comment.reply_id).user.id
+			if comment.user.id != Comment.find(comment.reply_id).user.id
+				redirect_to comments_path(post_id: params[:comment][:post_id],user_id: Comment.find(comment.reply_id).user.id )
+			else
+				redirect_to comments_path(post_id: params[:comment][:post_id])
+			end
 		end
 	end
 
 	def destroy
 		post_id = @comment.post.id
-		@comment.destroy
-		redirect_to comments_path(post_id: post_id), status: 303
+		unless @comment.reply_id
+			@comment.post.user.unread_comments.find_by({user_id:@comment.post.user.id,comment_id:@comment.id}).destroy if @comment.post.user.unread_comments.find_by({user_id:@comment.post.user.id,comment_id:@comment.id})
+			@comment.destroy
+			if @comment.post.user.id != @comment.user.id
+				redirect_to comments_path(post_id: post_id,user_id:@comment.post.user.id), status: 303
+			else
+				redirect_to comments_path(post_id: post_id), status: 303
+			end
+		else
+			Comment.find(@comment.reply_id).user.unread_replies.find_by({user_id:Comment.find(@comment.reply_id).user.id,comment_id:@comment.id}).destroy if Comment.find(@comment.reply_id).user.unread_replies.find_by({user_id:Comment.find(@comment.reply_id).user.id,comment_id:@comment.id})
+			@comment.destroy
+			if @comment.user.id != Comment.find(@comment.reply_id).user.id
+				redirect_to comments_path(post_id: post_id,user_id:Comment.find(@comment.reply_id).user.id), status: 303
+			else
+				redirect_to comments_path(post_id: post_id), status: 303
+			end
+		end
+
+		
+		
 	end
 
 	def index

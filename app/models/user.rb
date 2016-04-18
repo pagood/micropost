@@ -30,9 +30,19 @@ class User < ActiveRecord::Base
 	has_many :unread_comments,dependent: :destroy
 	has_many :new_comments,through: :unread_comments,dependent: :destroy,source: "comment"
 
+	has_many :unread_likes,dependent: :destroy
+	has_many :new_like_relationships,through: :unread_likes,dependent: :destroy,source: "like_relationship"
+
+	has_many :unread_replies,dependent: :destroy
+	has_many :new_replies,through: :unread_replies,dependent: :destroy,source: "comment"
+ 
+	has_many :unread_followers,dependent: :destroy
+	has_many :new_relationships,through: :unread_followers,dependent: :destroy,source: "relationship"
+
 	has_many :active_conversations, class_name: "Conversation", foreign_key: "sender_id", dependent: :destroy
 	has_many :passive_conversations, class_name: "Conversation", foreign_key: "receiver_id",dependent: :destroy
 	has_many :messages
+
 	mount_uploader :avatar, AvatarUploader
 	mount_uploader :header, HeaderUploader
 	#shared

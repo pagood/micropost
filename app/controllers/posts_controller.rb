@@ -17,8 +17,16 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@comment = Comment.find(params[:comment_id]) if params[:comment_id]
 
+
+		like_relationship_ids = "SELECT id FROM like_relationships WHERE like_id = :post_id"
+		unread = UnreadLike.where("user_id = :user_id AND like_relationship_id IN (#{like_relationship_ids})",user_id:current_user.id,post_id:@post.id)
+		unread.each do |u|
+			u.destroy
+		end
+
 		if @comment
 			UnreadComment.find_by({user_id:current_user.id,comment_id:@comment.id}).destroy if UnreadComment.find_by({user_id:current_user.id,comment_id:@comment.id})
+			UnreadReply.find_by({user_id:current_user.id,comment_id:@comment.id}).destroy if UnreadReply.find_by({user_id:current_user.id,comment_id:@comment.id})
 			last = @post.comments.index(@comment)
 			@comments = @post.comments.limit(last + 1)
 		end

@@ -1,0 +1,12 @@
+<%= link_to  post_path(post) do%>
+<li class="start-unread-like" >
+	<div style="display:inline-block">
+		<img src="<%= from.avatar.small.url %>" class="img-circle xxs-img-circle place-left" >
+	</div>
+	<div style="display:inline-block;margin-left:5px">
+	<p style="overflow: hidden;
+    text-overflow: ellipsis; "><strong><%= from.user_name %></strong></p> <p style="display:inline-block;font-size:12px">likes your post</p>
+
+	</div>
+</li>
+<% end %>

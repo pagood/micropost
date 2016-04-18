@@ -6,8 +6,11 @@ class Comment < ActiveRecord::Base
 	validates :post_id,presence: true
 	validates :user_id,presence: true
 	validates :content,presence: true,length: { maximum: 140}
-	has_many :replys,class_name: "Comment",foreign_key:"comment_id",dependent: :destroy
+	has_many :replys,class_name: "Comment",foreign_key:"comment_id",dependent: :destroy,foreign_key: "reply_id"
 	
 	has_many :unread_comments,dependent: :destroy
 	has_many :users,through: :unread_comments,dependent: :destroy
+
+	has_many :unread_replies,dependent: :destroy
+	has_many :unread_reply_users,through: :unread_replies,dependent: :destroy,source: "user"
 end

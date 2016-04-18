@@ -1,6 +1,6 @@
 <ul id="notification-list">
 
-	<% unless user.unread_conversations.empty? && user.unread_comments.empty? %>
+	<% unless user.unread_conversations.empty? && user.unread_comments.empty? && user.unread_likes.empty? && user.unread_replies.empty? && user.unread_followers.empty? %>
 		<% user.conversations.each do |c| %>
 			<% if user.id == c.sender_id %>
 			<% from = c.receiver %>
@@ -19,8 +19,20 @@
 			<% from = c.user %>
 			<%= render 'shared/unread_comment',from: from,comment:c %>
 		<% end %>
+		<% user.new_like_relationships.each do |c| %>
+			<% from = c.like_user %>
+			<%= render 'shared/unread_like',from: from,post:c.like %>
+		<% end %>
+		<% user.new_replies.each do |c| %>
+			<% from = c.user %>
+			<%= render 'shared/unread_reply',from: from,comment:c %>
+		<% end %>
+		<% user.new_relationships.each do |c| %>
+			<% from = c.follower %>
+			<%= render 'shared/unread_relationship',from: from %>
+		<% end %>
 	<script>
-		if($('.start-unread-conversation').length != 0 || $('.start-unread-comment').length != 0){
+		if($('.start-unread-conversation').length != 0 || $('.start-unread-comment').length != 0 || $('.start-unread-like').length!= 0 || $('.start-unread-reply').length != 0 || $('.start-unread-relationship').length != 0){
 			$('.glyphicon-bell').removeClass('t-gray');
 			$('.glyphicon-bell').addClass('gold');
 		}

@@ -1,0 +1,12 @@
+<%= link_to  user_path(from),remote:true,class:"user-link" do%>
+<li class="start-unread-relationship" >
+	<div style="display:inline-block">
+		<img src="<%= from.avatar.small.url %>" class="img-circle xxs-img-circle place-left" >
+	</div>
+	<div style="display:inline-block;margin-left:5px">
+	<p style="overflow: hidden;
+    text-overflow: ellipsis; "><strong><%= from.user_name %></strong></p> <p style="display:inline-block;font-size:12px">started to follow you</p>
+
+	</div>
+</li>
+<% end %>

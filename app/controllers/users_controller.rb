@@ -8,9 +8,16 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		
 		@user = User.find(params[:id])
 		@posts = @user.posts
 		# render :text => @feed.first.id.inspect
+
+		relationship = Relationship.find_by({follower_id:@user.id,following_id:current_user.id})
+		if relationship
+			current_user.unread_followers.find_by({user_id:current_user.id,relationship_id:relationship.id}).destroy if current_user.unread_followers.find_by({user_id:current_user.id,relationship_id:relationship.id})
+		end
+
 		if params[:last]
 			@posts = @user.posts_with_last(params[:last])
 		else

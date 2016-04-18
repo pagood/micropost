@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415234016) do
+ActiveRecord::Schema.define(version: 20160418003647) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -106,6 +106,39 @@ ActiveRecord::Schema.define(version: 20160415234016) do
   add_index "unread_conversations", ["conversation_id"], name: "index_unread_conversations_on_conversation_id"
   add_index "unread_conversations", ["user_id", "conversation_id"], name: "index_unread_conversations_on_user_id_and_conversation_id", unique: true
   add_index "unread_conversations", ["user_id"], name: "index_unread_conversations_on_user_id"
+
+  create_table "unread_followers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "relationship_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "unread_followers", ["relationship_id"], name: "index_unread_followers_on_relationship_id"
+  add_index "unread_followers", ["user_id", "relationship_id"], name: "index_unread_followers_on_user_id_and_relationship_id", unique: true
+  add_index "unread_followers", ["user_id"], name: "index_unread_followers_on_user_id"
+
+  create_table "unread_likes", force: :cascade do |t|
+    t.integer  "like_relationship_id"
+    t.integer  "user_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "unread_likes", ["like_relationship_id"], name: "index_unread_likes_on_like_relationship_id"
+  add_index "unread_likes", ["user_id", "like_relationship_id"], name: "index_unread_likes_on_user_id_and_like_relationship_id", unique: true
+  add_index "unread_likes", ["user_id"], name: "index_unread_likes_on_user_id"
+
+  create_table "unread_replies", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "unread_replies", ["comment_id"], name: "index_unread_replies_on_comment_id"
+  add_index "unread_replies", ["user_id", "comment_id"], name: "index_unread_replies_on_user_id_and_comment_id", unique: true
+  add_index "unread_replies", ["user_id"], name: "index_unread_replies_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

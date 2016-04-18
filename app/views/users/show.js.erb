@@ -14,3 +14,4 @@ if(!$('#side-user-profile').hasClass('opened')){
 else{
 	$('.side-post-container').append('<%= escape_javascript(render @posts ) %>');
 }
+$('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:current_user)) %>");

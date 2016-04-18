@@ -13,3 +13,8 @@ else{
 	$('#menu-likes').html("<%= current_user.likes.count %>");
 }
 
+<% if @user %>
+<% publish_to user_path(@user) do%>
+$('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:@user)) %>");
+<% end %>
+<% end %>

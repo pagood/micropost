@@ -1,11 +1,11 @@
 <%= link_to  post_path(comment.post,comment_id: comment.id) do%>
-<li class="start-unread-comment" >
+<li class="start-unread-reply" >
 	<div style="display:inline-block">
 		<img src="<%= from.avatar.small.url %>" class="img-circle xxs-img-circle place-left" >
 	</div>
 	<div style="display:inline-block;margin-left:5px">
 	<p style="overflow: hidden;
-    text-overflow: ellipsis; "><strong><%= from.user_name %></strong></p> <p style="display:inline-block;font-size:12px">commented on your post</p>
+    text-overflow: ellipsis; "><strong><%= from.user_name %></strong></p> <p style="display:inline-block;font-size:12px">replies your comment</p>
 
 	</div>
 </li>
