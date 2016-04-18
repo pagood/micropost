@@ -15,5 +15,6 @@ $('#menu-following').html("<%= current_user.followings.count %>");
 <% if @user %>
 <% publish_to user_path(@user) do%>
 $('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:@user)) %>");
+$('#menu-followers').html("<%= @user.followers.count %>");
 <% end %>
 <% end %>
