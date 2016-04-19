@@ -83,8 +83,27 @@
 
 				</section>
 				<section class="place-right">
-					
+					<div class="unread-bell" align="center" style="z-index:100">
+						<% conversations_count = 0 %>
+						<% current_user.conversations.each do |c| %>
+							<% if current_user.id == c.sender_id %>
+							<% from = c.receiver %>
+							<% unless current_user.contacts.include?(from) %>
+								<% conversations_count = conversations_count + 1 %>	
+							<% end %>
+							<% else %>
+							<% from = c.sender %>
+							<% unless current_user.contacts.include?(from) %>
+								<% conversations_count = conversations_count + 1 %>	
+							<% end %>
+							<% end %>
+						<% end %>
+
+
+							<b><%= current_user.unread_comments.count + current_user.unread_replies.count + current_user.unread_followers.count + current_user.unread_likes.count + conversations_count %></b>
+					</div>
 					<span class="glyphicon glyphicon-bell t-gray menu-switch"  style="cursor:pointer;margin-right:30px;"></span>
+					
 					
 					<div class="menu" id="notification-menu">
 						<%= render 'shared/unread_notification',user:current_user%>

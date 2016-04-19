@@ -366,3 +366,19 @@ input {
 #recommended-container p{
     overflow: hidden;
 }
+.unread-bell{
+    position: absolute;
+    background: #529ECC;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    top:-10px;
+    right:95px;
+    border: 2px solid #36465D;
+    color: #36465D;
+    border-radius: 5px;
+    display: none;
+}
+.unread-bell b{
+    font-size: 13px;
+}

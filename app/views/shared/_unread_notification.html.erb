@@ -1,44 +1,51 @@
 <ul id="notification-list">
 
 	<% unless user.unread_conversations.empty? && user.unread_comments.empty? && user.unread_likes.empty? && user.unread_replies.empty? && user.unread_followers.empty? %>
+		<% conversations = 0;comments = 0;likes = 0;replies = 0;followers = 0%>
 		<% user.conversations.each do |c| %>
 			<% if user.id == c.sender_id %>
 			<% from = c.receiver %>
 
 			<% unless user.contacts.include?(from) %>
-				<%= render 'shared/unread_conversation',c: c,from: from,user: user%>	
+				<%= render 'shared/unread_conversation',c: c,from: from,user: user%>
+				<% conversations = conversations + 1 %>	
 			<% end %>
 			<% else %>
 			<% from = c.sender %>
 			<% unless user.contacts.include?(from) %>
 				<%= render 'shared/unread_conversation',c: c,from: from,user: user%>
+				<% conversations = conversations + 1 %>	
 			<% end %>
 			<% end %>
 		<% end %>
 		<% user.new_comments.each do |c| %>
 			<% from = c.user %>
 			<%= render 'shared/unread_comment',from: from,comment:c %>
+			<% comments = comments + 1 %>
 		<% end %>
 		<% user.new_like_relationships.each do |c| %>
 			<% from = c.like_user %>
 			<%= render 'shared/unread_like',from: from,post:c.like %>
+			<% likes = likes + 1 %>
 		<% end %>
 		<% user.new_replies.each do |c| %>
 			<% from = c.user %>
 			<%= render 'shared/unread_reply',from: from,comment:c %>
+			<% replies = replies + 1 %>
 		<% end %>
 		<% user.new_relationships.each do |c| %>
 			<% from = c.follower %>
 			<%= render 'shared/unread_relationship',from: from %>
+			<% followers = followers + 1%>
 		<% end %>
 	<script>
 		if($('.start-unread-conversation').length != 0 || $('.start-unread-comment').length != 0 || $('.start-unread-like').length!= 0 || $('.start-unread-reply').length != 0 || $('.start-unread-relationship').length != 0){
-			$('.glyphicon-bell').removeClass('t-gray');
-			$('.glyphicon-bell').addClass('gold');
+			$('.unread-bell').find('b').html("<%= comments + replies  + followers + likes + conversations %>");
+			$('.unread-bell').show();
 		}
 		else{
-			$('.glyphicon-bell').removeClass('gold');
-			$('.glyphicon-bell').addClass('t-gray');
+			$('.unread-bell').find('b').html("<%= comments + replies  + followers + likes + conversations %>");
+			$('.unread-bell').hide();
 			$('#notification-list').html("<li><p class='t-gray' style='width:100%;font-size:16' align='center'>No messages...</p><p class='t-gray' style='width:100%;font-size:16' align='center'>(／‵Д′)／~ ╧╧</p></li>");
 		}
 	</script>

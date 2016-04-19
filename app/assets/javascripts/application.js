@@ -60,13 +60,14 @@ ready = function(){
 	$('.menu-switch').on('click',function(){
 
 		if(!$(this).next('.menu').hasClass('unfoldered-menu')){
+			console.log("!!");
 			$('.unfoldered-menu').hide();
 			$('.unfoldered-menu').removeClass('unfoldered-menu');
 			$(this).next('.menu').show();
 			$(this).next('.menu').addClass('unfoldered-menu');
 		}
 		else{
-			console.log("!!");
+			
 			$(this).next('.menu').hide();
 			$(this).next('.menu').removeClass('unfoldered-menu');
 		}
