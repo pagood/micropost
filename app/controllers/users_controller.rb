@@ -77,7 +77,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			@user.send_activation_email
-      		flash[:info] = "Please check your email to activate your account."
+      		
       		session[:user_id] = @user.id 
 			@user.remember
 			cookies.permanent.signed[:user_id] = @user.id
@@ -92,6 +92,7 @@ class UsersController < ApplicationController
 	end
 	
 	def likes
+		flash[:info] = "Please check your email to activate your account." unless current_user.activated?
 		@user = User.find(params[:id])
 		if params[:last]
 			@feed = @user.likes.where("like_id < :last",last: params[:last]).limit(5)
@@ -106,12 +107,14 @@ class UsersController < ApplicationController
 	end
 
 	def following
+		flash[:info] = "Please check your email to activate your account." unless current_user.activated?
 		@user = User.find(params[:id])
 		@following = @user.followings.paginate(page:params[:page],per_page:20)
 		# @followers = @user.followers.paginate(page:params[:page],per_page:1)
 	end
 
 	def followers
+		flash[:info] = "Please check your email to activate your account." unless current_user.activated?
 		@user = User.find(params[:id])
 		@followers = @user.followers.paginate(page:params[:page],per_page:20)
 	end

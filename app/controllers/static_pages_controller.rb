@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
 	respond_to :html, :js
 	def home
 		if logged_in?
+			flash[:info] = "Please check your email to activate your account." unless current_user.activated?
 			@post = current_user.posts.build
 			if params[:last]
 				@feed = current_user.feed(params[:last])
