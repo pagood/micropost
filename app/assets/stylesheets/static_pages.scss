@@ -198,6 +198,7 @@ input {
     padding: 6px 12px;
     cursor: pointer;
     margin-top: 5px;
+    float: left;
 }
 #preview-box{
 	z-index: 100;
@@ -341,6 +342,10 @@ input {
     border: 0;
     background: transparent;
 }
+.glyphicon-camera{
+    font-size: 20px;
+}
+
 .glyphicon-camera:hover{
    top:-1px;
 }

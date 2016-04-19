@@ -9,7 +9,7 @@
 					<%= form_for @post,html: {multipart: true} do |f|%>
 					<%= f.text_area :content,class: "form-control",rows:"5",placeholder:"Say something!",id:"post-text-area"%>
 					<label class="custom-file-upload">
-						<span class="glyphicon glyphicon-camera t-orange"></span> <span class="gray" style="font-size:10px">PHOTO</span>
+						<span class="glyphicon glyphicon-camera t-orange"></span>
 						<%= f.file_field :photo,accept: 'image/jpeg,image/gif,image/png',class:"place-left",id:"image_upload"%>
 					</label>
 					<div id="preview-box">
