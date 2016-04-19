@@ -38,22 +38,8 @@
 			<%= render 'shared/unread_relationship',from: from %>
 			<% followers = followers + 1%>
 		<% end %>
-	<script>
-		if($('.start-unread-conversation').length != 0 || $('.start-unread-comment').length != 0 || $('.start-unread-like').length!= 0 || $('.start-unread-reply').length != 0 || $('.start-unread-relationship').length != 0){
-			$('.unread-bell').find('b').html("<%= comments + replies  + followers + likes + conversations %>");
-			$('.unread-bell').show();
-		}
-		else{
-			$('.unread-bell').find('b').html("<%= comments + replies  + followers + likes + conversations %>");
-			$('.unread-bell').hide();
-			$('#notification-list').html("<li><p class='t-gray' style='width:100%;font-size:16' align='center'>No messages...</p><p class='t-gray' style='width:100%;font-size:16' align='center'>(／‵Д′)／~ ╧╧</p></li>");
-		}
-	</script>
+	
 	<% else %>
 	<li><p class="t-gray" style="width:100%;font-size:16" align='center'>No messages...</p><p class="t-gray" style="width:100%;font-size:16" align='center'>(／‵Д′)／~ ╧╧</p></li>
-	<script>
-		$('.glyphicon-bell').removeClass('gold');
-		$('.glyphicon-bell').addClass('t-gray');
-	</script>
 	<% end %>
 </ul>

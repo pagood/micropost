@@ -15,3 +15,9 @@ else{
 	$('.side-post-container').append('<%= escape_javascript(render @posts ) %>');
 }
 $('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:current_user)) %>");
+$('#unread-count').html("<%= escape_javascript(render('shared/unread_count',user:current_user)) %>");
+<% if current_user.unread_count > 0 %>
+		$('#unread-count').show();
+<% else %>
+		$('#unread-count').hide();
+<% end %>

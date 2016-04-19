@@ -14,12 +14,13 @@
 	<% if logged_in? %>
 	<%= subscribe_to user_path(current_user) %>
 	<script>
-		$('body').attr('u-id','<%= current_user.id %>');
+	$('body').attr('u-id','<%= current_user.id %>');
 	</script>
 	<div class="title-bar fixed-title">
 		<% flash.each do |message_type,message|%>
 		<div class="alert alert-<%= message_type %>"><%=message%></div>
 		<% end %>
+
 		<div class="container" style="padding-left:10px;padding-right:10px;margin-top:20px">		
 			<div class="row-fluid">
 				<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
@@ -51,9 +52,9 @@
 						<ul>
 							<%= link_to user_path(current_user),remote:true,class:"user-link" do %>
 							<li>
-								<img src="<%= current_user.avatar.small.url%>" style="display:inline-block;border-radius:4px">
+								<img src="<%= current_user.avatar.small.url%>" class="xxs-img-circle" style="display:inline-block;border-radius:4px">
 								<p style="overflow: hidden;
-    text-overflow: ellipsis;display:inline-block"><strong><%= current_user.user_name %></strong></p>
+								text-overflow: ellipsis;display:inline-block"><strong><%= current_user.user_name %></strong></p>
 							</li>
 							<% end %>
 							<%= link_to likes_user_path(current_user) do%>
@@ -83,24 +84,8 @@
 
 				</section>
 				<section class="place-right">
-					<div class="unread-bell" align="center" style="z-index:100">
-						<% conversations_count = 0 %>
-						<% current_user.conversations.each do |c| %>
-							<% if current_user.id == c.sender_id %>
-							<% from = c.receiver %>
-							<% unless current_user.contacts.include?(from) %>
-								<% conversations_count = conversations_count + 1 %>	
-							<% end %>
-							<% else %>
-							<% from = c.sender %>
-							<% unless current_user.contacts.include?(from) %>
-								<% conversations_count = conversations_count + 1 %>	
-							<% end %>
-							<% end %>
-						<% end %>
-
-
-							<b><%= current_user.unread_comments.count + current_user.unread_replies.count + current_user.unread_followers.count + current_user.unread_likes.count + conversations_count %></b>
+					<div id="unread-count">
+						<%= render 'shared/unread_count',user:current_user%>
 					</div>
 					<span class="glyphicon glyphicon-bell t-gray menu-switch"  style="cursor:pointer;margin-right:30px;"></span>
 					
@@ -108,6 +93,11 @@
 					<div class="menu" id="notification-menu">
 						<%= render 'shared/unread_notification',user:current_user%>
 					</div>
+					<% if current_user.unread_count > 0 %>
+					<script>
+					$('#unread-count').show();
+					</script>
+					<% end %>
 				</section>
 
 			</div>
@@ -115,17 +105,17 @@
 		</div>
 	</div>
 </div>
+<% flash.each do |message_type,message|%>
+		<div class="alert alert-<%= message_type %>"><%=message%></div>
+		<% end %>
 <% else %>
 
 <% flash.each do |message_type,message| %>
-	<div class="alert alert-<%= message_type %>" style="margin:0"><%= message%></div>
-	<% end %>
-
-<% flash.each do |message_type,message|%>
-		<div class="alert alert-<%= message_type %>" style="margin:0"><%=message%></div>
-		<% end %>
+<div class="alert alert-<%= message_type %>" style="margin:0"><%= message%></div>
+<% end %>
 
 <% end %>
+
 <%= yield %>
 <% if logged_in? %>
 
@@ -138,7 +128,7 @@
 		<div id="chat-box" >
 			<div id="chat-preloader">
 				<div id="chat-title">
-				
+					
 				</div>
 				<div id="chat-content" style="height:300px" align="center">
 					<%= image_tag image_path("720.gif"),id:"chat-preloader-img"%>
@@ -151,11 +141,11 @@
 	</div>
 	<div id="contacts-box" >
 		<div id="contacts-container" >
-		<% current_user.contacts.each do |c| %>
+			<% current_user.contacts.each do |c| %>
 
-		<%= render 'shared/contact',c:c%>
+			<%= render 'shared/contact',c:c%>
 
-		<% end %>
+			<% end %>
 		</div>
 	</div>
 	<div class="side-container side-page" style="overflow-y:scroll">

@@ -366,6 +366,9 @@ input {
 #recommended-container p{
     overflow: hidden;
 }
+#unread-count{
+    display: none;
+}
 .unread-bell{
     position: absolute;
     background: #529ECC;
@@ -377,7 +380,6 @@ input {
     border: 2px solid #36465D;
     color: #36465D;
     border-radius: 5px;
-    display: none;
 }
 .unread-bell b{
     font-size: 13px;

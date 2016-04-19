@@ -151,6 +151,23 @@ class User < ActiveRecord::Base
 	User.where("id NOT IN (#{following_ids}) AND id < :last",user_id:id,last:last).where.not(id:id).limit(1).first
 	end
 
+	def unread_count
+		conversations_count = 0
+		conversations.each do |c|
+			if id == c.sender_id
+				from = c.receiver
+				unless contacts.include?(from)
+					conversations_count = conversations_count + 1
+				end
+			else
+				from = c.sender
+				unless contacts.include?(from)
+					conversations_count = conversations_count + 1
+				end
+			end
+		end
+		unread_comments.count + unread_replies.count + unread_followers.count + unread_likes.count + conversations_count
+	end
 	#chat
 	# def contacts
 	# 	sender_ids = "SELECT sender_id FROM conversations WHERE receiver_id = :user_id"

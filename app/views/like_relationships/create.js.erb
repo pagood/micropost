@@ -16,5 +16,11 @@ else{
 <% if @user %>
 <% publish_to user_path(@user) do%>
 $('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:@user)) %>");
+$('#unread-count').html("<%= escape_javascript(render('shared/unread_count',user:@user)) %>");
+<% if @user.unread_count > 0 %>
+		$('#unread-count').show();
+<% else %>
+		$('#unread-count').hide();
+<% end %>
 <% end %>
 <% end %>

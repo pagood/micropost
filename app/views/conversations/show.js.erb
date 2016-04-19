@@ -35,4 +35,10 @@ if($('.menu').hasClass('unfoldered')){
 }
 //update notification menu
 $('#notification-menu').html("<%= escape_javascript(render('shared/unread_notification',user:@user)) %>");
+$('#unread-count').html("<%= escape_javascript(render('shared/unread_count',user:@user)) %>");
+<% if @user.unread_count > 0 %>
+		$('#unread-count').show();
+<% else %>
+		$('#unread-count').hide();
+<% end %>
 $('#chat-preloader').hide();
