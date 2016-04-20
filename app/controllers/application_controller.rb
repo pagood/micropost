@@ -64,4 +64,11 @@ class ApplicationController < ActionController::Base
       Conversation.find_by(sender_id:user2.id,receiver_id:user1.id)
     end
   end
+  def handle_mobile
+    request.format = :mobile if mobile_user_agent?
+  end
+
+  def mobile_user_agent?
+    @mobile_user_agent ||= ( request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(Mobile\/.+Safari)/] )
+  end
 end

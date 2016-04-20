@@ -1,5 +1,4 @@
 class StaticPagesController < ApplicationController
-	respond_to :html, :js
 	def home
 		if logged_in?
 			flash[:info] = "Please check your email to activate your account." unless current_user.activated?
