@@ -4,10 +4,11 @@
 .screen{
 	height: 100%;
 	width: 100%;
-	background-image:image-url('Dinosaur');
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	position: fixed;
+	background:image-url('Dinosaur') no-repeat center center fixed; ;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .center-form{
 	top: 30%;
