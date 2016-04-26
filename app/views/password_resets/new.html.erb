@@ -5,8 +5,8 @@
 
 		<div class='logo'>FuckBook.</div>
 		<%= form_for :password_reset, url: password_resets_path do |f| %>
-		<%= f.text_field :email,class: 'input-field',:placeholder => 'email' %>
-		<%= f.submit 'Reset Password',class: "btn btn-primary btn-lg btn-block submit"%>
+		<%= f.text_field :email,class: 'input-field',style: "width:300px",:placeholder => 'email' %>
+		<%= f.submit 'Reset Password',class: "btn btn-primary btn-lg btn-block submit",style: "width:300px"%>
 		<% end %>
 	</div>
 </div>

@@ -1,14 +1,14 @@
 <div class="screen">
-	<div class="button pull-right right-top transparent" id="login"><div class="btn-center"><p>Log in</p></div></div>
+	<div class="button pull-right right-top transparent sm-btn" id="login"><div class="btn-center"><p>Log in</p></div></div>
 	<div class="center-form">
 		<div class='logo'>FuckBook.</div>
 		<%= form_for @user do |f| %>
-		<%= f.text_field :email,class: 'input-field',:placeholder => 'email' %>
-		<%= f.text_field :user_name,class: "input-field",:placeholder => 'username'%>
-		<%= f.password_field :password,class: 'input-field', :placeholder => 'password'%>
-		<%= f.password_field :password_confirmation,class: 'input-field', :placeholder => 'password confirmation'%>
+		<%= f.text_field :email,class: 'input-field',style: "width:300px",:placeholder => 'email' %>
+		<%= f.text_field :user_name,class: "input-field",style: "width:300px",:placeholder => 'username'%>
+		<%= f.password_field :password,class: 'input-field',style: "width:300px", :placeholder => 'password'%>
+		<%= f.password_field :password_confirmation,class: 'input-field',style: "width:300px", :placeholder => 'password confirmation'%>
 		<%= render 'shared/error_messages',object: f.object%>
-		<%= f.submit 'Sign Up',class: "btn btn-primary btn-lg btn-block submit"%>
+		<%= f.submit 'Sign Up',class: "btn btn-primary btn-lg btn-block submit",style: "width:300px"%>
 		<% end %>
 	</div>
 </div>
