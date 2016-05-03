@@ -1,14 +1,14 @@
 <div class="comment" data-id="<%= comment.id %>">
 	<div class="row">
 		<div class="col-xs-2 col-sm-1 col-md-1">
-			<%= link_to image_tag(comment.user.avatar.small.url ,class:"img-circle xxs-img-circle user-link"),user_path(comment.user),remote:true%>
+			<img src="<%= comment.user.avatar.small.url %>" class="img-circle xxs-img-circle user-link user-show" url="<%=user_path(comment.user)%>">
 		</div>
 		<div class="col-xs-10 col-sm-11 col-md-11 " align="left">
 			<% if comment.reply_id.nil? %>
-				<p class="xs-font"><b><%= link_to comment.user.user_name,user_path(comment.user) ,class:"user-link",remote:true %></b>:<%= comment.content %></p>
+				<p><b class="xs-font user-link user-show blue" url="<%=user_path(comment.user)%>"><%= comment.user.user_name %></b>:<%= comment.content %></p>
 			<% else %>
 				<p class="xs-font">
-					<b><%= link_to comment.user.user_name,user_path(comment.user) ,class:"user-link",remote:true %></b> reply <b><%= link_to Comment.find_by(id: comment.reply_id).user.user_name,user_path(Comment.find_by(id: comment.reply_id).user),class:"user-link",remote:true%></b>:<%= comment.content %>
+					<b class="user-link user-show blue" url="<%=user_path(comment.user)%>"><%= comment.user.user_name %></b> reply <b class="user-link user-show blue" url="<%=user_path(Comment.find_by(id: comment.reply_id).user)%>"><%= Comment.find_by(id: comment.reply_id).user.user_name %></b>:<%= comment.content %>
 				</p>
 			<% end %>
 		</div>

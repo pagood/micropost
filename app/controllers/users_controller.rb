@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 	before_action :logged_in_user, only: [:edit, :update,:show,:index,:likes,:following]
 	before_action :correct_user,only: [:edit, :update,:likes,:following]
 	before_action :is_admin,only: [:index,:destroy]
-
 	def new
 		@user = User.new
 	end
@@ -23,10 +22,6 @@ class UsersController < ApplicationController
 		else
 			@posts = @user.posts.limit(5)
 		end
-		respond_to do |format|
-			format.js
-		end
-
 
 	end
 

@@ -31,6 +31,12 @@ ready = function(){
 	});
 	$('.center-form').hide();
 	$('.screen').hide();
+	$('.open-side-bar').on('click',function(){
+		$('#side-bar').show('slide');
+		$('body').css("overflow","hidden");
+		$('body').css("position","fixed");
+		$('#shadow-layer').show();
+	});
 	$('.side-page').on('scroll',function(){
 		if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight && !$('.side-post-container').hasClass("loading")) {
 			var last = $(this).find('.post').last().attr('data-id');
@@ -182,9 +188,11 @@ ready = function(){
 			$('#profile-content').empty();
 			$('#profile-preloader').show();
 		});
+		$('#side-bar').hide('slide');
 		$('#side-user-profile').removeClass('opened');
 		$('#shadow-layer').hide();
 		$('body').css("overflow","auto");
+		$('body').css("position","relative");
 	});
 	$('#avatar-edit-container').on('click',function(e){
 		e.stopPropagation();
@@ -418,8 +426,8 @@ jump_to_user_page = function(){
 
 	// $(this).closest('.post').find('.overview').fadeOut();
 	//show in order
-	
 	$('body').css("overflow","hidden");
+	// $('body').css("position","fixed");
 	$('#shadow-layer').show();
 	// $('#side-user-profile').show('slide',{direction:"right"});
 	$('#side-user-profile').animate({right:"0px"});
@@ -517,7 +525,20 @@ set_up_conversation = function(){
 set_up_contact = function(){
 	$(this).closest('#chat-title').find('#create-contact').submit();
 }
-
+user_show = function(){
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		$('#shadow-layer').hide();
+		$('body').attr('overflow','auto');
+		window.location.assign($(this).attr('url'));
+	}
+	else{
+		$.ajax({
+				type: "GET",
+				url: $(this).attr('url'),
+				dataType: "script",
+		});
+	}
+}
 $(document).ready(ready);
 $(document).on('page:load',ready);
 $(document).on('click','.like-btn',like_onClick);
@@ -535,6 +556,7 @@ $(document).on('change','#header-upload-field',header_change);
 $(document).on("click",'.follow-plus',follow);
 $(document).on("click",'.start-conversation',start_conversation);
 $(document).on("click",'.create-conversation-btn',set_up_conversation);
+$(document).on("click",'.user-show',user_show);
 // $(document).on("click",'.create-contact-btn',set_up_contact);
 // $(document).on('scroll','.side-page',side_page_scroll);
 

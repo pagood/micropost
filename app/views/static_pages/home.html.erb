@@ -1,10 +1,49 @@
 <% if logged_in? %>
 <div class="container home-body width-limited">
+	<div class="hidden-lg hidden-md hidden-sm">
+			<div class="row title">
+				<div class="col-xs-4" align="left">
+					<span class="glyphicon glyphicon-menu-hamburger t-gray md-font open-side-bar" style="cursor:pointer"></span>
+				</div>
+				<div class="col-xs-4" align="center">
+				</div>
+				<div class="col-xs-4" align="right">
+					<span class="glyphicon glyphicon-search t-gray md-font" style="cursor:pointer"></span>
+				</div>
+			</div>
+			<div id="side-bar">
+				<ul>
+							
+							<li class="user-show" url="<%= user_path(current_user) %>">
+								<img src="<%= current_user.avatar.medium.url%>" class="xs-img-circle" style="display:inline-block;border-radius:4px">
+								<p style="overflow: hidden;
+								text-overflow: ellipsis;display:inline-block"><strong><%= current_user.user_name %></strong></p>
+							</li>
+							
+							<%= link_to likes_user_path(current_user) do%>
+							<li>Likes</p></li>
+							<% end %>
+							<%= link_to following_user_path(current_user) do%>
+							<li>Following</p></li>
+							<% end %>
+							<%= link_to followers_user_path(current_user) do%>
+							<li>Followers</p></li>
+							<% end %>
+							<%= link_to edit_user_path(current_user) do%>
+							<li><p>Setting</p></li>
+							<% end %>
+							<%= link_to '/logout',method: :delete do%>
+							<li><p>Log out</p></li>
+							<% end %>
+						</ul>
+			</div>
+	</div>
 	<div class="row">
-		<div class="col-md-9 col-sm-9 col-xs-12" align="right">
+		<div class="col-md-9 col-sm-9 col-xs-12" align="center" style="padding:0">
 			<div class="outline">
 				<%= render 'shared/error_messages',object: @post%>
-				<div class="post-edit" >
+				<div class="hidden-xs">
+				<div class="post-edit" align="right">
 					<div class="character-number" style="text-align:left"></div>
 					<%= form_for @post,html: {multipart: true} do |f|%>
 					<%= f.text_area :content,class: "form-control",rows:"5",placeholder:"Say something!",id:"post-text-area"%>
@@ -20,6 +59,7 @@
 					<%= f.submit "POST",class: "btn btn-primary",id:"post-btn",disabled:"disabled"%>
 					<% end %>
 				</div>
+			</div>
 				<div class="post-container">
 					<% if @feed.empty? %>
 						<div style="height:600px;width:100%;background:#3F4E64;border-radius:5px;position:relative">

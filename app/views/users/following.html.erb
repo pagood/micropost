@@ -1,3 +1,41 @@
+<div class="container">
+<div class="hidden-lg hidden-md hidden-sm">
+			<div class="row title">
+				<div class="col-xs-4" align="left">
+					<span class="glyphicon glyphicon-menu-hamburger t-gray md-font open-side-bar" style="cursor:pointer"></span>
+				</div>
+				<div class="col-xs-4" align="center">
+				</div>
+				<div class="col-xs-4" align="right">
+					<span class="glyphicon glyphicon-search t-gray md-font" style="cursor:pointer"></span>
+				</div>
+			</div>
+			<div id="side-bar">
+				<ul>
+							<li class="user-show" url="<%= user_path(current_user) %>">
+								<img src="<%= current_user.avatar.medium.url%>" class="xs-img-circle" style="display:inline-block;border-radius:4px">
+								<p style="overflow: hidden;
+								text-overflow: ellipsis;display:inline-block"><strong><%= current_user.user_name %></strong></p>
+							</li>
+							<%= link_to likes_user_path(current_user) do%>
+							<li>Likes</p></li>
+							<% end %>
+							<%= link_to following_user_path(current_user) do%>
+							<li>Following</p></li>
+							<% end %>
+							<%= link_to followers_user_path(current_user) do%>
+							<li>Followers</p></li>
+							<% end %>
+							<%= link_to edit_user_path(current_user) do%>
+							<li><p>Setting</p></li>
+							<% end %>
+							<%= link_to '/logout',method: :delete do%>
+							<li><p>Log out</p></li>
+							<% end %>
+						</ul>
+			</div>
+	</div>
+</div>
 <div class="container home-body outline following-page">
 	
 		<ul class="nav nav-tabs">
@@ -9,12 +47,12 @@
 			<div class="info-row" >
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<%= link_to image_tag(follow.avatar.medium.url,class:"sm-img-circle img-circle user-link"),user_path(follow),remote:true %>
+						<img src="<%= follow.avatar.medium.url %>" class="sm-img-circle img-circle user-link user-show" url="<%= user_path(follow) %>">
 					</div>
 					<div class="col-md-4 col-sm-4 col-xs-4">
-						<%= link_to user_path(follow),remote:true,class:"user-link" do%>
-						<p><b><%= follow.user_name %></b></p>
-						<% end %>
+						
+						<p class="user-link user-show" url="<%= user_path(follow) %>"><b><%= follow.user_name %></b></p>
+						
 						<p><%= follow.last_post_time %></p>
 					</div>
 					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3">
@@ -32,12 +70,10 @@
 			<div class="info-row-odd" >
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<img src="<%= follow.avatar.medium.url%>" class="sm-img-circle img-circle">
+						<img src="<%= follow.avatar.medium.url %>" class="sm-img-circle img-circle user-link user-show" url="<%= user_path(follow) %>">
 					</div>
 					<div class="col-md-4 col-sm-4 col-xs-4">
-						<%= link_to user_path(follow),remote:true,class:"user-link" do%>
-						<p><b><%= follow.user_name %></b></p>
-						<% end %>
+						<p class="user-link user-show" url="<%= user_path(follow) %>"><b><%= follow.user_name %></b></p>
 						<p><%= follow.last_post_time %></p>
 					</div>
 					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3">

@@ -16,18 +16,19 @@
 	<script>
 	$('body').attr('u-id','<%= current_user.id %>');
 	</script>
-	<div class="title-bar fixed-title">
-		<% flash.each do |message_type,message|%>
-		<div class="alert alert-<%= message_type %>"><%=message%></div>
-		<% end %>
+	<div class="hidden-xs">
+		<div class="title-bar fixed-title">
+			<% flash.each do |message_type,message|%>
+			<div class="alert alert-<%= message_type %>"><%=message%></div>
+			<% end %>
 
-		<div class="container" style="padding-left:10px;padding-right:10px;margin-top:20px">		
-			<div class="row-fluid">
-				<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
-					<a href="/" class="place-left">FfffBook</a>
-				</div>
-				<div class="hidden-xs col-sm-4 col-md-4 no-padding">
-					<section class="search-box">
+			<div class="container" style="padding-left:10px;padding-right:10px;margin-top:20px">		
+				<div class="row-fluid">
+					<div class="col-xs-6 col-sm-4 col-md-4 no-padding">
+						<a href="/" class="place-left">FfffBook</a>
+					</div>
+					<div class="hidden-xs col-sm-4 col-md-4 no-padding">
+						<section class="search-box">
 					<!--<form class="search" method="post" action="index.html" >
 						<input type="text" name="q" placeholder="Search..." />
 						<ul class="results" >
@@ -105,9 +106,10 @@
 		</div>
 	</div>
 </div>
+</div>
 <% flash.each do |message_type,message|%>
-		<div class="alert alert-<%= message_type %>"><%=message%></div>
-		<% end %>
+<div class="alert alert-<%= message_type %>"><%=message%></div>
+<% end %>
 <% else %>
 
 <% flash.each do |message_type,message| %>
@@ -118,9 +120,10 @@
 
 <%= yield %>
 <% if logged_in? %>
-
 <div id="shadow-layer">
 </div>
+<div class="hidden-xs">
+
 
 <div id="side-user-profile" style="overflow:hidden">
 	<div id="chat-box-container" style="display:none">	
@@ -154,7 +157,7 @@
 		</div>
 	</div>
 </div>
-
+</div>
 <% end %>
 </body>
 </html>

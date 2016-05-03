@@ -1,5 +1,42 @@
+<div class="container">
+<div class="hidden-lg hidden-md hidden-sm">
+			<div class="row title">
+				<div class="col-xs-4" align="left">
+					<span class="glyphicon glyphicon-menu-hamburger t-gray md-font open-side-bar" style="cursor:pointer"></span>
+				</div>
+				<div class="col-xs-4" align="center">
+				</div>
+				<div class="col-xs-4" align="right">
+					<span class="glyphicon glyphicon-search t-gray md-font" style="cursor:pointer"></span>
+				</div>
+			</div>
+			<div id="side-bar">
+				<ul>
+							<li class="user-show" url="<%= user_path(current_user) %>">
+								<img src="<%= current_user.avatar.medium.url%>" class="xs-img-circle" style="display:inline-block;border-radius:4px">
+								<p style="overflow: hidden;
+								text-overflow: ellipsis;display:inline-block"><strong><%= current_user.user_name %></strong></p>
+							</li>
+							<%= link_to likes_user_path(current_user) do%>
+							<li>Likes</p></li>
+							<% end %>
+							<%= link_to following_user_path(current_user) do%>
+							<li>Following</p></li>
+							<% end %>
+							<%= link_to followers_user_path(current_user) do%>
+							<li>Followers</p></li>
+							<% end %>
+							<%= link_to edit_user_path(current_user) do%>
+							<li><p>Setting</p></li>
+							<% end %>
+							<%= link_to '/logout',method: :delete do%>
+							<li><p>Log out</p></li>
+							<% end %>
+						</ul>
+			</div>
+	</div>
+</div>
 <div class="container edit-page home-body">
-	
 	<%= render 'shared/error_messages',object: @user%>
 	<ul class="nav nav-tabs">
 		<li role="presentation" class="active" id="edit-profile-tag"><a href="javascript:void(0)" id="edit-profile-btn">Edit Profile</a></li>

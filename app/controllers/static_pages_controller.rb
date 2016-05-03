@@ -11,6 +11,7 @@ class StaticPagesController < ApplicationController
 			# @feed = current_user.feed_without_params
 			# render :text => @feed.first.user.inspect
 		end
+
 	end
 
 	def test

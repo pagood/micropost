@@ -169,7 +169,7 @@
     background:rgba(0,0,0,0.7);
     display: none;
     text-align: center;
-    z-index: 99;
+    z-index: 10;
 }
 #avatar-upload-field{
 	display: none;
@@ -366,4 +366,7 @@
 .profile-icon{
 	margin-top:15%;
 	cursor: pointer;
+}
+.user-show{
+	cursor:pointer;
 }
