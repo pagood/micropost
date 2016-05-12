@@ -45,6 +45,12 @@ $('#side-user-profile').addClass('opened');
 			</label>
 			<% else %>
 			<ul class="nav nav-pills profile-nav">
+				<li style="margin-right:10px">
+				
+				
+					<span class="glyphicon glyphicon-home white md-font profile-icon home" ></span>
+					
+				</li>
 				<li>
 					<div id="follow-form<%=@user.id%>" >
 						<% if current_user.active_relationships.find_by(following_id: @user.id) %>
