@@ -1,0 +1,78 @@
+<script>
+$('#side-user-profile').addClass('opened');
+		
+</script>
+<div class="user-container" style="background:#F7F7F7">
+	<div class="user-profile" user-id="<%=@user.id%>">
+		<div id="profile-header" style="background-image:url('<%= @user.header.large.url %>')">
+			<% if current_user == @user %>
+			<ul class="nav nav-pills profile-nav">
+				<li>
+					<div class="btn btn-default" id="edit-appearance">
+						<p class="follow-btn">Edit appearance</p>
+					</div>
+					<div class="btn btn-default" id="edit-save">
+						<p class="follow-btn">Save</p>
+						
+					</div>
+
+				</li>
+			</ul>
+			<script>
+					$('#edit-appearance').on("click",function(){
+						$(this).hide();
+						$('#edit-save').show();
+						$('.edit span').show();
+					});
+					$('#edit-save').on('click',function(){
+						$("#avatar-form").submit();
+						$("#header-form").submit();
+						$('#edit-save').hide();
+						$('#avatar-edit-preloader').show();
+					});
+			</script>
+			<%= form_for :change_avatar,:remote=>true,url: user_path(@user),html:{multipart:true,id:"avatar-form"},method: :put do |f|%>
+						<%= f.file_field :avatar,accept: 'image/jpeg,image/gif,image/png',id:"avatar-upload-field"%>
+			<% end %>
+			<%= form_for :change_header,:remote=>true,url: user_path(@user),html:{multipart:true,id:"header-form"},method: :put do |f|%>
+						<%= f.file_field :header,accept: 'image/jpeg,image/gif,image/png',id:"header-upload-field"%>
+			<% end %>
+			<label class="edit" form="header-form" for="header-upload-field">
+				<span class="glyphicon glyphicon-pencil" id="edit-header"></span>
+			</label>
+			<label class="edit" form="avatar-form" for="avatar-upload-field">
+				<span class="glyphicon glyphicon-pencil" id="edit-avatar"></span>
+			</label>
+			<% else %>
+			<ul class="nav nav-pills profile-nav">
+				<li>
+					<div id="follow-form<%=@user.id%>" >
+						<% if current_user.active_relationships.find_by(following_id: @user.id) %>
+						<%= render 'users/unfollow' ,user:@user%>
+						<% else %>
+						<%= render 'users/follow' ,user:@user%>
+						<% end %>
+					</div>
+				</li>
+
+			</ul>
+			<% end %>
+		</div>
+		<%= image_tag image_path('720.gif'),id:"avatar-edit-preloader"%>
+		<div style="position:relative">
+			<%= image_tag @user.avatar.large.url,class:"img-circle md-img-circle",id:"profile-avatar"%>
+		</div>
+		<div id="profile-info" >
+			<h1><%= @user.user_name %></h1>
+			<p class="gray"><%= @user.bio %></p>
+		</div>
+		<div class="post-container side-post-container"align="center">
+			<% if @posts.empty? %>
+			<h1 class="gray">NO POSTS...</h1>
+			<% else %>
+			<%= render @posts %>
+			<% end %>
+		</div>
+		<div class="preloader-container" align="center"> <%= image_tag image_path('728.gif'),id:"home-preloader"%> </div>
+	</div>
+</div>

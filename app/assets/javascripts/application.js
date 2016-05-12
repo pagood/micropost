@@ -224,7 +224,7 @@ ready = function(){
 
 	//use to load the post automaticaly when scroll to the bottom
 	$(window).on('scroll',function(){
-		if(window.location.pathname === "/" || $('.likes-page').length){
+		if(window.location.pathname === "/" || $('.likes-page').length || $('.user-container').length ){
 			if($(window).scrollTop() + $(window).height() == $(document).height() && !$('.post-container').hasClass("loading")) {
 				var last = $('.post').last().attr('data-id');
 				$('#home-preloader').show();
@@ -441,7 +441,6 @@ jump_to_user_page = function(){
 	$('#shadow-layer').show();
 	// $('#side-user-profile').show('slide',{direction:"right"});
 	$('#side-user-profile').animate({right:"0px"});
-	
 };
 result_click = function(){
 	// console.log("click !");

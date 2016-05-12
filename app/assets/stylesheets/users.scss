@@ -253,8 +253,11 @@
 }
 #profile-avatar{
 	position: absolute;
-	top:250px;
-	left:37%;
+	top:-100px;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
 }
 #profile-info{
 	text-align: center;
@@ -369,4 +372,8 @@
 }
 .user-show{
 	cursor:pointer;
+}
+.user-container{
+	margin: auto;
+	max-width: 600px;
 }
