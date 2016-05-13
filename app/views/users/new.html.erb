@@ -1,14 +1,21 @@
 <div class="screen">
-	<div class="button pull-right right-top transparent sm-btn" id="login"><div class="btn-center"><p>Log in</p></div></div>
-	<div class="center-form">
-		<div class='logo'>FuckBook.</div>
+	<div class="container">
+	<div class="row">
+		<div class="col-md-12" >
+	<div class="center-form" >
+		<div class='logo'>FfffBook.</div>
 		<%= form_for @user do |f| %>
-		<%= f.text_field :email,class: 'input-field',style: "width:300px",:placeholder => 'email' %>
-		<%= f.text_field :user_name,class: "input-field",style: "width:300px",:placeholder => 'username'%>
-		<%= f.password_field :password,class: 'input-field',style: "width:300px", :placeholder => 'password'%>
-		<%= f.password_field :password_confirmation,class: 'input-field',style: "width:300px", :placeholder => 'password confirmation'%>
+		<%= f.text_field :email,class: 'input-field',style: "width:300px;border-radius:0px",:placeholder => 'email' %>
+		<%= f.text_field :user_name,class: "input-field",style: "width:300px;border-radius:0px",:placeholder => 'username'%>
+		<%= f.password_field :password,class: 'input-field',style: "width:300px;border-radius:0px", :placeholder => 'password'%>
+		<%= f.password_field :password_confirmation,class: 'input-field',style: "width:300px;border-radius:0px", :placeholder => 'password confirmation'%>
 		<%= render 'shared/error_messages',object: f.object%>
-		<%= f.submit 'Sign Up',class: "btn btn-primary btn-lg btn-block submit",style: "width:300px"%>
+		<%= f.submit 'Sign up',class: "btn btn-primary btn-lg btn-block submit",style: "width:300px;font-size:20px"%>
 		<% end %>
+		<div class="btn btn-info" style="width:300px;display:block;font-size:20px;margin-top:5px;" id="login">Log in</div>
+	</div>
+	</div>
 	</div>
 </div>
+</div>
+

@@ -4,26 +4,30 @@
 .screen{
 	height: 100%;
 	width: 100%;
-	background:image-url('Dinosaur') no-repeat center center fixed; ;
+	/*background:image-url('Dinosaur') no-repeat center center fixed; ;
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover;*/
+  background: #36465D;
+}
+.screen .row{
+    padding-top: 10%;
 }
 .center-form{
 	top: 30%;
 	margin:auto;
 	position: relative;
-	width: 25%;
+    width: 300px;
 }
 .center-form .container{
 	width: 100%;
 }
 .logo{
-	font-family: "Brush Script MT",cursive;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	color: #FFFFFF;
 	text-align: center;
-	font-size: 90px;
+	font-size: 70px;
 }
 
 .button{

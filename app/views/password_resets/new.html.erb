@@ -1,12 +1,17 @@
 <div class="screen">
-
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
 	<div class="center-form">
 		
 
-		<div class='logo'>FuckBook.</div>
+		<div class='logo'>FfffBook.</div>
 		<%= form_for :password_reset, url: password_resets_path do |f| %>
-		<%= f.text_field :email,class: 'input-field',style: "width:300px",:placeholder => 'email' %>
+		<%= f.text_field :email,class: 'input-field',style: "width:300px;border-radius:0px",:placeholder => 'email' %>
 		<%= f.submit 'Reset Password',class: "btn btn-primary btn-lg btn-block submit",style: "width:300px"%>
 		<% end %>
 	</div>
+</div>
+</div>
+</div>
 </div>
