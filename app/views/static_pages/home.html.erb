@@ -34,9 +34,13 @@
 							<%= link_to edit_user_path(current_user) do%>
 							<li><p>Setting</p></li>
 							<% end %>
+							<%= link_to new_post_path do%>
+							<li><p>Create a post</p></li>
+							<% end %>
 							<%= link_to '/logout',method: :delete do%>
 							<li><p>Log out</p></li>
 							<% end %>
+
 						</ul>
 			</div>
 	</div>

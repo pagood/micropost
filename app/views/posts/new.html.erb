@@ -1,0 +1,63 @@
+<div class="container home-body width-limited likes-page">
+	<div class="hidden-lg hidden-md hidden-sm">
+		<div class="row title">
+			<div class="col-xs-4" align="left">
+				<span class="glyphicon glyphicon-menu-hamburger t-gray md-font open-side-bar" style="cursor:pointer"></span>
+			</div>
+			<div class="col-xs-4" align="center">
+			</div>
+			<div class="col-xs-4" align="right">
+				<span class="glyphicon glyphicon-search t-gray md-font" style="cursor:pointer"></span>
+			</div>
+		</div>
+		<div id="side-bar">
+			<ul>
+
+				<li class="user-show" url="<%= user_path(current_user) %>">
+					<img src="<%= current_user.avatar.medium.url%>" class="xs-img-circle" style="display:inline-block;border-radius:4px">
+					<p style="overflow: hidden;
+					text-overflow: ellipsis;display:inline-block"><strong><%= current_user.user_name %></strong></p>
+				</li>
+				<%= link_to root_url do%>
+				<li><p>Home</p></li>
+				<% end %>
+				<%= link_to likes_user_path(current_user) do%>
+				<li><p>Likes</p></li>
+				<% end %>
+				<%= link_to following_user_path(current_user) do%>
+				<li><p>Following</p></li>
+				<% end %>
+				<%= link_to followers_user_path(current_user) do%>
+				<li><p>Followers</p></li>
+				<% end %>
+				<%= link_to edit_user_path(current_user) do%>
+				<li><p>Setting</p></li>
+				<% end %>
+				<%= link_to '/logout',method: :delete do%>
+				<li><p>Log out</p></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	
+</div>
+<div style="padding:0;background:white">
+	
+		
+			<%= render 'shared/error_messages',object: @post%>
+				<div class="post-edit-mobile" align="right">
+
+					<%= form_for @post,html: {multipart: true} do |f|%>
+					<label class="custom-file-upload" style="padding:0;width:100%;margin-bottom:20px">
+						<div type="button" class="btn btn-info camera-btn btn-block">
+							Choose an Image
+						</div>
+						<%= f.file_field :photo,accept: 'image/jpeg,image/gif,image/png',class:"place-left",id:"image_upload"%>
+					</label>
+					<%= f.text_area :content,class: "form-control",rows:"10",placeholder:"Say something!",id:"post-text-area"%>
+					<div style="margin-top:20px;padding-top:20px;border-top:1px solid #D7D7D7;margin-bottom:20px">
+					<%= f.submit "POST",class: "btn btn-primary",id:"post-btn",disabled:"disabled"%>
+					</div>
+					<% end %>
+				</div>
+</div>

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	before_action :is_activated?, only: [:create,:destroy]
-	before_action :logged_in_user, only: [:create,:destroy]
+	before_action :logged_in_user, only: [:create,:destroy,:new]
 	before_action :correct_user,only: :destroy
 	def create
 		@post = current_user.posts.build(post_params)
@@ -12,6 +12,10 @@ class PostsController < ApplicationController
 		end
 
 	end
+
+	def new
+		@post = current_user.posts.build
+	end 
 
 	def show
 		@post = Post.find(params[:id])

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   post '/search' => 'searches#create'
 
-  resources :posts,only: [:create,:destroy,:show]
+  resources :posts,only: [:create,:destroy,:show,:new]
    resources :users do
     member do
       get :following,:likes,:followers

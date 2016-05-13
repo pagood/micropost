@@ -227,6 +227,12 @@ input {
     padding: 10px;
     border-radius: 5px;
 }
+.post-edit-mobile{
+    position: relative;
+    background: white;
+    padding: 10px;
+    width: 100%;
+}
 .glyphicon-user{
     font-size: 22px;
 }
@@ -345,7 +351,7 @@ input {
     outline: none;
 }
 #post-text-area{
-    border: 0;
+    border: 1px solid #D7D7D7;
     background: transparent;
 }
 .glyphicon-camera{

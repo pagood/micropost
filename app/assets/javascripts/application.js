@@ -99,6 +99,7 @@ ready = function(){
 			alert('Maximum file size is 5MB. Please choose a smaller file.');
 		}
 		else{
+			$('.camera-btn').html("√");
 		readURL(this);
 			$('#preview-box').css({display:"block"});
 			$('#post-btn').attr("disabled",false);
