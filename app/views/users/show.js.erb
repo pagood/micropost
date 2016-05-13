@@ -2,7 +2,9 @@ if($('.user-container').length){
 	$('.side-post-container').append('<%= escape_javascript(render @posts ) %>');
 }
 else{
+
 	if(!$('#side-user-profile').hasClass('opened')){
+		console.log('e!!');
 		$('#side-user-profile').addClass('opened');
 		$('#profile-preloader').hide();
 		$('#profile-content').html("<%= escape_javascript(render('users/show')) %>");
@@ -15,6 +17,7 @@ else{
 		});
 	}
 	else{
+		console.log('e..');
 		$('.side-post-container').append('<%= escape_javascript(render @posts ) %>');
 	}
 }
