@@ -12,19 +12,23 @@
 			</div>
 			<div id="side-bar">
 				<ul>
+							
 							<li class="user-show" url="<%= user_path(current_user) %>">
 								<img src="<%= current_user.avatar.medium.url%>" class="xs-img-circle" style="display:inline-block;border-radius:4px">
 								<p style="overflow: hidden;
 								text-overflow: ellipsis;display:inline-block"><strong><%= current_user.user_name %></strong></p>
 							</li>
+							<%= link_to root_url do%>
+							<li><p>Home</p></li>
+							<% end %>
 							<%= link_to likes_user_path(current_user) do%>
-							<li>Likes</p></li>
+							<li><p>Likes</p></li>
 							<% end %>
 							<%= link_to following_user_path(current_user) do%>
-							<li>Following</p></li>
+							<li><p>Following</p></li>
 							<% end %>
 							<%= link_to followers_user_path(current_user) do%>
-							<li>Followers</p></li>
+							<li><p>Followers</p></li>
 							<% end %>
 							<%= link_to edit_user_path(current_user) do%>
 							<li><p>Setting</p></li>
@@ -54,7 +58,7 @@
 						<p class="user-link user-show" url="<%= user_path(follower) %>"><b><%= follower.user_name %></b></p>
 						<p><%= follower.last_post_time %></p>
 					</div>
-					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3">
+					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3" style='padding-left:0'>
 						<div id="follow-form<%=follower.id%>">
 							<% if current_user.active_relationships.find_by(following_id: follower.id) %>
 							<%= render 'users/unfollow' ,user:follower%>
@@ -75,7 +79,7 @@
 						<p class="user-link user-show" url="<%= user_path(follower) %>"><b><%= follower.user_name %></b></p>
 						<p><%= follower.last_post_time %></p>
 					</div>
-					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3">
+					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3" style='padding-left:0'>
 						<div id="follow-form<%=follower.id%>">
 							<% if current_user.active_relationships.find_by(following_id: follower.id) %>
 							<%= render 'users/unfollow' ,user:follower%>

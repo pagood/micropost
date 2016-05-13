@@ -7,6 +7,12 @@ $('#side-user-profile').addClass('opened');
 		<div id="profile-header" style="background-image:url('<%= @user.header.large.url %>')">
 			<% if current_user == @user %>
 			<ul class="nav nav-pills profile-nav">
+				<li style="margin-right:10px">
+				
+				
+					<span class="glyphicon glyphicon-home white md-font profile-icon home" ></span>
+					
+				</li>
 				<li>
 					<div class="btn btn-default" id="edit-appearance">
 						<p class="follow-btn">Edit appearance</p>
