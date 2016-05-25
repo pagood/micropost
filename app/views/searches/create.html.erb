@@ -46,6 +46,60 @@
 						</ul>
 			</div>
 	</div>
-	<div class="container">
-	</div>
+	
+</div>
+<div class="container home-body outline following-page">
+	
+		<ul class="nav nav-tabs">
+			<li role="presentation" class="active" ><a href="javascript:void(0)" >Results</a></li>
+		</ul>
+		<div>
+		<% @results.each_with_index do |result,page|%>
+		<% if page%2 == 0%>
+			<div class="info-row" >
+				<div class="row">
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<img src="<%= result.avatar.medium.url %>" class="sm-img-circle img-circle user-link user-show" url="<%= user_path(result) %>">
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-4">
+		
+						<p class="user-link user-show" url="<%= user_path(result) %>"><b><%= result.user_name %></b></p>
+						<p><%= result.last_post_time %></p>
+					</div>
+					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3" style='padding-left:0'>
+						<div id="follow-form<%=result.id%>">
+							<% if current_user.active_relationships.find_by(following_id: result.id) %>
+							<%= render 'users/unfollow' ,user:result%>
+							<% else %>
+							<%= render 'users/follow' ,user:result%>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% else %>
+			<div class="info-row-odd" >
+				<div class="row">
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<img src="<%= result.avatar.medium.url %>" class="sm-img-circle img-circle user-link user-show" url="<%= user_path(result) %>">
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-4">
+						<p class="user-link user-show" url="<%= user_path(result) %>"><b><%= result.user_name %></b></p>
+						<p><%= result.last_post_time %></p>
+					</div>
+					<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 col-xs-2 col-xs-offset-3" style='padding-left:0'>
+						<div id="follow-form<%=result.id%>">
+							<% if current_user.active_relationships.find_by(following_id: result.id) %>
+							<%= render 'users/unfollow' ,user:result%>
+							<% else %>
+							<%= render 'users/follow' ,user:result%>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% end %>
+		<% end %>
+		
+		</div>
 </div>
