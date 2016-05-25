@@ -4,10 +4,13 @@
 				<div class="col-xs-4" align="left">
 					<span class="glyphicon glyphicon-menu-hamburger t-gray md-font open-side-bar" style="cursor:pointer"></span>
 				</div>
-				<div class="col-xs-4" align="center">
+				<div class="col-xs-4" style="padding:0">
+					<%= form_for :search,method: :post,url: "/search",html: {autocomplete:"off",id: "search-form-mobile"} do |f|%>
+					<%= f.text_field :key_word,class: "search-field-mobile"%>
+					<% end %>
 				</div>
 				<div class="col-xs-4" align="right">
-					<span class="glyphicon glyphicon-search t-gray md-font" style="cursor:pointer"></span>
+					<span class="glyphicon glyphicon-search t-gray md-font" id="search-mobile" style="cursor:pointer"></span>
 				</div>
 			</div>
 			<div id="side-bar">

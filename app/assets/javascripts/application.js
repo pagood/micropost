@@ -40,6 +40,19 @@ ready = function(){
 		$('body').css("position","fixed");
 		$('#shadow-layer').show();
 	});
+	$('#search-mobile').on('click',function(){
+		$('.search-field-mobile').show();
+	});
+	$('.search-field-mobile').keydown(function(e){
+
+			if(e.keyCode == 13){
+				e.preventDefault();
+				if(this.value.length != 0){
+					$(this).parent().submit();
+					$(this).val('');
+				}
+			}
+		});
 	$('.side-page').on('scroll',function(){
 		if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight && !$('.side-post-container').hasClass("loading")) {
 			var last = $(this).find('.post').last().attr('data-id');

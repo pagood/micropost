@@ -1,4 +1,4 @@
-<div class="container home-body width-limited likes-page">
+<div class="container home-body width-limited">
 	<div class="hidden-lg hidden-md hidden-sm">
 			<div class="row title">
 				<div class="col-xs-4" align="left">
@@ -42,40 +42,10 @@
 							<%= link_to '/logout',method: :delete do%>
 							<li><p>Log out</p></li>
 							<% end %>
+
 						</ul>
 			</div>
 	</div>
-<div class="row">
-	<div class="col-md-9 col-sm-9 col-xs-12" align="center" style="padding:0">
-		<div class="outline">
-			<div class="post-container">
-				<% if @feed.empty? %>
-				<div style="height:600px;width:100%;background:#3F4E64;border-radius:5px;position:relative">
-					<h1 class="t-gray" style="position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);">No posts to display.</h1>
-				</div>
-				<% else %>
-				<%= render 'shared/feed'%>
-				<% end %>
-			</div>
-			<div class="preloader-container" align="center"> <%= image_tag image_path('728.gif'),id:"home-preloader"%> </div>
-		</div>
+	<div class="container">
 	</div>
-	<div class="col-md-3 col-sm-3 hidden-xs" style="padding-left:0px;padding-right:0px;">
-			<div id="recommended-container">
-				<p class="t-light-gray side-title"><b>RECOMMENDED USERS</b></p>
-					<ul>
-						<% recommended_users.each do |recommended_user|%>
-							<%= render 'shared/recommended_users',recommended_user: recommended_user%>
-						<% end %>
-					</ul>
-			</div>
-			<div id="radar-container">
-				<p class="t-light-gray side-title"><b>MOST RECENT</b></p>
-				<%= render 'posts/post_sm',post:radar%>
-			</div>
-	</div>
-</div>
 </div>
