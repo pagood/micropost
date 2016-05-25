@@ -54,6 +54,9 @@
 			<li role="presentation" class="active" ><a href="javascript:void(0)" >Results</a></li>
 		</ul>
 		<div>
+		<% if @results.empty? %>
+			<h3 class="t-gray center" >NOT FOUND...</h3>
+		<% end %>
 		<% @results.each_with_index do |result,page|%>
 		<% if page%2 == 0%>
 			<div class="info-row" >
@@ -100,6 +103,6 @@
 			</div>
 			<% end %>
 		<% end %>
-		
+		<%= will_paginate @results%>
 		</div>
 </div>
