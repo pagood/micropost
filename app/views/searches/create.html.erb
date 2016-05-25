@@ -55,7 +55,7 @@
 		</ul>
 		<div>
 		<% if @results.empty? %>
-			<h3 class="t-gray center" >NOT FOUND...</h3>
+			<p class="t-gray center" style="width:100%;text-align:center">NOT FOUND...</p>
 		<% end %>
 		<% @results.each_with_index do |result,page|%>
 		<% if page%2 == 0%>
@@ -64,7 +64,7 @@
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<img src="<%= result.avatar.medium.url %>" class="sm-img-circle img-circle user-link user-show" url="<%= user_path(result) %>">
 					</div>
-					<div class="col-md-4 col-sm-4 col-xs-4">
+					<div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:25px">
 		
 						<p class="user-link user-show" url="<%= user_path(result) %>"><b><%= result.user_name %></b></p>
 						<p><%= result.last_post_time %></p>
@@ -86,7 +86,7 @@
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<img src="<%= result.avatar.medium.url %>" class="sm-img-circle img-circle user-link user-show" url="<%= user_path(result) %>">
 					</div>
-					<div class="col-md-4 col-sm-4 col-xs-4">
+					<div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:25px">
 						<p class="user-link user-show" url="<%= user_path(result) %>"><b><%= result.user_name %></b></p>
 						<p><%= result.last_post_time %></p>
 					</div>

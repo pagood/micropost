@@ -42,6 +42,7 @@ ready = function(){
 	});
 	$('#search-mobile').on('click',function(){
 		$('.search-field-mobile').show();
+		$('.search-field-mobile').focus();
 	});
 	$('.search-field-mobile').keydown(function(e){
 
