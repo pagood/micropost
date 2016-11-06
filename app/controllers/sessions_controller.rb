@@ -13,6 +13,16 @@ class SessionsController < ApplicationController
 			render 'new'
 		end
 	end
+
+	def create_for_vistor
+		user = User.find_by_email('hello@vistor.com')
+		session[:user_id] = user.id 
+		user.remember
+		cookies.permanent.signed[:user_id] = user.id
+		cookies.permanent[:remember_token] = user.remember_token
+		redirect_back_or root_url
+	end
+
 	def new
 	end
 	def destroy
